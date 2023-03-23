@@ -22,6 +22,7 @@ namespace Paint_Midterm
 
         MyShape SelectedShape;
         MyShape LastSelectedShape;
+        List<MyShape> mySelectedShapes = new List<MyShape>();
 
         PointF PreviousPoint = Point.Empty;
         PaintType Mode = PaintType.Line;
@@ -44,6 +45,7 @@ namespace Paint_Midterm
 
         // Dành cho group shapes
         List<MyShape> GroupShapes = new List<MyShape>();
+        private bool isControlKeyPress;
 
         public MyPaint()
         {
@@ -67,14 +69,11 @@ namespace Paint_Midterm
                 if (Shapes[i].IsHit(e.Location))
                 {
                     SelectedShape = Shapes[i];
-                    Shape_txb.Text = SelectedShape.Name + i.ToString();
+                    Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
+                    PreviousPoint = e.Location;
+                    Moving = true;
                     break;
                 }
-            }
-            if (SelectedShape != null)
-            {
-                Moving = true;
-                PreviousPoint = e.Location;
             }
             base.OnMouseDown(e);
             switch (Mode)
@@ -123,6 +122,9 @@ namespace Paint_Midterm
                 SelectedShape.Move(d);
                 PreviousPoint = e.Location;
                 Main_PBox.Invalidate();
+
+                int i = Shapes.IndexOf(SelectedShape);
+                DrawnShapes.SetItemChecked(i, true);
             }
             base.OnMouseMove(e);
             if (!IsStart) return;
@@ -165,6 +167,12 @@ namespace Paint_Midterm
             Main_PBox.Invalidate();
             base.OnMouseUp(e);
             IsStart = false;
+
+            DrawnShapes.Items.Clear();
+            for (int i = 0; i < Shapes.Count; i++)
+            {
+                DrawnShapes.Items.Add("Shape " + i.ToString() + " (" + Shapes[i].Name + ")");
+            }
         }
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
@@ -177,7 +185,7 @@ namespace Paint_Midterm
                 {                    
                     // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng
                     if (!(SelectedShape is MyLine))
-                    {
+                    {                        
                         ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
                             new RectangleF(SelectedShape.P1.X,
                             SelectedShape.P1.Y,
@@ -243,13 +251,29 @@ namespace Paint_Midterm
             Main_PBox.Invalidate();
             LastSelectedShape = null;
             Shape_txb.Text = "NULL";
+            DrawnShapes.Items.Clear();
+            for (int i = 0; i < Shapes.Count; i++)
+            {
+                DrawnShapes.Items.Add("Shape " + i.ToString() + " (" + Shapes[i].Name + ")");
+            }
+            //for (int i = 0; i < Shapes.Count; i++)
+            //{
+            //    if (DrawnShapes.GetItemChecked(i) == true)
+            //    {
+            //        Shapes.RemoveAt(i);
+            //        DrawnShapes.Items.RemoveAt(i);
+            //        i--;
+            //    }                
+            //}
+
+            Main_PBox.Invalidate();
         }
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             Shapes.Clear();
             Main_PBox.Invalidate();
         }
-        private void Select_btn_Click(object sender, EventArgs e)
+        private void Move_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Move;
         }
@@ -261,6 +285,32 @@ namespace Paint_Midterm
         private void Group_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.NoPaint;
+        }
+
+        private void DrawnShapes_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            for (int i = 0; i < Shapes.Count; i++)
+            {
+                if (DrawnShapes.GetItemChecked(i) == true)
+                {
+                    Shapes[i].ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                }
+                else
+                {
+                    Shapes[i].ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
+                }               
+            }
+            Main_PBox.Invalidate();
+        }
+
+        private void MyPaint_KeyDown(object sender, KeyEventArgs e)
+        {
+            isControlKeyPress = e.Control;
+        }
+
+        private void MyPaint_KeyUp(object sender, KeyEventArgs e)
+        {
+            isControlKeyPress = e.Control;
         }
 
         private void Rec_btn_Click(object sender, EventArgs e)

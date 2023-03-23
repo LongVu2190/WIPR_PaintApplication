@@ -12,7 +12,7 @@ namespace Paint_Midterm
     {
         public MyLine() 
         {
-            this.Name = "Line ";
+            this.Name = "Line";
         }
         public MyLine(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
         {

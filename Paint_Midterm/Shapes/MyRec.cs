@@ -12,7 +12,7 @@ namespace Paint_Midterm
     {
         public MyRec()
         {
-            this.Name = "Rectangle ";
+            this.Name = "Rectangle";
         }
         public MyRec(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
         {

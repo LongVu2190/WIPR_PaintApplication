@@ -20,12 +20,13 @@ namespace Paint_Midterm
             this.ShapeColor = ShapeColor;
             this.ShapeDashStyle = ShapeDashStyle;
         }
+        public PointF PreviousPoint = Point.Empty;
         public string Name { get; set; }
         public PointF P1 { get; set; }
         public PointF P2 { get; set; }
         public float Size { get; set; }
         public bool IsFill { get; set; }
-        public bool IsSelected { get; set; }
+        public bool IsSelected { get; set; } = false;
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }
         public abstract GraphicsPath GetPath { get; }

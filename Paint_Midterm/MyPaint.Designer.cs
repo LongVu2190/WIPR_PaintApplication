@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.Group_btn = new System.Windows.Forms.Button();
-            this.Select_btn = new System.Windows.Forms.Button();
+            this.Move_btn = new System.Windows.Forms.Button();
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             this.ZoomIn_btn = new System.Windows.Forms.Button();
             this.Shape_txb = new System.Windows.Forms.TextBox();
@@ -43,13 +43,14 @@
             this.Fill_btn = new System.Windows.Forms.Button();
             this.check = new System.Windows.Forms.TextBox();
             this.Line_btn = new System.Windows.Forms.Button();
+            this.DrawnShapes = new System.Windows.Forms.CheckedListBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
             // 
             // Group_btn
             // 
-            this.Group_btn.Location = new System.Drawing.Point(13, 218);
+            this.Group_btn.Location = new System.Drawing.Point(55, 38);
             this.Group_btn.Name = "Group_btn";
             this.Group_btn.Size = new System.Drawing.Size(75, 23);
             this.Group_btn.TabIndex = 1;
@@ -57,15 +58,15 @@
             this.Group_btn.UseVisualStyleBackColor = true;
             this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
             // 
-            // Select_btn
+            // Move_btn
             // 
-            this.Select_btn.Location = new System.Drawing.Point(55, 9);
-            this.Select_btn.Name = "Select_btn";
-            this.Select_btn.Size = new System.Drawing.Size(75, 23);
-            this.Select_btn.TabIndex = 2;
-            this.Select_btn.Text = "Select";
-            this.Select_btn.UseVisualStyleBackColor = true;
-            this.Select_btn.Click += new System.EventHandler(this.Select_btn_Click);
+            this.Move_btn.Location = new System.Drawing.Point(55, 9);
+            this.Move_btn.Name = "Move_btn";
+            this.Move_btn.Size = new System.Drawing.Size(75, 23);
+            this.Move_btn.TabIndex = 2;
+            this.Move_btn.Text = "Move";
+            this.Move_btn.UseVisualStyleBackColor = true;
+            this.Move_btn.Click += new System.EventHandler(this.Move_btn_Click);
             // 
             // Main_PBox
             // 
@@ -82,7 +83,7 @@
             // 
             // ZoomIn_btn
             // 
-            this.ZoomIn_btn.Location = new System.Drawing.Point(151, 51);
+            this.ZoomIn_btn.Location = new System.Drawing.Point(136, 9);
             this.ZoomIn_btn.Name = "ZoomIn_btn";
             this.ZoomIn_btn.Size = new System.Drawing.Size(75, 23);
             this.ZoomIn_btn.TabIndex = 4;
@@ -93,16 +94,16 @@
             // Shape_txb
             // 
             this.Shape_txb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shape_txb.Location = new System.Drawing.Point(139, 9);
+            this.Shape_txb.Location = new System.Drawing.Point(13, 136);
             this.Shape_txb.Name = "Shape_txb";
             this.Shape_txb.ReadOnly = true;
-            this.Shape_txb.Size = new System.Drawing.Size(98, 26);
+            this.Shape_txb.Size = new System.Drawing.Size(213, 26);
             this.Shape_txb.TabIndex = 5;
             this.Shape_txb.Text = "NULL";
             // 
             // ZoomOut_btn
             // 
-            this.ZoomOut_btn.Location = new System.Drawing.Point(151, 80);
+            this.ZoomOut_btn.Location = new System.Drawing.Point(136, 38);
             this.ZoomOut_btn.Name = "ZoomOut_btn";
             this.ZoomOut_btn.Size = new System.Drawing.Size(75, 23);
             this.ZoomOut_btn.TabIndex = 7;
@@ -114,23 +115,23 @@
             // 
             this.DashStyle.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.DashStyle.FormattingEnabled = true;
-            this.DashStyle.Location = new System.Drawing.Point(12, 75);
+            this.DashStyle.Location = new System.Drawing.Point(151, 67);
             this.DashStyle.Name = "DashStyle";
-            this.DashStyle.Size = new System.Drawing.Size(121, 28);
+            this.DashStyle.Size = new System.Drawing.Size(75, 28);
             this.DashStyle.TabIndex = 8;
             this.DashStyle.Text = "1";
             // 
             // PenSize
             // 
             this.PenSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PenSize.Location = new System.Drawing.Point(13, 112);
+            this.PenSize.Location = new System.Drawing.Point(151, 101);
             this.PenSize.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
             this.PenSize.Name = "PenSize";
-            this.PenSize.Size = new System.Drawing.Size(120, 26);
+            this.PenSize.Size = new System.Drawing.Size(75, 26);
             this.PenSize.TabIndex = 9;
             this.PenSize.Value = new decimal(new int[] {
             5,
@@ -141,7 +142,7 @@
             // 
             // Delete_btn
             // 
-            this.Delete_btn.Location = new System.Drawing.Point(55, 38);
+            this.Delete_btn.Location = new System.Drawing.Point(14, 70);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(75, 23);
             this.Delete_btn.TabIndex = 10;
@@ -162,7 +163,7 @@
             // 
             // Clear_btn
             // 
-            this.Clear_btn.Location = new System.Drawing.Point(151, 112);
+            this.Clear_btn.Location = new System.Drawing.Point(14, 103);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(75, 23);
             this.Clear_btn.TabIndex = 12;
@@ -172,7 +173,7 @@
             // 
             // Rec_btn
             // 
-            this.Rec_btn.Location = new System.Drawing.Point(94, 189);
+            this.Rec_btn.Location = new System.Drawing.Point(92, 230);
             this.Rec_btn.Name = "Rec_btn";
             this.Rec_btn.Size = new System.Drawing.Size(75, 23);
             this.Rec_btn.TabIndex = 13;
@@ -182,7 +183,7 @@
             // 
             // Fill_btn
             // 
-            this.Fill_btn.Location = new System.Drawing.Point(13, 152);
+            this.Fill_btn.Location = new System.Drawing.Point(14, 171);
             this.Fill_btn.Name = "Fill_btn";
             this.Fill_btn.Size = new System.Drawing.Size(75, 23);
             this.Fill_btn.TabIndex = 14;
@@ -193,7 +194,7 @@
             // check
             // 
             this.check.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.check.Location = new System.Drawing.Point(94, 149);
+            this.check.Location = new System.Drawing.Point(128, 168);
             this.check.Name = "check";
             this.check.ReadOnly = true;
             this.check.Size = new System.Drawing.Size(98, 26);
@@ -202,7 +203,7 @@
             // 
             // Line_btn
             // 
-            this.Line_btn.Location = new System.Drawing.Point(12, 189);
+            this.Line_btn.Location = new System.Drawing.Point(12, 230);
             this.Line_btn.Name = "Line_btn";
             this.Line_btn.Size = new System.Drawing.Size(75, 23);
             this.Line_btn.TabIndex = 16;
@@ -210,12 +211,22 @@
             this.Line_btn.UseVisualStyleBackColor = true;
             this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
             // 
+            // DrawnShapes
+            // 
+            this.DrawnShapes.FormattingEnabled = true;
+            this.DrawnShapes.Location = new System.Drawing.Point(14, 283);
+            this.DrawnShapes.Name = "DrawnShapes";
+            this.DrawnShapes.Size = new System.Drawing.Size(178, 169);
+            this.DrawnShapes.TabIndex = 17;
+            this.DrawnShapes.SelectedIndexChanged += new System.EventHandler(this.DrawnShapes_SelectedIndexChanged);
+            // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.DrawnShapes);
             this.Controls.Add(this.Line_btn);
             this.Controls.Add(this.check);
             this.Controls.Add(this.Fill_btn);
@@ -229,7 +240,7 @@
             this.Controls.Add(this.Shape_txb);
             this.Controls.Add(this.ZoomIn_btn);
             this.Controls.Add(this.Main_PBox);
-            this.Controls.Add(this.Select_btn);
+            this.Controls.Add(this.Move_btn);
             this.Controls.Add(this.Group_btn);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -237,6 +248,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "MyPaint";
             this.Load += new System.EventHandler(this.MyPaint_Load);
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyDown);
+            this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).EndInit();
             this.ResumeLayout(false);
@@ -246,7 +259,7 @@
 
         #endregion
         private System.Windows.Forms.Button Group_btn;
-        private System.Windows.Forms.Button Select_btn;
+        private System.Windows.Forms.Button Move_btn;
         private System.Windows.Forms.PictureBox Main_PBox;
         private System.Windows.Forms.Button ZoomIn_btn;
         private System.Windows.Forms.TextBox Shape_txb;
@@ -260,6 +273,7 @@
         private System.Windows.Forms.Button Fill_btn;
         private System.Windows.Forms.TextBox check;
         private System.Windows.Forms.Button Line_btn;
+        private System.Windows.Forms.CheckedListBox DrawnShapes;
     }
 }
 
