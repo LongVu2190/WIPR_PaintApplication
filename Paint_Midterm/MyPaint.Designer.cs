@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Line_btn = new System.Windows.Forms.Button();
+            this.Group_btn = new System.Windows.Forms.Button();
             this.Select_btn = new System.Windows.Forms.Button();
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             this.ZoomIn_btn = new System.Windows.Forms.Button();
@@ -42,20 +42,20 @@
             this.Rec_btn = new System.Windows.Forms.Button();
             this.Fill_btn = new System.Windows.Forms.Button();
             this.check = new System.Windows.Forms.TextBox();
-            this.Group_btn = new System.Windows.Forms.Button();
+            this.Line_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
             // 
-            // Line_btn
+            // Group_btn
             // 
-            this.Line_btn.Location = new System.Drawing.Point(13, 189);
-            this.Line_btn.Name = "Line_btn";
-            this.Line_btn.Size = new System.Drawing.Size(75, 23);
-            this.Line_btn.TabIndex = 1;
-            this.Line_btn.Text = "Line";
-            this.Line_btn.UseVisualStyleBackColor = true;
-            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
+            this.Group_btn.Location = new System.Drawing.Point(13, 218);
+            this.Group_btn.Name = "Group_btn";
+            this.Group_btn.Size = new System.Drawing.Size(75, 23);
+            this.Group_btn.TabIndex = 1;
+            this.Group_btn.Text = "Group";
+            this.Group_btn.UseVisualStyleBackColor = true;
+            this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
             // 
             // Select_btn
             // 
@@ -200,15 +200,15 @@
             this.check.TabIndex = 15;
             this.check.Text = "False";
             // 
-            // Group_btn
+            // Line_btn
             // 
-            this.Group_btn.Location = new System.Drawing.Point(13, 218);
-            this.Group_btn.Name = "Group_btn";
-            this.Group_btn.Size = new System.Drawing.Size(75, 23);
-            this.Group_btn.TabIndex = 16;
-            this.Group_btn.Text = "Group";
-            this.Group_btn.UseVisualStyleBackColor = true;
-            this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
+            this.Line_btn.Location = new System.Drawing.Point(12, 189);
+            this.Line_btn.Name = "Line_btn";
+            this.Line_btn.Size = new System.Drawing.Size(75, 23);
+            this.Line_btn.TabIndex = 16;
+            this.Line_btn.Text = "Line";
+            this.Line_btn.UseVisualStyleBackColor = true;
+            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
             // 
             // MyPaint
             // 
@@ -216,7 +216,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
-            this.Controls.Add(this.Group_btn);
+            this.Controls.Add(this.Line_btn);
             this.Controls.Add(this.check);
             this.Controls.Add(this.Fill_btn);
             this.Controls.Add(this.Rec_btn);
@@ -230,7 +230,7 @@
             this.Controls.Add(this.ZoomIn_btn);
             this.Controls.Add(this.Main_PBox);
             this.Controls.Add(this.Select_btn);
-            this.Controls.Add(this.Line_btn);
+            this.Controls.Add(this.Group_btn);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MyPaint";
@@ -245,7 +245,7 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button Line_btn;
+        private System.Windows.Forms.Button Group_btn;
         private System.Windows.Forms.Button Select_btn;
         private System.Windows.Forms.PictureBox Main_PBox;
         private System.Windows.Forms.Button ZoomIn_btn;
@@ -259,7 +259,7 @@
         private System.Windows.Forms.Button Rec_btn;
         private System.Windows.Forms.Button Fill_btn;
         private System.Windows.Forms.TextBox check;
-        private System.Windows.Forms.Button Group_btn;
+        private System.Windows.Forms.Button Line_btn;
     }
 }
 

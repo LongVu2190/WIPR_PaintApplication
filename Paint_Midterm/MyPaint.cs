@@ -28,9 +28,9 @@ namespace Paint_Midterm
 
         bool Moving, IsFill = false, IsStart = false;
 
-        // Dành cho không vẽ hình
+        // Dành cho không vẽ hình (NoPaint)
         MyRec rec = new MyRec();
-        // Dành cho di chuyển object
+        // Dành cho di chuyển object (Moving)
         Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
         Brush MovingShadow = new SolidBrush(Color.White);
         Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
@@ -41,7 +41,10 @@ namespace Paint_Midterm
         {
             DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
         };
-        //
+
+        // Dành cho group shapes
+        List<MyShape> GroupShapes = new List<MyShape>();
+
         public MyPaint()
         {
             InitializeComponent();
@@ -81,7 +84,7 @@ namespace Paint_Midterm
                     rec.P1 = e.Location;
                     rec.P2 = e.Location;
                     rec.ShapeColor = Color.Black;
-                    rec.Size = 5;
+                    rec.Size = 2;
                     rec.ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
                     Main_PBox.Invalidate();
                     break;
@@ -193,9 +196,11 @@ namespace Paint_Midterm
                                                     SelectedShape.P1,
                                                     SelectedShape.P2);
                     }
+                    // Vẽ đường thẳng trong chế độ di chuyển
                     if (SelectedShape != shape || SelectedShape is MyLine)
                         shape.Draw(e.Graphics);
                 }
+                // Vẽ lại các hình
                 else
                     shape.Draw(e.Graphics);
             }
