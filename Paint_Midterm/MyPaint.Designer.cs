@@ -39,6 +39,9 @@
             this.Delete_btn = new System.Windows.Forms.Button();
             this.Color_btn = new System.Windows.Forms.Button();
             this.Clear_btn = new System.Windows.Forms.Button();
+            this.Rec_btn = new System.Windows.Forms.Button();
+            this.Fill_btn = new System.Windows.Forms.Button();
+            this.check = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
@@ -166,12 +169,45 @@
             this.Clear_btn.UseVisualStyleBackColor = true;
             this.Clear_btn.Click += new System.EventHandler(this.Clear_btn_Click);
             // 
+            // Rec_btn
+            // 
+            this.Rec_btn.Location = new System.Drawing.Point(94, 189);
+            this.Rec_btn.Name = "Rec_btn";
+            this.Rec_btn.Size = new System.Drawing.Size(75, 23);
+            this.Rec_btn.TabIndex = 13;
+            this.Rec_btn.Text = "Rectangle";
+            this.Rec_btn.UseVisualStyleBackColor = true;
+            this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
+            // 
+            // Fill_btn
+            // 
+            this.Fill_btn.Location = new System.Drawing.Point(13, 152);
+            this.Fill_btn.Name = "Fill_btn";
+            this.Fill_btn.Size = new System.Drawing.Size(75, 23);
+            this.Fill_btn.TabIndex = 14;
+            this.Fill_btn.Text = "Fill";
+            this.Fill_btn.UseVisualStyleBackColor = true;
+            this.Fill_btn.Click += new System.EventHandler(this.Fill_btn_Click);
+            // 
+            // check
+            // 
+            this.check.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.check.Location = new System.Drawing.Point(94, 149);
+            this.check.Name = "check";
+            this.check.ReadOnly = true;
+            this.check.Size = new System.Drawing.Size(98, 26);
+            this.check.TabIndex = 15;
+            this.check.Text = "False";
+            // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.check);
+            this.Controls.Add(this.Fill_btn);
+            this.Controls.Add(this.Rec_btn);
             this.Controls.Add(this.Clear_btn);
             this.Controls.Add(this.Color_btn);
             this.Controls.Add(this.Delete_btn);
@@ -208,6 +244,9 @@
         private System.Windows.Forms.Button Delete_btn;
         private System.Windows.Forms.Button Color_btn;
         private System.Windows.Forms.Button Clear_btn;
+        private System.Windows.Forms.Button Rec_btn;
+        private System.Windows.Forms.Button Fill_btn;
+        private System.Windows.Forms.TextBox check;
     }
 }
 

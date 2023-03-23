@@ -12,9 +12,9 @@ namespace Paint_Midterm
     {
         public MyLine() 
         {
-
+            this.Name = "Line ";
         }
-        public MyLine(PointF P1, float Size, Color ShapeColor, float[] ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
+        public MyLine(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
         {
 
         }
@@ -46,7 +46,7 @@ namespace Paint_Midterm
             {
                 using (Pen myPen = new Pen(ShapeColor, Size))
                 {
-                    myPen.DashPattern = ShapeDashStyle;
+                    myPen.DashStyle = ShapeDashStyle;
                     graphics.DrawPath(myPen, path);
                 }
             }

@@ -12,9 +12,8 @@ namespace Paint_Midterm
     {
         public MyShape() 
         {
-            this.Name = "Shape ";
         }
-        public MyShape(PointF P1, float Size, Color ShapeColor, float[] ShapeDashStyle)
+        public MyShape(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle)
         {
             this.P1 = P1;
             this.Size = Size;
@@ -25,10 +24,9 @@ namespace Paint_Midterm
         public PointF P1 { get; set; }
         public PointF P2 { get; set; }
         public float Size { get; set; }
+        public bool IsFill { get; set; }
         public Color ShapeColor { get; set; }
-        public float[] ShapeDashStyle { get; set; }
-        public bool IsSelected { get; set; } = false;
-        public bool IsHidden { get; set; } = false;
+        public DashStyle ShapeDashStyle { get; set; }
         public abstract GraphicsPath GetPath { get; }
 
         public abstract void Draw(Graphics Gra);

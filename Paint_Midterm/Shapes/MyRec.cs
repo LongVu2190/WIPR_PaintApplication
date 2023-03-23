@@ -12,9 +12,9 @@ namespace Paint_Midterm
     {
         public MyRec()
         {
-
+            this.Name = "Rectangle ";
         }
-        public MyRec(PointF P1, float Size, Color ShapeColor, float[] ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
+        public MyRec(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
         {
 
         }
@@ -23,7 +23,11 @@ namespace Paint_Midterm
             get
             {
                 GraphicsPath GPath = new GraphicsPath();
-                GPath.AddRectangle(P1, P2);
+                RectangleF r = new RectangleF(Math.Min(P1.X, P2.X),
+                            Math.Min(P1.Y, P2.Y),
+                            Math.Abs(P2.X - P1.X),
+                            Math.Abs(P2.Y - P1.Y));
+                GPath.AddRectangle(r);
                 return GPath;
             }
         }
@@ -32,9 +36,16 @@ namespace Paint_Midterm
             bool result = false;
             using (GraphicsPath path = GetPath)
             {
-                using (Pen MyPen = new Pen(ShapeColor, Size + 2))
+                if (!IsFill)
                 {
-                    result = path.IsOutlineVisible(Point, MyPen);
+                    using (Pen MyPen = new Pen(ShapeColor, Size + 2))
+                    {
+                        result = path.IsOutlineVisible(Point, MyPen);
+                    }
+                }
+                else
+                {
+                    result = path.IsVisible(Point);
                 }
             }
             return result;
@@ -44,10 +55,20 @@ namespace Paint_Midterm
         {
             using (GraphicsPath path = GetPath)
             {
-                using (Pen myPen = new Pen(ShapeColor, Size))
+                if (!IsFill)
                 {
-                    myPen.DashPattern = ShapeDashStyle;
-                    graphics.DrawPath(myPen, path);
+                    using (Pen myPen = new Pen(ShapeColor, Size))
+                    {
+                        myPen.DashStyle = ShapeDashStyle;
+                        graphics.DrawPath(myPen, path);
+                    }
+                }
+                else
+                {
+                    using (Brush myBrush = new SolidBrush(ShapeColor))
+                    {
+                        graphics.FillPath(myBrush, path);
+                    }
                 }
             }
         }

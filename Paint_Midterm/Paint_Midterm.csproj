@@ -46,9 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Custom\ShapeFrame.cs" />
     <Compile Include="Enums\PaintType.cs" />
-    <Compile Include="Function\MyDashStyle.cs" />
-    <Compile Include="Function\ShapeType.cs" />
+    <Compile Include="Custom\MyDashStyle.cs" />
     <Compile Include="MyPaint.cs">
       <SubType>Form</SubType>
     </Compile>

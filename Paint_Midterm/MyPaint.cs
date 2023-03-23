@@ -15,7 +15,7 @@ namespace Paint_Midterm
     public partial class MyPaint : Form
     {
         Pen MyPen;
-        Color MyColor;
+        Color MyColor, TempColor;
         Brush MyBrush;
         float MySize;
 
@@ -28,30 +28,31 @@ namespace Paint_Midterm
         PointF PreviousPoint = Point.Empty;
         PaintType Mode = PaintType.Line;
 
-        bool Moving;
-        bool IsStart = false;
+        bool Moving, IsFill = false, IsStart = false;
 
+        Brush brush = new SolidBrush(Color.FromArgb(0, 30, 81));
+        Brush brushShadow = new SolidBrush(Color.White);
+        Pen framePen = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
+        {
+            DashPattern = new float[] { 3, 3, 3, 3 },
+        };
+
+        Pen framePenShadow = new Pen(Color.White, 2f)
+        {
+            DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
+        };
         public MyPaint()
         {
             InitializeComponent();
         }
-        private void Select_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Move;
-        }
-        private void Line_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Line;
-        }
 
         private void MyPaint_Load(object sender, EventArgs e)
         {
-            DoubleBuffered = true;
             MyColor = Color.Black;
             MyBrush = Brushes.Black;
             MySize = 5;
             MyPen = new Pen(MyColor, MySize);
-            for (float i = 1; i <= 4; i++)
+            for (float i = 1; i <= 5; i++)
             {
                 DashStyle.Items.Add(i.ToString());
             }
@@ -63,12 +64,6 @@ namespace Paint_Midterm
                 if (Shapes[i].IsHit(e.Location))
                 {
                     SelectedShape = Shapes[i];
-                    // Đổi dashstyle nếu đang ở chế độ di chuyển 
-                    if (Mode == PaintType.Move)
-                    {
-                        TempDashStyle = SelectedShape.ShapeDashStyle;
-                        SelectedShape.ShapeDashStyle = MyDashStyle.GetDashStyle(5);
-                    }
                     Shape_txb.Text = SelectedShape.Name + i.ToString();
                     break;
                 }
@@ -92,6 +87,18 @@ namespace Paint_Midterm
                     myLine.Size = MySize;
                     myLine.ShapeDashStyle = MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text));
                     Shapes.Add(myLine);
+                    Main_PBox.Invalidate();
+                    break;
+                case PaintType.Rec:
+                    IsStart = true;
+                    MyRec myRec = new MyRec();
+                    myRec.P1 = e.Location;
+                    myRec.P2 = e.Location;
+                    myRec.ShapeColor = MyColor;
+                    myRec.Size = MySize;
+                    myRec.ShapeDashStyle = MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text));
+                    myRec.IsFill = IsFill;
+                    Shapes.Add(myRec);
                     Main_PBox.Invalidate();
                     break;
                 default:
@@ -118,13 +125,16 @@ namespace Paint_Midterm
                     Shapes[Shapes.Count - 1].P2 = e.Location;
                     Main_PBox.Refresh();
                     break;
+                case PaintType.Rec:
+                    Shapes[Shapes.Count - 1].P2 = e.Location;
+                    Main_PBox.Refresh();
+                    break;
             }
         }
         private void Main_Panel_MouseUp(object sender, MouseEventArgs e)
         {
             if (Moving)
             {
-                SelectedShape.ShapeDashStyle = TempDashStyle;
                 LastSelectedShape = SelectedShape;
                 SelectedShape = null;
                 Moving = false;
@@ -137,18 +147,42 @@ namespace Paint_Midterm
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
             foreach (var shape in Shapes)
-                shape.Draw(e.Graphics);
+            {
+                if (Moving)
+                {                   
+                    if (!(SelectedShape.Name == "Line"))
+                    {
+                        ShapeFrame.DrawSelectFrame(e.Graphics, framePen, framePenShadow,
+                            new RectangleF(SelectedShape.P1.X,
+                            SelectedShape.P1.Y,
+                            SelectedShape.P2.X - SelectedShape.P1.X,
+                            SelectedShape.P2.Y - SelectedShape.P1.Y));                        
+                    }                      
+                    if (SelectedShape.Name == "Line")
+                    {
+                        ShapeFrame.DrawSelectPoints(e.Graphics, brush, brushShadow, SelectedShape.P1, SelectedShape.P2);
+                    }
+                    else if (SelectedShape.Name == "Rectangle")
+                    {
+                        ShapeFrame.DrawSelectPoints(e.Graphics, brush, brushShadow,
+                                                    SelectedShape.P1,
+                                                    SelectedShape.P2);
+                    }
+                    if (SelectedShape != shape || SelectedShape is MyLine)
+                        shape.Draw(e.Graphics);
+                }
+                else
+                    shape.Draw(e.Graphics);
+            }
         }
-
         private void ZoomIn_btn_Click(object sender, EventArgs e)
         {
             if (LastSelectedShape != null)
             {
                 LastSelectedShape.Size += 5;
                 Main_PBox.Invalidate();
-            }           
+            }
         }
-
         private void ZoomOut_btn_Click(object sender, EventArgs e)
         {
             if (LastSelectedShape != null)
@@ -174,7 +208,6 @@ namespace Paint_Midterm
                 Color_btn.BackColor = dlg.Color;
             }
         }
-
         private void Delete_btn_Click(object sender, EventArgs e)
         {
             Shapes.Remove(LastSelectedShape);
@@ -182,11 +215,27 @@ namespace Paint_Midterm
             LastSelectedShape = null;
             Shape_txb.Text = "NULL";
         }
-
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             Shapes.Clear();
             Main_PBox.Invalidate();
         }
+        private void Select_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Move;
+        }
+        private void Line_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Line;
+        }
+        private void Rec_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Rec;
+        }
+        private void Fill_btn_Click(object sender, EventArgs e)
+        {
+            IsFill = (IsFill == true) ? false : true;
+            check.Text = IsFill.ToString();
+        }       
     }
 }

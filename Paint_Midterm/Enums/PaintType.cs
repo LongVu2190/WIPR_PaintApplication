@@ -5,5 +5,6 @@
         NoPaint,
         Move,
         Line,
+        Rec,
     }
 }
