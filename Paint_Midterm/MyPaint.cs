@@ -31,6 +31,7 @@ namespace Paint_Midterm
 
         // Dành cho không vẽ hình (NoPaint)
         MyRec rec = new MyRec();
+
         // Dành cho di chuyển object (Moving)
         Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
         Brush MovingShadow = new SolidBrush(Color.White);
@@ -44,7 +45,6 @@ namespace Paint_Midterm
         };
 
         // Dành cho group shapes
-        List<MyShape> GroupShapes = new List<MyShape>();
         private bool isControlKeyPress;
 
         public MyPaint()
@@ -64,17 +64,44 @@ namespace Paint_Midterm
         }
         private void Main_Panel_MouseDown(object sender, MouseEventArgs e)
         {
-            for (var i = Shapes.Count - 1; i >= 0; i--)
+            if (isControlKeyPress)
             {
-                if (Shapes[i].IsHit(e.Location))
+                for (int i = 0; i < Shapes.Count; i++)
                 {
-                    SelectedShape = Shapes[i];
-                    Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
-                    PreviousPoint = e.Location;
-                    Moving = true;
-                    break;
+                    if (Shapes[i].IsHit(e.Location))
+                    {
+                        Shapes[i].IsSelected = !Shapes[i].IsSelected;
+                        Shapes[i].PreviousPoint = e.Location;
+
+                        if (Shapes[i].IsSelected == true)
+                        {
+                            mySelectedShapes.Add(Shapes[i]);
+                        }
+                        else
+                        {
+                            mySelectedShapes.Remove(Shapes[i]);
+                        }
+                        Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
+                        Main_PBox.Invalidate();
+                        break;
+                    }
                 }
             }
+            else if (Mode == PaintType.Move)
+            {
+                for (var i = Shapes.Count - 1; i >= 0; i--)
+                {
+                    if (Shapes[i].IsHit(e.Location))
+                    {
+                        SelectedShape = Shapes[i];
+                        Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
+                        PreviousPoint = e.Location;
+                        Moving = true;
+                        break;
+                    }
+                }
+            }
+
             base.OnMouseDown(e);
             switch (Mode)
             {
@@ -118,14 +145,26 @@ namespace Paint_Midterm
         {
             if (Moving && Mode == PaintType.Move)
             {
-                var d = new PointF(e.X - PreviousPoint.X, e.Y - PreviousPoint.Y);
-                SelectedShape.Move(d);
-                PreviousPoint = e.Location;
-                Main_PBox.Invalidate();
+                if (isControlKeyPress)
+                {
+                }
+                else
+                {
+                    if (SelectedShape != null)
+                    {
+                        var d = new PointF(e.X - PreviousPoint.X, e.Y - PreviousPoint.Y);
+                        SelectedShape.Move(d);
+                        PreviousPoint = e.Location;
+                        Main_PBox.Invalidate();
 
-                int i = Shapes.IndexOf(SelectedShape);
-                DrawnShapes.SetItemChecked(i, true);
+                        int i = Shapes.IndexOf(SelectedShape);
+                        if (i >= 0)
+                            DrawnShapes.SetItemChecked(i, true);
+                    }
+
+                }
             }
+
             base.OnMouseMove(e);
             if (!IsStart) return;
 
@@ -134,7 +173,7 @@ namespace Paint_Midterm
                 case PaintType.NoPaint:
                     rec.P2 = e.Location;
                     Main_PBox.Refresh();
-                    break;  
+                    break;
                 case PaintType.Move:
                     break;
                 case PaintType.Line:
@@ -149,7 +188,7 @@ namespace Paint_Midterm
         }
         private void Main_Panel_MouseUp(object sender, MouseEventArgs e)
         {
-            if (Moving)
+            if (Moving && isControlKeyPress == false)
             {
                 LastSelectedShape = SelectedShape;
                 SelectedShape = null;
@@ -162,36 +201,71 @@ namespace Paint_Midterm
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
                 rec.P2 = p;
+                Main_PBox.Invalidate();
             }
 
-            Main_PBox.Invalidate();
+            //Main_PBox.Invalidate();
             base.OnMouseUp(e);
             IsStart = false;
 
             DrawnShapes.Items.Clear();
             for (int i = 0; i < Shapes.Count; i++)
             {
-                DrawnShapes.Items.Add("Shape " + i.ToString() + " (" + Shapes[i].Name + ")");
+                DrawnShapes.Items.Add("Shape " + i.ToString() + " " + Shapes[i].IsSelected.ToString());
             }
         }
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
 
-            rec.Draw(e.Graphics);
+            if (rec != null)
+                rec.Draw(e.Graphics);
             foreach (var shape in Shapes)
             {
+                shape.Draw(e.Graphics);
+                if (isControlKeyPress)
+                {
+                    if (shape.IsSelected == true)
+                    {
+                        if (!(shape is MyLine))
+                        {
+                            ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
+                                new RectangleF(shape.P1.X,
+                                shape.P1.Y,
+                                shape.P2.X - shape.P1.X,
+                                shape.P2.Y - shape.P1.Y));
+                        }
+                        if (shape is MyLine)
+                        {
+                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
+                        }
+                        else if (shape is MyRec)
+                        {
+                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
+                                                        shape.P1,
+                                                        shape.P2);
+                        }
+                        if (shape is MyLine)
+                            shape.Draw(e.Graphics);
+                    }
+                    else
+                    {
+                        shape.Draw(e.Graphics);
+                    }
+
+                }
+                else
                 if (Moving)
-                {                    
+                {
                     // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng
                     if (!(SelectedShape is MyLine))
-                    {                        
+                    {
                         ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
                             new RectangleF(SelectedShape.P1.X,
                             SelectedShape.P1.Y,
                             SelectedShape.P2.X - SelectedShape.P1.X,
-                            SelectedShape.P2.Y - SelectedShape.P1.Y));                        
-                    }                 
+                            SelectedShape.P2.Y - SelectedShape.P1.Y));
+                    }
                     // Vẽ hai điểm đầu cho đường thẳng
                     if (SelectedShape is MyLine)
                     {
@@ -251,20 +325,12 @@ namespace Paint_Midterm
             Main_PBox.Invalidate();
             LastSelectedShape = null;
             Shape_txb.Text = "NULL";
+
             DrawnShapes.Items.Clear();
             for (int i = 0; i < Shapes.Count; i++)
             {
                 DrawnShapes.Items.Add("Shape " + i.ToString() + " (" + Shapes[i].Name + ")");
             }
-            //for (int i = 0; i < Shapes.Count; i++)
-            //{
-            //    if (DrawnShapes.GetItemChecked(i) == true)
-            //    {
-            //        Shapes.RemoveAt(i);
-            //        DrawnShapes.Items.RemoveAt(i);
-            //        i--;
-            //    }                
-            //}
 
             Main_PBox.Invalidate();
         }
@@ -273,18 +339,40 @@ namespace Paint_Midterm
             Shapes.Clear();
             Main_PBox.Invalidate();
         }
-        private void Move_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Move;
-        }
         private void Line_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Line;
         }
-
+        private void Select_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Move;
+        }
         private void Group_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.NoPaint;
+        }
+        private void Ungroup_btn_Click(object sender, EventArgs e)
+        {
+            if (LastSelectedShape is null || LastSelectedShape.Name != "Group")
+            {
+                MessageBox.Show("Please choose a group shape", "Notification");
+                return;
+            }
+            MyGroup group = new MyGroup();
+            group = LastSelectedShape as MyGroup;
+
+            group.UnGroup(Shapes);
+            Shapes.Remove(group);
+            Main_PBox.Invalidate();
+        }
+        private void Rec_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Rec;
+        }
+        private void Fill_btn_Click(object sender, EventArgs e)
+        {
+            IsFill = (IsFill == true) ? false : true;
+            check.Text = IsFill.ToString();
         }
 
         private void DrawnShapes_SelectedIndexChanged(object sender, EventArgs e)
@@ -298,29 +386,46 @@ namespace Paint_Midterm
                 else
                 {
                     Shapes[i].ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-                }               
+                }
             }
             Main_PBox.Invalidate();
         }
-
         private void MyPaint_KeyDown(object sender, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
+            Debug.Text = isControlKeyPress.ToString();
         }
-
         private void MyPaint_KeyUp(object sender, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
-        }
+            Debug.Text = isControlKeyPress.ToString();
 
-        private void Rec_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Rec;
+            if (mySelectedShapes.Count > 1 && Mode == PaintType.Move)
+            {
+                DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                if (dlr == DialogResult.Yes)
+                {
+                    MyGroup group = new MyGroup();
+                    foreach (var shape in mySelectedShapes)
+                    {
+                        group.Add(shape);
+                        Shapes.Remove(shape);
+                    }
+                    group.FindRegion();
+                    Shapes.Add(group);
+                    group.IsSelected = false;
+                    mySelectedShapes.Clear();
+                }
+                else
+                {
+                    foreach (var shape in mySelectedShapes)
+                    {
+                        shape.IsSelected = false;
+                    }
+                    mySelectedShapes.Clear();
+                }
+                Main_PBox.Invalidate();
+            }
         }
-        private void Fill_btn_Click(object sender, EventArgs e)
-        {
-            IsFill = (IsFill == true) ? false : true;
-            check.Text = IsFill.ToString();
-        }       
     }
 }
