@@ -14,10 +14,10 @@ namespace Paint_Midterm
 
         public static void DrawSelectPoints(Graphics graphics, Brush brush, Brush brushShadow, PointF point0, PointF point1)
         {
-            graphics.FillEllipse(brushShadow, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
-            graphics.FillEllipse(brushShadow, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
-            graphics.FillEllipse(brush, new RectangleF(point0.X - 4, point0.Y - 4, 8, 8));
-            graphics.FillEllipse(brush, new RectangleF(point1.X - 4, point1.Y - 4, 8, 8));
+            graphics.FillEllipse(brushShadow, new RectangleF(point0.X - 5, point0.Y - 5, 12, 12));
+            graphics.FillEllipse(brushShadow, new RectangleF(point1.X - 5, point1.Y - 5, 12, 12));
+            graphics.FillEllipse(brush, new RectangleF(point0.X - 4, point0.Y - 4, 10, 10));
+            graphics.FillEllipse(brush, new RectangleF(point1.X - 4, point1.Y - 4, 10, 10));
         }
 
         public static void DrawSelectPoints(Graphics graphics, Brush brush, Brush brushShadow, List<PointF> points)

@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -14,13 +15,10 @@ namespace Paint_Midterm
 {
     public partial class MyPaint : Form
     {
-        Pen MyPen;
-        Color MyColor, TempColor;
-        Brush MyBrush;
+        Color MyColor;
         float MySize;
 
         List<MyShape> Shapes = new List<MyShape>();
-        float[] TempDashStyle;
 
         MyShape SelectedShape;
         MyShape LastSelectedShape;
@@ -30,17 +28,20 @@ namespace Paint_Midterm
 
         bool Moving, IsFill = false, IsStart = false;
 
-        Brush brush = new SolidBrush(Color.FromArgb(0, 30, 81));
-        Brush brushShadow = new SolidBrush(Color.White);
-        Pen framePen = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
+        // Dành cho không vẽ hình
+        MyRec rec = new MyRec();
+        // Dành cho di chuyển object
+        Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
+        Brush MovingShadow = new SolidBrush(Color.White);
+        Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
         {
             DashPattern = new float[] { 3, 3, 3, 3 },
         };
-
-        Pen framePenShadow = new Pen(Color.White, 2f)
+        Pen MovingFrameShadow = new Pen(Color.White, 2f)
         {
             DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
         };
+        //
         public MyPaint()
         {
             InitializeComponent();
@@ -49,9 +50,8 @@ namespace Paint_Midterm
         private void MyPaint_Load(object sender, EventArgs e)
         {
             MyColor = Color.Black;
-            MyBrush = Brushes.Black;
             MySize = 5;
-            MyPen = new Pen(MyColor, MySize);
+            Mode = PaintType.NoPaint;
             for (float i = 1; i <= 5; i++)
             {
                 DashStyle.Items.Add(i.ToString());
@@ -77,6 +77,13 @@ namespace Paint_Midterm
             switch (Mode)
             {
                 case PaintType.NoPaint:
+                    IsStart = true;
+                    rec.P1 = e.Location;
+                    rec.P2 = e.Location;
+                    rec.ShapeColor = Color.Black;
+                    rec.Size = 5;
+                    rec.ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    Main_PBox.Invalidate();
                     break;
                 case PaintType.Line:
                     IsStart = true;
@@ -119,6 +126,10 @@ namespace Paint_Midterm
 
             switch (Mode)
             {
+                case PaintType.NoPaint:
+                    rec.P2 = e.Location;
+                    Main_PBox.Refresh();
+                    break;  
                 case PaintType.Move:
                     break;
                 case PaintType.Line:
@@ -139,6 +150,15 @@ namespace Paint_Midterm
                 SelectedShape = null;
                 Moving = false;
             }
+
+            // Xóa khung hình chữ nhật sau khi thả chuột
+            if (Mode == PaintType.NoPaint)
+            {
+                PointF p = new PointF(0, 0);
+                rec.P1 = p;
+                rec.P2 = p;
+            }
+
             Main_PBox.Invalidate();
             base.OnMouseUp(e);
             IsStart = false;
@@ -146,25 +166,30 @@ namespace Paint_Midterm
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+
+            rec.Draw(e.Graphics);
             foreach (var shape in Shapes)
             {
                 if (Moving)
-                {                   
-                    if (!(SelectedShape.Name == "Line"))
+                {                    
+                    // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng
+                    if (!(SelectedShape is MyLine))
                     {
-                        ShapeFrame.DrawSelectFrame(e.Graphics, framePen, framePenShadow,
+                        ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
                             new RectangleF(SelectedShape.P1.X,
                             SelectedShape.P1.Y,
                             SelectedShape.P2.X - SelectedShape.P1.X,
                             SelectedShape.P2.Y - SelectedShape.P1.Y));                        
-                    }                      
-                    if (SelectedShape.Name == "Line")
+                    }                 
+                    // Vẽ hai điểm đầu cho đường thẳng
+                    if (SelectedShape is MyLine)
                     {
-                        ShapeFrame.DrawSelectPoints(e.Graphics, brush, brushShadow, SelectedShape.P1, SelectedShape.P2);
+                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
                     }
-                    else if (SelectedShape.Name == "Rectangle")
+                    // Vẽ hai điểm đầu cho hình chữ nhật
+                    else if (SelectedShape is MyRec)
                     {
-                        ShapeFrame.DrawSelectPoints(e.Graphics, brush, brushShadow,
+                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
                                                     SelectedShape.P1,
                                                     SelectedShape.P2);
                     }
@@ -204,7 +229,6 @@ namespace Paint_Midterm
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 MyColor = dlg.Color;
-                MyBrush = new SolidBrush(MyColor);
                 Color_btn.BackColor = dlg.Color;
             }
         }
@@ -228,6 +252,12 @@ namespace Paint_Midterm
         {
             Mode = PaintType.Line;
         }
+
+        private void Group_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.NoPaint;
+        }
+
         private void Rec_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Rec;
