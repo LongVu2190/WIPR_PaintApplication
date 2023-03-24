@@ -46,6 +46,9 @@
             this.DrawnShapes = new System.Windows.Forms.CheckedListBox();
             this.Debug = new System.Windows.Forms.TextBox();
             this.Ungroup_btn = new System.Windows.Forms.Button();
+            this.Ellipse_btn = new System.Windows.Forms.Button();
+            this.Fill_Color_btn = new System.Windows.Forms.Button();
+            this.Circle_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
@@ -155,7 +158,7 @@
             // Color_btn
             // 
             this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.Location = new System.Drawing.Point(11, 17);
+            this.Color_btn.Location = new System.Drawing.Point(11, 3);
             this.Color_btn.Name = "Color_btn";
             this.Color_btn.Size = new System.Drawing.Size(35, 35);
             this.Color_btn.TabIndex = 11;
@@ -175,7 +178,7 @@
             // 
             // Rec_btn
             // 
-            this.Rec_btn.Location = new System.Drawing.Point(92, 267);
+            this.Rec_btn.Location = new System.Drawing.Point(92, 248);
             this.Rec_btn.Name = "Rec_btn";
             this.Rec_btn.Size = new System.Drawing.Size(75, 23);
             this.Rec_btn.TabIndex = 13;
@@ -205,7 +208,7 @@
             // 
             // Line_btn
             // 
-            this.Line_btn.Location = new System.Drawing.Point(12, 267);
+            this.Line_btn.Location = new System.Drawing.Point(11, 248);
             this.Line_btn.Name = "Line_btn";
             this.Line_btn.Size = new System.Drawing.Size(75, 23);
             this.Line_btn.TabIndex = 16;
@@ -242,12 +245,46 @@
             this.Ungroup_btn.UseVisualStyleBackColor = true;
             this.Ungroup_btn.Click += new System.EventHandler(this.Ungroup_btn_Click);
             // 
+            // Ellipse_btn
+            // 
+            this.Ellipse_btn.Location = new System.Drawing.Point(11, 277);
+            this.Ellipse_btn.Name = "Ellipse_btn";
+            this.Ellipse_btn.Size = new System.Drawing.Size(75, 23);
+            this.Ellipse_btn.TabIndex = 20;
+            this.Ellipse_btn.Text = "Ellipse";
+            this.Ellipse_btn.UseVisualStyleBackColor = true;
+            this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
+            // 
+            // Fill_Color_btn
+            // 
+            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Fill_Color_btn.Location = new System.Drawing.Point(12, 38);
+            this.Fill_Color_btn.Name = "Fill_Color_btn";
+            this.Fill_Color_btn.Size = new System.Drawing.Size(35, 35);
+            this.Fill_Color_btn.TabIndex = 21;
+            this.Fill_Color_btn.TabStop = false;
+            this.Fill_Color_btn.UseVisualStyleBackColor = false;
+            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
+            // 
+            // Circle_btn
+            // 
+            this.Circle_btn.Location = new System.Drawing.Point(92, 277);
+            this.Circle_btn.Name = "Circle_btn";
+            this.Circle_btn.Size = new System.Drawing.Size(75, 23);
+            this.Circle_btn.TabIndex = 22;
+            this.Circle_btn.Text = "Circle";
+            this.Circle_btn.UseVisualStyleBackColor = true;
+            this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
+            // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.Circle_btn);
+            this.Controls.Add(this.Fill_Color_btn);
+            this.Controls.Add(this.Ellipse_btn);
             this.Controls.Add(this.Ungroup_btn);
             this.Controls.Add(this.Debug);
             this.Controls.Add(this.DrawnShapes);
@@ -301,6 +338,9 @@
         private System.Windows.Forms.CheckedListBox DrawnShapes;
         private System.Windows.Forms.TextBox Debug;
         private System.Windows.Forms.Button Ungroup_btn;
+        private System.Windows.Forms.Button Ellipse_btn;
+        private System.Windows.Forms.Button Fill_Color_btn;
+        private System.Windows.Forms.Button Circle_btn;
     }
 }
 

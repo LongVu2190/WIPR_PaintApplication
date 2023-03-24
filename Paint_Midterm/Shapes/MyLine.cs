@@ -14,9 +14,9 @@ namespace Paint_Midterm
         {
             this.Name = "Line";
         }
-        public MyLine(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
+        public MyLine(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, P2, Size, ShapeColor, ShapeDashStyle)
         {
-
+            this.Name = "Line";
         }
         public override GraphicsPath GetPath
         {

@@ -17,10 +17,6 @@ namespace Paint_Midterm
         {
             this.Name = "Group";
         }
-        public MyGroup(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
-        {
-
-        }
         public override GraphicsPath GetPath
         {
             get
@@ -39,6 +35,7 @@ namespace Paint_Midterm
                 for (int i = 0; i < Shapes.Count; i++)
                 {
                     GraphicsPath path = new GraphicsPath();
+
                     if (Shapes[i] is MyLine line)
                     {
                         path.AddLine(line.P1, line.P2);
@@ -47,6 +44,19 @@ namespace Paint_Midterm
                     {
                         path.AddRectangle(new RectangleF(rect.P1.X, rect.P1.Y, rect.P2.X - rect.P1.X, rect.P2.Y - rect.P1.Y));
                     }
+                    else if (Shapes[i] is MyEllipse ellip)
+                    {
+                        if (ellip.IsCircle == true)
+                        {
+                            float r = ((ellip.P2.X - ellip.P1.X) + (ellip.P2.Y - ellip.P1.Y)) / 2;
+                            path.AddEllipse(new RectangleF(ellip.P1.X, ellip.P1.Y, r, r));
+                        }
+                        else
+                        {
+                            path.AddEllipse(new RectangleF(ellip.P1.X, ellip.P1.Y, ellip.P2.X - ellip.P1.X, ellip.P2.Y - ellip.P1.Y));
+                        }
+                    }
+
                     paths[i] = path;
                 }
                 return paths;
@@ -88,15 +98,27 @@ namespace Paint_Midterm
         }
         public override bool IsHit(PointF point)
         {
-            GraphicsPath[] paths = this.GetPaths;
+            GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size + 3))
+
+                    if (Shapes[i].IsFill)
                     {
-                        if (path.IsOutlineVisible(point, pen)) { return true; }
+                        using (Brush brush = new SolidBrush(Shapes[i].ShapeColor))
+                        {
+                            if (path.IsVisible(point)) { return true; }
+                        }
                     }
+                    else
+                    {
+                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size + 3))
+                        {
+                            if (path.IsOutlineVisible(point, pen)) { return true; }
+                        }
+                    }
+
                     if (!(Shapes[i] is MyGroup))
                     {
                         using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size + 3))
@@ -107,6 +129,7 @@ namespace Paint_Midterm
                     else if (Shapes[i] is MyGroup group) { return group.IsHit(point); }
                 }
             }
+
             return false;
         }
         public override void Move(PointF Dis)

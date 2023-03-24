@@ -14,9 +14,11 @@ namespace Paint_Midterm
         {
             this.Name = "Rectangle";
         }
-        public MyRec(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, Size, ShapeColor, ShapeDashStyle)
+        public MyRec(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor) : base(P1, P2, Size, ShapeColor, ShapeDashStyle)
         {
-
+            this.Name = "Rectangle";
+            this.IsFill = IsFill;
+            this.ShapeFillColor = ShapeFillColor;
         }
         public override GraphicsPath GetPath
         {
@@ -55,17 +57,14 @@ namespace Paint_Midterm
         {
             using (GraphicsPath path = GetPath)
             {
-                if (!IsFill)
+                using (Pen myPen = new Pen(ShapeColor, Size))
                 {
-                    using (Pen myPen = new Pen(ShapeColor, Size))
-                    {
-                        myPen.DashStyle = ShapeDashStyle;
-                        graphics.DrawPath(myPen, path);
-                    }
+                    myPen.DashStyle = ShapeDashStyle;
+                    graphics.DrawPath(myPen, path);
                 }
-                else
+                if (IsFill)
                 {
-                    using (Brush myBrush = new SolidBrush(ShapeColor))
+                    using (Brush myBrush = new SolidBrush(ShapeFillColor))
                     {
                         graphics.FillPath(myBrush, path);
                     }

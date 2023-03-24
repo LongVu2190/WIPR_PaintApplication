@@ -6,5 +6,8 @@
         Move,
         Line,
         Rec,
+        Ellipse,
+        Arc,
+        Polygon,
     }
 }

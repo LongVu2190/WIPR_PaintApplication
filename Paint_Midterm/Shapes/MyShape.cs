@@ -13,9 +13,10 @@ namespace Paint_Midterm
         public MyShape() 
         {
         }
-        public MyShape(PointF P1, float Size, Color ShapeColor, DashStyle ShapeDashStyle)
+        public MyShape(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle)
         {
             this.P1 = P1;
+            this.P2 = P2;
             this.Size = Size;
             this.ShapeColor = ShapeColor;
             this.ShapeDashStyle = ShapeDashStyle;
@@ -26,6 +27,7 @@ namespace Paint_Midterm
         public PointF P2 { get; set; }
         public float Size { get; set; }
         public bool IsFill { get; set; } = false;
+        public Color ShapeFillColor { get; set; }
         public bool IsSelected { get; set; } = false;
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }

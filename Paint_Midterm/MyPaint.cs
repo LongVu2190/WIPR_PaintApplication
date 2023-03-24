@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
@@ -15,7 +16,7 @@ namespace Paint_Midterm
 {
     public partial class MyPaint : Form
     {
-        Color MyColor;
+        Color MyColor, MyFillColor;
         float MySize;
 
         List<MyShape> Shapes = new List<MyShape>();
@@ -27,7 +28,7 @@ namespace Paint_Midterm
         PointF PreviousPoint = Point.Empty;
         PaintType Mode = PaintType.Line;
 
-        bool Moving, IsFill = false, IsStart = false;
+        bool Moving, IsFill = false, IsStart = false, IsCircle = false;
 
         // Dành cho không vẽ hình (NoPaint)
         MyRec rec = new MyRec();
@@ -55,6 +56,7 @@ namespace Paint_Midterm
         private void MyPaint_Load(object sender, EventArgs e)
         {
             MyColor = Color.Black;
+            MyFillColor = Color.Black;
             MySize = 5;
             Mode = PaintType.NoPaint;
             for (float i = 1; i <= 5; i++)
@@ -107,34 +109,25 @@ namespace Paint_Midterm
             {
                 case PaintType.NoPaint:
                     IsStart = true;
-                    rec.P1 = e.Location;
-                    rec.P2 = e.Location;
-                    rec.ShapeColor = Color.Black;
-                    rec.Size = 2;
-                    rec.ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
+                    rec = new MyRec(e.Location, e.Location, 2, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, false, Color.Black);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Line:
                     IsStart = true;
-                    MyLine myLine = new MyLine();
-                    myLine.P1 = e.Location;
-                    myLine.P2 = e.Location;
-                    myLine.ShapeColor = MyColor;
-                    myLine.Size = MySize;
-                    myLine.ShapeDashStyle = MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text));
+                    MyLine myLine = new MyLine(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
                     Shapes.Add(myLine);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Rec:
                     IsStart = true;
-                    MyRec myRec = new MyRec();
-                    myRec.P1 = e.Location;
-                    myRec.P2 = e.Location;
-                    myRec.ShapeColor = MyColor;
-                    myRec.Size = MySize;
-                    myRec.ShapeDashStyle = MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text));
-                    myRec.IsFill = IsFill;
+                    MyRec myRec = new MyRec(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                     Shapes.Add(myRec);
+                    Main_PBox.Invalidate();
+                    break;
+                case PaintType.Ellipse:
+                    IsStart = true;
+                    MyEllipse myEllipse = new MyEllipse(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
+                    Shapes.Add(myEllipse);
                     Main_PBox.Invalidate();
                     break;
                 default:
@@ -176,11 +169,7 @@ namespace Paint_Midterm
                     break;
                 case PaintType.Move:
                     break;
-                case PaintType.Line:
-                    Shapes[Shapes.Count - 1].P2 = e.Location;
-                    Main_PBox.Refresh();
-                    break;
-                case PaintType.Rec:
+                default:
                     Shapes[Shapes.Count - 1].P2 = e.Location;
                     Main_PBox.Refresh();
                     break;
@@ -204,7 +193,6 @@ namespace Paint_Midterm
                 Main_PBox.Invalidate();
             }
 
-            //Main_PBox.Invalidate();
             base.OnMouseUp(e);
             IsStart = false;
 
@@ -216,7 +204,7 @@ namespace Paint_Midterm
         }
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
-            e.Graphics.SmoothingMode = System.Drawing.Drawing2D.SmoothingMode.AntiAlias;
+            e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
             if (rec != null)
                 rec.Draw(e.Graphics);
@@ -239,7 +227,7 @@ namespace Paint_Midterm
                         {
                             ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
                         }
-                        else if (shape is MyRec)
+                        else if (shape is MyRec || shape is MyEllipse)
                         {
                             ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
                                                         shape.P1,
@@ -254,8 +242,7 @@ namespace Paint_Midterm
                     }
 
                 }
-                else
-                if (Moving)
+                else if (Moving)
                 {
                     // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng
                     if (!(SelectedShape is MyLine))
@@ -272,7 +259,7 @@ namespace Paint_Midterm
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
                     }
                     // Vẽ hai điểm đầu cho hình chữ nhật
-                    else if (SelectedShape is MyRec)
+                    else if (SelectedShape is MyRec || SelectedShape is MyEllipse)
                     {
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
                                                     SelectedShape.P1,
@@ -319,6 +306,16 @@ namespace Paint_Midterm
                 Color_btn.BackColor = dlg.Color;
             }
         }
+
+        private void Fill_Color_btn_Click(object sender, EventArgs e)
+        {
+            ColorDialog dlg = new ColorDialog();
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                MyFillColor = dlg.Color;
+                Fill_Color_btn.BackColor = dlg.Color;
+            }
+        }
         private void Delete_btn_Click(object sender, EventArgs e)
         {
             Shapes.Remove(LastSelectedShape);
@@ -335,8 +332,9 @@ namespace Paint_Midterm
             Main_PBox.Invalidate();
         }
         private void Clear_btn_Click(object sender, EventArgs e)
-        {
+        {           
             Shapes.Clear();
+            DrawnShapes.Items.Clear();          
             Main_PBox.Invalidate();
         }
         private void Line_btn_Click(object sender, EventArgs e)
@@ -377,6 +375,12 @@ namespace Paint_Midterm
             check.Text = IsFill.ToString();
         }
 
+        private void Circle_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Ellipse;
+            IsCircle = true;
+        }
+
         private void DrawnShapes_SelectedIndexChanged(object sender, EventArgs e)
         {
             for (int i = 0; i < Shapes.Count; i++)
@@ -392,6 +396,13 @@ namespace Paint_Midterm
             }
             Main_PBox.Invalidate();
         }
+
+        private void Ellipse_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Ellipse;
+            IsCircle = false;
+        }
+
         private void MyPaint_KeyDown(object sender, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
