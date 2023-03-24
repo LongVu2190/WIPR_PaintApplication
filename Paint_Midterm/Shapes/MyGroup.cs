@@ -60,10 +60,29 @@ namespace Paint_Midterm
             {
                 using (GraphicsPath path = paths[i])
                 {
-                    using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size) { DashStyle = Shapes[i].ShapeDashStyle })
+                    if (Shapes[i].IsFill == true)
                     {
-                        graphics.DrawPath(pen, path);
+                        using (Brush brush = new SolidBrush(Shapes[i].ShapeColor))
+                        {
+                            graphics.FillPath(brush, path);
+                        }
+                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size))
+                        {
+                            graphics.DrawPath(pen, path);
+                        }
                     }
+                    else if (Shapes[i] is MyGroup group)
+                    {
+                        group.Draw(graphics);
+                    }
+                    else
+                    {
+                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size) { DashStyle = Shapes[i].ShapeDashStyle })
+                        {
+                            graphics.DrawPath(pen, path);
+                        }
+                    }
+
                 }
             }
         }
@@ -77,7 +96,7 @@ namespace Paint_Midterm
                     using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size + 3))
                     {
                         if (path.IsOutlineVisible(point, pen)) { return true; }
-                    }                    
+                    }
                     if (!(Shapes[i] is MyGroup))
                     {
                         using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Size + 3))
@@ -119,7 +138,7 @@ namespace Paint_Midterm
                 }
 
                 if (shape.P1.Y < minY)
-                {   
+                {
                     minY = shape.P1.Y;
                 }
                 if (shape.P2.Y < minY)

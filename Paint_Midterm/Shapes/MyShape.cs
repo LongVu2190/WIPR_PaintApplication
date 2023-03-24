@@ -25,7 +25,7 @@ namespace Paint_Midterm
         public PointF P1 { get; set; }
         public PointF P2 { get; set; }
         public float Size { get; set; }
-        public bool IsFill { get; set; }
+        public bool IsFill { get; set; } = false;
         public bool IsSelected { get; set; } = false;
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }

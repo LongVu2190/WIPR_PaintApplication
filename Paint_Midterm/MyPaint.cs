@@ -158,7 +158,7 @@ namespace Paint_Midterm
                         Main_PBox.Invalidate();
 
                         int i = Shapes.IndexOf(SelectedShape);
-                        if (i >= 0)
+                        if (i >= 0 && DrawnShapes.Items.Count > i)
                             DrawnShapes.SetItemChecked(i, true);
                     }
 
@@ -362,8 +362,10 @@ namespace Paint_Midterm
             group = LastSelectedShape as MyGroup;
 
             group.UnGroup(Shapes);
-            Shapes.Remove(group);
+            Shapes.Remove(group);         
             Main_PBox.Invalidate();
+            LastSelectedShape = null;
+            MessageBox.Show("Ungrouped", "Notification");
         }
         private void Rec_btn_Click(object sender, EventArgs e)
         {
