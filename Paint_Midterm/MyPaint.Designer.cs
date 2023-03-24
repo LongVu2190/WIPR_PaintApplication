@@ -49,6 +49,7 @@
             this.Ellipse_btn = new System.Windows.Forms.Button();
             this.Fill_Color_btn = new System.Windows.Forms.Button();
             this.Circle_btn = new System.Windows.Forms.Button();
+            this.Polygon_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
@@ -219,7 +220,7 @@
             // DrawnShapes
             // 
             this.DrawnShapes.FormattingEnabled = true;
-            this.DrawnShapes.Location = new System.Drawing.Point(14, 320);
+            this.DrawnShapes.Location = new System.Drawing.Point(12, 349);
             this.DrawnShapes.Name = "DrawnShapes";
             this.DrawnShapes.Size = new System.Drawing.Size(178, 169);
             this.DrawnShapes.TabIndex = 17;
@@ -276,12 +277,23 @@
             this.Circle_btn.UseVisualStyleBackColor = true;
             this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
             // 
+            // Polygon_btn
+            // 
+            this.Polygon_btn.Location = new System.Drawing.Point(11, 306);
+            this.Polygon_btn.Name = "Polygon_btn";
+            this.Polygon_btn.Size = new System.Drawing.Size(75, 23);
+            this.Polygon_btn.TabIndex = 23;
+            this.Polygon_btn.Text = "Polygon";
+            this.Polygon_btn.UseVisualStyleBackColor = true;
+            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.Polygon_btn);
             this.Controls.Add(this.Circle_btn);
             this.Controls.Add(this.Fill_Color_btn);
             this.Controls.Add(this.Ellipse_btn);
@@ -341,6 +353,7 @@
         private System.Windows.Forms.Button Ellipse_btn;
         private System.Windows.Forms.Button Fill_Color_btn;
         private System.Windows.Forms.Button Circle_btn;
+        private System.Windows.Forms.Button Polygon_btn;
     }
 }
 
