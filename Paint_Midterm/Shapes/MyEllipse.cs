@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Paint_Midterm
 {
-    public class MyEllipse : MyShape
+    internal class MyEllipse : MyShape
     {
         public bool IsCircle { get; set; } = false;
         public float Diameter { get; set; } = 0f;

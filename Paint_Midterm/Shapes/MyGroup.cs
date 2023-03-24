@@ -40,10 +40,6 @@ namespace Paint_Midterm
                     {
                         path.AddLine(line.P1, line.P2);
                     }
-                    else if (Shapes[i] is MyPolygon polygon)
-                    {
-                        path.AddPolygon(polygon.Points.ToArray());
-                    }
                     else if (Shapes[i] is MyRec rect)
                     {
                         path.AddRectangle(new RectangleF(rect.P1.X, rect.P1.Y, rect.P2.X - rect.P1.X, rect.P2.Y - rect.P1.Y));
@@ -60,6 +56,7 @@ namespace Paint_Midterm
                             path.AddEllipse(new RectangleF(ellip.P1.X, ellip.P1.Y, ellip.P2.X - ellip.P1.X, ellip.P2.Y - ellip.P1.Y));
                         }
                     }
+
                     paths[i] = path;
                 }
                 return paths;
@@ -75,7 +72,7 @@ namespace Paint_Midterm
                 {
                     if (Shapes[i].IsFill == true)
                     {
-                        using (Brush brush = new SolidBrush(Shapes[i].ShapeFillColor))
+                        using (Brush brush = new SolidBrush(Shapes[i].ShapeColor))
                         {
                             graphics.FillPath(brush, path);
                         }
@@ -154,11 +151,6 @@ namespace Paint_Midterm
             for (int i = 0; i < this.Shapes.Count; i++)
             {
                 MyShape shape = Shapes[i];
-
-                if (shape is MyPolygon polygon)
-                {
-                    polygon.FindRegion();
-                }
                 if (shape.P1.X < minX)
                 {
                     minX = shape.P1.X;
