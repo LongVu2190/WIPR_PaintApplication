@@ -5,51 +5,46 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 
 namespace Paint_Midterm
 {
-    public class MyEllipse : MyShape
+    public class MyPolygon : MyMultiPoint
     {
-        public bool IsCircle { get; set; } = false;
-        public float Diameter { get; set; } = 0f;
-        public MyEllipse()
+        public MyPolygon()
         {
-            this.Name = "Ellipse";
+            this.Name = "Polygon";
         }
-        public MyEllipse(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor, bool IsCircle) : base(P1, P2, Size, ShapeColor, ShapeDashStyle)
-        {           
+        public MyPolygon(float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
+        {
+            this.Size = Size;
+            this.ShapeColor = ShapeColor;
+            this.ShapeDashStyle = ShapeDashStyle;
             this.IsFill = IsFill;
             this.ShapeFillColor = ShapeFillColor;
-            this.IsCircle = IsCircle;
-
-            if (IsCircle == true)
-                this.Name = "Circle";
-            else
-                this.Name = "Ellipse";
+            this.Name = "Polygon";
         }
         public override GraphicsPath GetPath
         {
             get
             {
                 GraphicsPath path = new GraphicsPath();
-                if (IsCircle)
+                if (Points.Count < 3)
                 {
-                    Diameter = ((P2.X - P1.X) + (P2.Y - P1.Y)) / 2;
-                    path.AddEllipse(new RectangleF(P1.X, P1.Y, Diameter, Diameter));
-
-                    P2 = new PointF(P1.X + Diameter, P1.Y + Diameter);
+                    path.AddLine(Points[0], Points[1]);
                 }
                 else
                 {
-                    path.AddEllipse(new RectangleF(P1.X, P1.Y, P2.X - P1.X, P2.Y - P1.Y));
+                    path.AddPolygon(Points.ToArray());
                 }
+
                 return path;
             }
         }
         public override bool IsHit(PointF Point)
         {
             bool result = false;
-            using (GraphicsPath path = GetPath)
+            using (GraphicsPath path = this.GetPath)
             {
                 if (!IsFill)
                 {
@@ -68,12 +63,13 @@ namespace Paint_Midterm
 
         public override void Draw(Graphics graphics)
         {
-            using (GraphicsPath path = GetPath)
+            using (GraphicsPath path = this.GetPath)
             {
-                using (Pen pen = new Pen(this.ShapeColor, this.Size) { DashStyle = ShapeDashStyle })
+                using (Pen pen = new Pen(this.ShapeColor, this.Size) { DashStyle = this.ShapeDashStyle })
                 {
                     graphics.DrawPath(pen, path);
                 }
+
                 if (this.IsFill)
                 {
                     using (Brush brush = new SolidBrush(this.ShapeFillColor))
@@ -87,6 +83,10 @@ namespace Paint_Midterm
         {
             P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
             P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
+            for (int i = 0; i < Points.Count; i++)
+            {
+                Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
+            }
         }
     }
 }

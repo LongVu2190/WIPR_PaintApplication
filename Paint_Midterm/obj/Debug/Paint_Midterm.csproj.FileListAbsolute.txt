@@ -17,6 +17,6 @@ C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\obj\Debug\Paint_Midterm.
 C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\obj\Debug\Paint_Midterm.csproj.CoreCompileInputs.cache
 C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\obj\Debug\Paint_Midterm.exe
 C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\obj\Debug\Paint_Midterm.pdb
-C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\bin\Debug\Paint_Midterm.exe.config
 C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\bin\Debug\Paint_Midterm.exe
 C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\bin\Debug\Paint_Midterm.pdb
+C:\Users\LongVu\Desktop\Paint_Application\Paint_Midterm\bin\Debug\Paint_Midterm.exe.config

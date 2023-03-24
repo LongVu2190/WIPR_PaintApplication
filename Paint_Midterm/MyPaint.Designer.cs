@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.Group_btn = new System.Windows.Forms.Button();
-            this.Select_btn = new System.Windows.Forms.Button();
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             this.ZoomIn_btn = new System.Windows.Forms.Button();
             this.Shape_txb = new System.Windows.Forms.TextBox();
@@ -49,29 +47,12 @@
             this.Ellipse_btn = new System.Windows.Forms.Button();
             this.Fill_Color_btn = new System.Windows.Forms.Button();
             this.Circle_btn = new System.Windows.Forms.Button();
+            this.Polygon_btn = new System.Windows.Forms.Button();
+            this.Group_btn = new System.Windows.Forms.Button();
+            this.Select_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Group_btn
-            // 
-            this.Group_btn.Location = new System.Drawing.Point(55, 38);
-            this.Group_btn.Name = "Group_btn";
-            this.Group_btn.Size = new System.Drawing.Size(75, 23);
-            this.Group_btn.TabIndex = 1;
-            this.Group_btn.Text = "Group";
-            this.Group_btn.UseVisualStyleBackColor = true;
-            this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
-            // 
-            // Select_btn
-            // 
-            this.Select_btn.Location = new System.Drawing.Point(55, 9);
-            this.Select_btn.Name = "Select_btn";
-            this.Select_btn.Size = new System.Drawing.Size(75, 23);
-            this.Select_btn.TabIndex = 2;
-            this.Select_btn.Text = "Select";
-            this.Select_btn.UseVisualStyleBackColor = true;
-            this.Select_btn.Click += new System.EventHandler(this.Select_btn_Click);
             // 
             // Main_PBox
             // 
@@ -158,7 +139,7 @@
             // Color_btn
             // 
             this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.Location = new System.Drawing.Point(11, 3);
+            this.Color_btn.Location = new System.Drawing.Point(12, 3);
             this.Color_btn.Name = "Color_btn";
             this.Color_btn.Size = new System.Drawing.Size(35, 35);
             this.Color_btn.TabIndex = 11;
@@ -219,7 +200,7 @@
             // DrawnShapes
             // 
             this.DrawnShapes.FormattingEnabled = true;
-            this.DrawnShapes.Location = new System.Drawing.Point(14, 320);
+            this.DrawnShapes.Location = new System.Drawing.Point(12, 342);
             this.DrawnShapes.Name = "DrawnShapes";
             this.DrawnShapes.Size = new System.Drawing.Size(178, 169);
             this.DrawnShapes.TabIndex = 17;
@@ -237,7 +218,7 @@
             // 
             // Ungroup_btn
             // 
-            this.Ungroup_btn.Location = new System.Drawing.Point(14, 71);
+            this.Ungroup_btn.Location = new System.Drawing.Point(14, 75);
             this.Ungroup_btn.Name = "Ungroup_btn";
             this.Ungroup_btn.Size = new System.Drawing.Size(75, 23);
             this.Ungroup_btn.TabIndex = 19;
@@ -276,12 +257,45 @@
             this.Circle_btn.UseVisualStyleBackColor = true;
             this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
             // 
+            // Polygon_btn
+            // 
+            this.Polygon_btn.Location = new System.Drawing.Point(11, 306);
+            this.Polygon_btn.Name = "Polygon_btn";
+            this.Polygon_btn.Size = new System.Drawing.Size(75, 23);
+            this.Polygon_btn.TabIndex = 23;
+            this.Polygon_btn.Text = "Polygon";
+            this.Polygon_btn.UseVisualStyleBackColor = true;
+            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            // 
+            // Group_btn
+            // 
+            this.Group_btn.Location = new System.Drawing.Point(55, 38);
+            this.Group_btn.Name = "Group_btn";
+            this.Group_btn.Size = new System.Drawing.Size(75, 23);
+            this.Group_btn.TabIndex = 25;
+            this.Group_btn.Text = "Group";
+            this.Group_btn.UseVisualStyleBackColor = true;
+            this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
+            // 
+            // Select_btn
+            // 
+            this.Select_btn.Location = new System.Drawing.Point(55, 9);
+            this.Select_btn.Name = "Select_btn";
+            this.Select_btn.Size = new System.Drawing.Size(75, 23);
+            this.Select_btn.TabIndex = 24;
+            this.Select_btn.Text = "Select";
+            this.Select_btn.UseVisualStyleBackColor = true;
+            this.Select_btn.Click += new System.EventHandler(this.Select_btn_Click);
+            // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.GradientActiveCaption;
             this.ClientSize = new System.Drawing.Size(1264, 681);
+            this.Controls.Add(this.Group_btn);
+            this.Controls.Add(this.Select_btn);
+            this.Controls.Add(this.Polygon_btn);
             this.Controls.Add(this.Circle_btn);
             this.Controls.Add(this.Fill_Color_btn);
             this.Controls.Add(this.Ellipse_btn);
@@ -301,8 +315,6 @@
             this.Controls.Add(this.Shape_txb);
             this.Controls.Add(this.ZoomIn_btn);
             this.Controls.Add(this.Main_PBox);
-            this.Controls.Add(this.Select_btn);
-            this.Controls.Add(this.Group_btn);
             this.KeyPreview = true;
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -320,8 +332,6 @@
         }
 
         #endregion
-        private System.Windows.Forms.Button Group_btn;
-        private System.Windows.Forms.Button Select_btn;
         private System.Windows.Forms.PictureBox Main_PBox;
         private System.Windows.Forms.Button ZoomIn_btn;
         private System.Windows.Forms.TextBox Shape_txb;
@@ -341,6 +351,9 @@
         private System.Windows.Forms.Button Ellipse_btn;
         private System.Windows.Forms.Button Fill_Color_btn;
         private System.Windows.Forms.Button Circle_btn;
+        private System.Windows.Forms.Button Polygon_btn;
+        private System.Windows.Forms.Button Group_btn;
+        private System.Windows.Forms.Button Select_btn;
     }
 }
 
