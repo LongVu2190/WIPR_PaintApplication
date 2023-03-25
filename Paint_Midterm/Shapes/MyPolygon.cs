@@ -54,6 +54,20 @@ namespace Paint_Midterm
             }
             return result;
         }
+        public bool IsGroupHit(PointF P1, PointF P2)
+        {
+            for (int i = 0; i < this.Points.Count; i++) 
+            {
+                if (Points[i].X >= P1.X &&
+                        Points[i].X <= P2.X + (P2.X - P1.X) &&
+                        Points[i].Y >= P1.Y &&
+                        Points[i].Y <= P2.Y + (P2.Y - P1.Y))
+                {
+                    return true;
+                }                
+            }
+            return false;
+        }
 
         public override void Draw(Graphics graphics)
         {

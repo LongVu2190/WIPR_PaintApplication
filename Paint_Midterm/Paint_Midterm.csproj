@@ -47,7 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Custom\ShapeFrame.cs" />
-    <Compile Include="Enums\DrawingStage.cs" />
     <Compile Include="Enums\PaintType.cs" />
     <Compile Include="Custom\MyDashStyle.cs" />
     <Compile Include="MyPaint.cs">

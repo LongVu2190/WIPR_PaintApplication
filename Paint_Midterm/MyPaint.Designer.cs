@@ -148,7 +148,7 @@
             // 
             // Delete_btn
             // 
-            this.Delete_btn.Location = new System.Drawing.Point(14, 107);
+            this.Delete_btn.Location = new System.Drawing.Point(14, 108);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(75, 23);
             this.Delete_btn.TabIndex = 10;
@@ -237,7 +237,7 @@
             // 
             // Ungroup_btn
             // 
-            this.Ungroup_btn.Location = new System.Drawing.Point(14, 71);
+            this.Ungroup_btn.Location = new System.Drawing.Point(14, 77);
             this.Ungroup_btn.Name = "Ungroup_btn";
             this.Ungroup_btn.Size = new System.Drawing.Size(75, 23);
             this.Ungroup_btn.TabIndex = 19;

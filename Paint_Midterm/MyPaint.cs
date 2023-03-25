@@ -52,7 +52,7 @@ namespace Paint_Midterm
             InitializeComponent();
         }
 
-        private void MyPaint_Load(object sender, EventArgs e)
+        private void MyPaint_Load(object sP2er, EventArgs e)
         {
             MyColor = Color.Black;
             MyFillColor = Color.Black;
@@ -65,7 +65,7 @@ namespace Paint_Midterm
         }
 
         // Vẽ
-        private void Main_Panel_MouseDown(object sender, MouseEventArgs e)
+        private void Main_Panel_MouseDown(object sP2er, MouseEventArgs e)
         {
             if (Mode == PaintType.Group && isControlKeyPress)
             {
@@ -154,7 +154,7 @@ namespace Paint_Midterm
                     break;
             }
         }
-        private void Main_Panel_MouseMove(object sender, MouseEventArgs e)
+        private void Main_Panel_MouseMove(object sP2er, MouseEventArgs e)
         {
             if (Moving && Mode == PaintType.Move)
             {
@@ -199,7 +199,7 @@ namespace Paint_Midterm
                     break;
             }
         }
-        private void Main_Panel_MouseUp(object sender, MouseEventArgs e)
+        private void Main_Panel_MouseUp(object sP2er, MouseEventArgs e)
         {
             if (Moving && isControlKeyPress == false)
             {
@@ -211,6 +211,28 @@ namespace Paint_Midterm
             // Xóa khung hình chữ nhật sau khi thả chuột
             if (Mode == PaintType.Group && !isControlKeyPress)
             {
+
+                for (int i = 0; i < Shapes.Count; i++)
+                {
+                    Shapes[i].IsSelected = false;
+
+                    if (Shapes[i] is MyPolygon polygon)
+                    {
+                        if (polygon.IsGroupHit(rec.P1, rec.P2))
+                        {
+                            Shapes[i].IsSelected = true;
+                            mySelectedShapes.Add(Shapes[i]);
+                        }
+                    }
+                    else if (Shapes[i].P1.X >= rec.P1.X &&
+                        Shapes[i].P2.X <= rec.P2.X + (rec.P2.X - rec.P1.X) &&
+                        Shapes[i].P1.Y >= rec.P1.Y &&
+                        Shapes[i].P2.Y <= rec.P2.Y + (rec.P2.Y - rec.P1.Y))
+                    {
+                        Shapes[i].IsSelected = true;
+                        mySelectedShapes.Add(Shapes[i]);
+                    }
+                }
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
                 rec.P2 = p;
@@ -227,7 +249,7 @@ namespace Paint_Midterm
                 DrawnShapes.Items.Add("Shape " + i.ToString() + " " + Shapes[i].IsSelected.ToString());
             }
         }
-        private void Main_Panel_Paint(object sender, PaintEventArgs e)
+        private void Main_Panel_Paint(object sP2er, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
@@ -236,7 +258,8 @@ namespace Paint_Midterm
             foreach (var shape in Shapes)
             {
                 shape.Draw(e.Graphics);
-                if (Mode == PaintType.Group && isControlKeyPress)
+                //if (Mode == PaintType.Group && isControlKeyPress)
+                if (Mode == PaintType.Group)
                 {
                     if (shape.IsSelected == true)
                     {
@@ -309,13 +332,13 @@ namespace Paint_Midterm
         }
 
 
-        private void PenSize_ValueChanged(object sender, EventArgs e)
+        private void PenSize_ValueChanged(object sP2er, EventArgs e)
         {
             MySize = (float)PenSize.Value;
         }
 
         // Chức năng
-        private void Color_btn_Click(object sender, EventArgs e)
+        private void Color_btn_Click(object sP2er, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -324,7 +347,7 @@ namespace Paint_Midterm
                 Color_btn.BackColor = dlg.Color;
             }
         }
-        private void Fill_Color_btn_Click(object sender, EventArgs e)
+        private void Fill_Color_btn_Click(object sP2er, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
             if (dlg.ShowDialog() == DialogResult.OK)
@@ -333,7 +356,7 @@ namespace Paint_Midterm
                 Fill_Color_btn.BackColor = dlg.Color;
             }
         }
-        private void Delete_btn_Click(object sender, EventArgs e)
+        private void Delete_btn_Click(object sP2er, EventArgs e)
         {
             Shapes.Remove(LastSelectedShape);
             Main_PBox.Invalidate();
@@ -348,21 +371,21 @@ namespace Paint_Midterm
 
             Main_PBox.Invalidate();
         }
-        private void Clear_btn_Click(object sender, EventArgs e)
+        private void Clear_btn_Click(object sP2er, EventArgs e)
         {
             Shapes.Clear();
             DrawnShapes.Items.Clear();
             Main_PBox.Invalidate();
         }
-        private void Select_btn_Click(object sender, EventArgs e)
+        private void Select_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Move;
         }
-        private void Group_btn_Click(object sender, EventArgs e)
+        private void Group_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Group;
         }
-        private void Ungroup_btn_Click(object sender, EventArgs e)
+        private void Ungroup_btn_Click(object sP2er, EventArgs e)
         {
             if (LastSelectedShape is null || LastSelectedShape.Name != "Group")
             {
@@ -378,12 +401,12 @@ namespace Paint_Midterm
             LastSelectedShape = null;
             MessageBox.Show("Ungrouped", "Notification");
         }
-        private void Fill_btn_Click(object sender, EventArgs e)
+        private void Fill_btn_Click(object sP2er, EventArgs e)
         {
             IsFill = (IsFill == true) ? false : true;
             check.Text = IsFill.ToString();
         }
-        private void ZoomIn_btn_Click(object sender, EventArgs e)
+        private void ZoomIn_btn_Click(object sP2er, EventArgs e)
         {
             if (LastSelectedShape != null)
             {
@@ -391,7 +414,7 @@ namespace Paint_Midterm
                 Main_PBox.Invalidate();
             }
         }
-        private void ZoomOut_btn_Click(object sender, EventArgs e)
+        private void ZoomOut_btn_Click(object sP2er, EventArgs e)
         {
             if (LastSelectedShape != null)
             {
@@ -402,7 +425,7 @@ namespace Paint_Midterm
         }
 
         // Nhấn ctrl
-        private void MyPaint_KeyDown(object sender, KeyEventArgs e)
+        private void MyPaint_KeyDown(object sP2er, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
             Debug.Text = isControlKeyPress.ToString();
@@ -415,7 +438,7 @@ namespace Paint_Midterm
                 Mode = PaintType.Move;
             }
         }
-        private void MyPaint_KeyUp(object sender, KeyEventArgs e)
+        private void MyPaint_KeyUp(object sP2er, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
             Debug.Text = isControlKeyPress.ToString();
@@ -447,28 +470,37 @@ namespace Paint_Midterm
                 Mode = PaintType.Move;
                 Main_PBox.Invalidate();
             }
+            else
+            {
+                foreach (var shape in mySelectedShapes)
+                {
+                    shape.IsSelected = false;
+                }
+                Mode = PaintType.Move;
+                Main_PBox.Invalidate();
+            }
         }
 
         // Hình
-        private void Line_btn_Click(object sender, EventArgs e)
+        private void Line_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Line;
         }
-        private void Rec_btn_Click(object sender, EventArgs e)
+        private void Rec_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Rec;
         }
-        private void Ellipse_btn_Click(object sender, EventArgs e)
+        private void Ellipse_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = false;
         }
-        private void Circle_btn_Click(object sender, EventArgs e)
+        private void Circle_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = true;
         }
-        private void Polygon_btn_Click(object sender, EventArgs e)
+        private void Polygon_btn_Click(object sP2er, EventArgs e)
         {
             Mode = PaintType.Polygon;
             PolygonStatus = false;
