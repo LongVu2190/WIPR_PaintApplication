@@ -29,7 +29,7 @@ namespace Paint_Midterm
 
         bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
 
-        // Dành cho không vẽ hình (NoPaint)
+        // Dành cho không vẽ hình (Group)
         MyRec rec = new MyRec();
 
         // Dành cho di chuyển object (Moving)
@@ -63,6 +63,8 @@ namespace Paint_Midterm
                 DashStyle.Items.Add(i.ToString());
             }
         }
+
+        // Vẽ
         private void Main_Panel_MouseDown(object sender, MouseEventArgs e)
         {
             if (Mode == PaintType.Group && isControlKeyPress)
@@ -305,29 +307,14 @@ namespace Paint_Midterm
                     shape.Draw(e.Graphics);
             }
         }
-        private void ZoomIn_btn_Click(object sender, EventArgs e)
-        {
-            if (LastSelectedShape != null)
-            {
-                LastSelectedShape.Size += 5;
-                Main_PBox.Invalidate();
-            }
-        }
-        private void ZoomOut_btn_Click(object sender, EventArgs e)
-        {
-            if (LastSelectedShape != null)
-            {
-                if (LastSelectedShape.Size > 5)
-                    LastSelectedShape.Size -= 5;
-                Main_PBox.Invalidate();
-            }
-        }
+
 
         private void PenSize_ValueChanged(object sender, EventArgs e)
         {
             MySize = (float)PenSize.Value;
         }
 
+        // Chức năng
         private void Color_btn_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -337,7 +324,6 @@ namespace Paint_Midterm
                 Color_btn.BackColor = dlg.Color;
             }
         }
-
         private void Fill_Color_btn_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -368,10 +354,6 @@ namespace Paint_Midterm
             DrawnShapes.Items.Clear();
             Main_PBox.Invalidate();
         }
-        private void Line_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Line;
-        }
         private void Select_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Move;
@@ -396,50 +378,30 @@ namespace Paint_Midterm
             LastSelectedShape = null;
             MessageBox.Show("Ungrouped", "Notification");
         }
-        private void Rec_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Rec;
-        }
         private void Fill_btn_Click(object sender, EventArgs e)
         {
             IsFill = (IsFill == true) ? false : true;
             check.Text = IsFill.ToString();
         }
-
-        private void Circle_btn_Click(object sender, EventArgs e)
+        private void ZoomIn_btn_Click(object sender, EventArgs e)
         {
-            Mode = PaintType.Ellipse;
-            IsCircle = true;
-        }
-
-        private void Polygon_btn_Click(object sender, EventArgs e)
-        {
-            Mode = PaintType.Polygon;
-            PolygonStatus = false;
-        }
-
-        private void DrawnShapes_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            for (int i = 0; i < Shapes.Count; i++)
+            if (LastSelectedShape != null)
             {
-                if (DrawnShapes.GetItemChecked(i) == true)
-                {
-                    Shapes[i].ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Dash;
-                }
-                else
-                {
-                    Shapes[i].ShapeDashStyle = System.Drawing.Drawing2D.DashStyle.Solid;
-                }
+                LastSelectedShape.Size += 5;
+                Main_PBox.Invalidate();
             }
-            Main_PBox.Invalidate();
         }
-
-        private void Ellipse_btn_Click(object sender, EventArgs e)
+        private void ZoomOut_btn_Click(object sender, EventArgs e)
         {
-            Mode = PaintType.Ellipse;
-            IsCircle = false;
+            if (LastSelectedShape != null)
+            {
+                if (LastSelectedShape.Size > 5)
+                    LastSelectedShape.Size -= 5;
+                Main_PBox.Invalidate();
+            }
         }
 
+        // Nhấn ctrl
         private void MyPaint_KeyDown(object sender, KeyEventArgs e)
         {
             isControlKeyPress = e.Control;
@@ -450,7 +412,7 @@ namespace Paint_Midterm
                 MessageBox.Show("Drew a Polygon", "Notification");
                 IsStart = false;
                 PolygonStatus = true;
-                Mode = PaintType.Move;               
+                Mode = PaintType.Move;
             }
         }
         private void MyPaint_KeyUp(object sender, KeyEventArgs e)
@@ -485,6 +447,31 @@ namespace Paint_Midterm
                 Mode = PaintType.Move;
                 Main_PBox.Invalidate();
             }
+        }
+
+        // Hình
+        private void Line_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Line;
+        }
+        private void Rec_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Rec;
+        }
+        private void Ellipse_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Ellipse;
+            IsCircle = false;
+        }
+        private void Circle_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Ellipse;
+            IsCircle = true;
+        }
+        private void Polygon_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Polygon;
+            PolygonStatus = false;
         }
     }
 }

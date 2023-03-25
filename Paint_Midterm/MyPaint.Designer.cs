@@ -224,7 +224,6 @@
             this.DrawnShapes.Name = "DrawnShapes";
             this.DrawnShapes.Size = new System.Drawing.Size(178, 169);
             this.DrawnShapes.TabIndex = 17;
-            this.DrawnShapes.SelectedIndexChanged += new System.EventHandler(this.DrawnShapes_SelectedIndexChanged);
             // 
             // Debug
             // 
