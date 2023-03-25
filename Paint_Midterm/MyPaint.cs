@@ -18,7 +18,6 @@ namespace Paint_Midterm
     {
         Color MyColor, MyFillColor;
         float MySize;
-        DrawingStage drawingStage;
         List<MyShape> Shapes = new List<MyShape>();
 
         MyShape SelectedShape;
@@ -28,7 +27,7 @@ namespace Paint_Midterm
         PointF PreviousPoint = Point.Empty;
         PaintType Mode = PaintType.Line;
 
-        bool Moving, IsFill = false, IsStart = false, IsCircle = false;
+        bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
 
         // Dành cho không vẽ hình (NoPaint)
         MyRec rec = new MyRec();
@@ -58,7 +57,7 @@ namespace Paint_Midterm
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MySize = 5;
-            Mode = PaintType.NoPaint;
+            Mode = PaintType.Group;
             for (float i = 1; i <= 5; i++)
             {
                 DashStyle.Items.Add(i.ToString());
@@ -66,7 +65,7 @@ namespace Paint_Midterm
         }
         private void Main_Panel_MouseDown(object sender, MouseEventArgs e)
         {
-            if (isControlKeyPress)
+            if (Mode == PaintType.Group && isControlKeyPress)
             {
                 for (int i = 0; i < Shapes.Count; i++)
                 {
@@ -107,7 +106,7 @@ namespace Paint_Midterm
             base.OnMouseDown(e);
             switch (Mode)
             {
-                case PaintType.NoPaint:
+                case PaintType.Group:
                     IsStart = true;
                     rec = new MyRec(e.Location, e.Location, 2, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, false, Color.Black);
                     Main_PBox.Invalidate();
@@ -131,18 +130,14 @@ namespace Paint_Midterm
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Polygon:
-                    //IsStart = true;
-                    //MyPolygon myPolygon = new MyPolygon(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
-                    //Shapes.Add(myPolygon);
-                    //Main_PBox.Invalidate();
-                    if (drawingStage != DrawingStage.IsDrawPolygon)
+                    if (!PolygonStatus)
                     {
                         MyPolygon polygon = new MyPolygon(MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 
                         Shapes.Add(polygon);
-                        drawingStage = DrawingStage.IsDrawPolygon;
+                        PolygonStatus = true;
                     }
                     else
                     {
@@ -161,24 +156,19 @@ namespace Paint_Midterm
         {
             if (Moving && Mode == PaintType.Move)
             {
-                if (isControlKeyPress)
+                if (SelectedShape != null)
                 {
-                }
-                else
-                {
-                    if (SelectedShape != null)
-                    {
-                        var d = new PointF(e.X - PreviousPoint.X, e.Y - PreviousPoint.Y);
-                        SelectedShape.Move(d);
-                        PreviousPoint = e.Location;
-                        Main_PBox.Invalidate();
+                    var d = new PointF(e.X - PreviousPoint.X, e.Y - PreviousPoint.Y);
+                    SelectedShape.Move(d);
+                    PreviousPoint = e.Location;
+                    Main_PBox.Invalidate();
 
-                        int i = Shapes.IndexOf(SelectedShape);
-                        if (i >= 0 && DrawnShapes.Items.Count > i)
-                            DrawnShapes.SetItemChecked(i, true);
-                    }
-
+                    int i = Shapes.IndexOf(SelectedShape);
+                    if (i >= 0 && DrawnShapes.Items.Count > i)
+                        DrawnShapes.SetItemChecked(i, true);
                 }
+
+
             }
 
             base.OnMouseMove(e);
@@ -186,14 +176,14 @@ namespace Paint_Midterm
 
             switch (Mode)
             {
-                case PaintType.NoPaint:
+                case PaintType.Group:
                     rec.P2 = e.Location;
                     Main_PBox.Refresh();
                     break;
                 case PaintType.Move:
                     break;
                 case PaintType.Polygon:
-                    if (drawingStage == DrawingStage.IsDrawPolygon)
+                    if (PolygonStatus)
                     {
                         MyPolygon polygon = Shapes[Shapes.Count - 1] as MyPolygon;
                         polygon.Points[polygon.Points.Count - 1] = e.Location;
@@ -217,7 +207,7 @@ namespace Paint_Midterm
             }
 
             // Xóa khung hình chữ nhật sau khi thả chuột
-            if (Mode == PaintType.NoPaint)
+            if (Mode == PaintType.Group && !isControlKeyPress)
             {
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
@@ -226,7 +216,8 @@ namespace Paint_Midterm
             }
 
             base.OnMouseUp(e);
-            IsStart = false;
+            if (Mode != PaintType.Polygon)
+                IsStart = false;
 
             DrawnShapes.Items.Clear();
             for (int i = 0; i < Shapes.Count; i++)
@@ -243,7 +234,7 @@ namespace Paint_Midterm
             foreach (var shape in Shapes)
             {
                 shape.Draw(e.Graphics);
-                if (isControlKeyPress)
+                if (Mode == PaintType.Group && isControlKeyPress)
                 {
                     if (shape.IsSelected == true)
                     {
@@ -300,6 +291,10 @@ namespace Paint_Midterm
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
                                                     SelectedShape.P1,
                                                     SelectedShape.P2);
+                    }
+                    else if (shape is MyPolygon polygon)
+                    {
+                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, polygon.Points);
                     }
                     // Vẽ đường thẳng trong chế độ di chuyển
                     if (SelectedShape != shape || SelectedShape is MyLine)
@@ -368,9 +363,9 @@ namespace Paint_Midterm
             Main_PBox.Invalidate();
         }
         private void Clear_btn_Click(object sender, EventArgs e)
-        {           
+        {
             Shapes.Clear();
-            DrawnShapes.Items.Clear();          
+            DrawnShapes.Items.Clear();
             Main_PBox.Invalidate();
         }
         private void Line_btn_Click(object sender, EventArgs e)
@@ -383,7 +378,7 @@ namespace Paint_Midterm
         }
         private void Group_btn_Click(object sender, EventArgs e)
         {
-            Mode = PaintType.NoPaint;
+            Mode = PaintType.Group;
         }
         private void Ungroup_btn_Click(object sender, EventArgs e)
         {
@@ -396,7 +391,7 @@ namespace Paint_Midterm
             group = LastSelectedShape as MyGroup;
 
             group.UnGroup(Shapes);
-            Shapes.Remove(group);         
+            Shapes.Remove(group);
             Main_PBox.Invalidate();
             LastSelectedShape = null;
             MessageBox.Show("Ungrouped", "Notification");
@@ -420,7 +415,7 @@ namespace Paint_Midterm
         private void Polygon_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Polygon;
-            drawingStage = DrawingStage.None;
+            PolygonStatus = false;
         }
 
         private void DrawnShapes_SelectedIndexChanged(object sender, EventArgs e)
@@ -451,8 +446,11 @@ namespace Paint_Midterm
             Debug.Text = isControlKeyPress.ToString();
             if (Mode == PaintType.Polygon)
             {
-                Mode = PaintType.NoPaint;
-                drawingStage = DrawingStage.None;
+                isControlKeyPress = false;
+                MessageBox.Show("Drew a Polygon", "Notification");
+                IsStart = false;
+                PolygonStatus = true;
+                Mode = PaintType.Move;               
             }
         }
         private void MyPaint_KeyUp(object sender, KeyEventArgs e)
@@ -460,7 +458,7 @@ namespace Paint_Midterm
             isControlKeyPress = e.Control;
             Debug.Text = isControlKeyPress.ToString();
 
-            if (mySelectedShapes.Count > 1 && Mode == PaintType.Move)
+            if (mySelectedShapes.Count > 1 && Mode == PaintType.Group)
             {
                 DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dlr == DialogResult.Yes)
@@ -484,6 +482,7 @@ namespace Paint_Midterm
                     }
                     mySelectedShapes.Clear();
                 }
+                Mode = PaintType.Move;
                 Main_PBox.Invalidate();
             }
         }
