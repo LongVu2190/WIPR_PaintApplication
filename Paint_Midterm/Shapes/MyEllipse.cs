@@ -9,8 +9,7 @@ using System.Threading.Tasks;
 namespace Paint_Midterm
 {
     internal class MyEllipse : MyShape
-    {
-        
+    {      
         public MyEllipse()
         {
             this.Name = "Ellipse";
@@ -27,7 +26,6 @@ namespace Paint_Midterm
                 this.Name = "Ellipse";
         }
         public bool IsCircle { get; set; } = false;
-        public float Diameter { get; set; } = 0f;
         public override GraphicsPath GetPath
         {
             get
@@ -36,9 +34,8 @@ namespace Paint_Midterm
                 if (IsCircle)
                 {
 
-                    Diameter = ((P2.X - P1.X) + (P2.Y - P1.Y)) / 2;
+                    float Diameter = ((P2.X - P1.X) + (P2.Y - P1.Y)) / 2;
                     path.AddEllipse(new RectangleF(P1.X, P1.Y, Diameter, Diameter));
-
                     P2 = new PointF(P1.X + Diameter, P1.Y + Diameter);
                 }
                 else

@@ -18,21 +18,22 @@ namespace Paint_Midterm
     {
         Color MyColor, MyFillColor;
         float MyWidth;
-        List<MyShape> Shapes = new List<MyShape>();
-
-        MyShape SelectedShape;
-        MyShape LastSelectedShape;
-        List<MyShape> MySelectedShapes = new List<MyShape>();
-
-        PointF PreviousPoint = Point.Empty;
-        PaintType Mode = PaintType.Line;
+        List<MyShape> Shapes = new List<MyShape>(); // Chứa các hình sẽ vẽ
+                    
+        PaintType Mode = PaintType.Line; // Chế độ vẽ
 
         bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
+        
+        MyRec rec = new MyRec(); // Dành cho không vẽ hình (Mode: Group)
+        bool isControlKeyPress; // Dành cho group shapes (Mode: Group)
+        List<MyShape> MySelectedShapes = new List<MyShape>(); // Biến tạm thời lưu các hình để group
 
-        // Dành cho không vẽ hình (Group)
-        MyRec rec = new MyRec();
+        // Dành cho di chuyển shape (Mode: Mode)
+        PointF PreviousPoint = Point.Empty;
+        MyShape SelectedShape; // Lưu shape di chuyển
+        MyShape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
 
-        // Dành cho di chuyển object (Moving)
+        // Vẽ ra khung xung quanh khi di chuyển hình
         Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
         Brush MovingShadow = new SolidBrush(Color.White);
         Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
@@ -44,14 +45,10 @@ namespace Paint_Midterm
             DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
         };
 
-        // Dành cho group shapes
-        private bool isControlKeyPress;
-
         public MyPaint()
         {
             InitializeComponent();
         }
-
         private void MyPaint_Load(object sender, EventArgs e)
         {
             MyColor = Color.Black;
@@ -453,10 +450,10 @@ namespace Paint_Midterm
                     MyGroup group = new MyGroup();
                     foreach (var shape in MySelectedShapes)
                     {
-                        group.Add(shape);
+                        group.AddSingleShape(shape);
                         Shapes.Remove(shape);
                     }
-                    group.FindRegion();
+                    group.LinkShapes();
                     Shapes.Add(group);
                     group.IsSelected = false;
                     MySelectedShapes.Clear();
@@ -483,7 +480,7 @@ namespace Paint_Midterm
             }
         }
 
-        // Hình
+        // Chọn Mode vẽ
         private void Line_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Line;

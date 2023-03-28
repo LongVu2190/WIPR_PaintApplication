@@ -5,8 +5,7 @@ using System.Collections.Generic;
 namespace Paint_Midterm
 {
     public class MyPolygon : MyShape
-    {
-        public List<PointF> Points { get; set; } = new List<PointF>();
+    {        
         public MyPolygon()
         {
             this.Name = "Polygon";
@@ -20,6 +19,7 @@ namespace Paint_Midterm
             this.ShapeFillColor = ShapeFillColor;
             this.Name = "Polygon";
         }
+        public List<PointF> Points { get; set; } = new List<PointF>();
         public override GraphicsPath GetPath
         {
             get
@@ -36,6 +36,37 @@ namespace Paint_Midterm
 
                 return path;
             }
+        }
+        public bool IsGroupHit(PointF P1, PointF P2)
+        {
+            for (int i = 0; i < this.Points.Count; i++) 
+            {
+                if (Points[i].X >= P1.X &&
+                        Points[i].X <= P2.X + (P2.X - P1.X) &&
+                        Points[i].Y >= P1.Y &&
+                        Points[i].Y <= P2.Y + (P2.Y - P1.Y))
+                {
+                    return true;
+                }                
+            }
+            return false;
+        }
+        public void LinkPoints()
+        {
+            float minX = float.MaxValue;
+            float minY = float.MaxValue;
+            float maxX = float.MinValue;
+            float maxY = float.MinValue;
+
+            this.Points.ForEach(p =>
+            {
+                if (minX > p.X) { minX = p.X; }
+                if (minY > p.Y) { minY = p.Y; }
+                if (maxX < p.X) { maxX = p.X; }
+                if (maxY < p.Y) { maxY = p.Y; }
+            });
+            P1 = new PointF(minX, minY);
+            P2 = new PointF(maxX, maxY);
         }
         public override bool IsHit(PointF Point)
         {
@@ -56,21 +87,6 @@ namespace Paint_Midterm
             }
             return result;
         }
-        public bool IsGroupHit(PointF P1, PointF P2)
-        {
-            for (int i = 0; i < this.Points.Count; i++) 
-            {
-                if (Points[i].X >= P1.X &&
-                        Points[i].X <= P2.X + (P2.X - P1.X) &&
-                        Points[i].Y >= P1.Y &&
-                        Points[i].Y <= P2.Y + (P2.Y - P1.Y))
-                {
-                    return true;
-                }                
-            }
-            return false;
-        }
-
         public override void Draw(Graphics Gra)
         {
             using (GraphicsPath path = this.GetPath)
@@ -97,23 +113,6 @@ namespace Paint_Midterm
             {
                 Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
-        }
-        public void FindRegion()
-        {
-            float minX = float.MaxValue;
-            float minY = float.MaxValue;
-            float maxX = float.MinValue;
-            float maxY = float.MinValue;
-
-            this.Points.ForEach(p =>
-            {
-                if (minX > p.X) { minX = p.X; }
-                if (minY > p.Y) { minY = p.Y; }
-                if (maxX < p.X) { maxX = p.X; }
-                if (maxY < p.Y) { maxY = p.Y; }
-            });
-            P1 = new PointF(minX, minY);
-            P2 = new PointF(maxX, maxY);
-        }
+        }      
     }
 }

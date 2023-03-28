@@ -65,7 +65,7 @@ namespace Paint_Midterm
                 return paths;
             }
         }
-        public void Add(MyShape shape) { Shapes.Add(shape); }
+        public void AddSingleShape(MyShape shape) { Shapes.Add(shape); }
         public override void Draw(Graphics Gra)
         {
             GraphicsPath[] paths = this.GetPaths;
@@ -144,7 +144,7 @@ namespace Paint_Midterm
             P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
             P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
         }
-        public void FindRegion()
+        public void LinkShapes()
         {
             float minX = float.MaxValue;
             float minY = float.MaxValue;
@@ -157,7 +157,7 @@ namespace Paint_Midterm
 
                 if (shape is MyPolygon polygon)
                 {
-                    polygon.FindRegion();
+                    polygon.LinkPoints();
                 }
                 if (shape.P1.X < minX)
                 {
