@@ -60,7 +60,6 @@
     <Compile Include="Shapes\MyEllipse.cs" />
     <Compile Include="Shapes\MyGroup.cs" />
     <Compile Include="Shapes\MyLine.cs" />
-    <Compile Include="Shapes\MyMultiPoint.cs" />
     <Compile Include="Shapes\MyPolygon.cs" />
     <Compile Include="Shapes\MyRec.cs" />
     <Compile Include="Shapes\MyShape.cs" />

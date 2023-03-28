@@ -169,8 +169,6 @@ namespace Paint_Midterm
                     if (i >= 0 && DrawnShapes.Items.Count > i)
                         DrawnShapes.SetItemChecked(i, true);
                 }
-
-
             }
 
             base.OnMouseMove(e);

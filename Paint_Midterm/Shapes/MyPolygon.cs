@@ -1,10 +1,12 @@
 ﻿using System.Drawing.Drawing2D;
 using System.Drawing;
+using System.Collections.Generic;
 
 namespace Paint_Midterm
 {
-    public class MyPolygon : MyMultiPoint
+    public class MyPolygon : MyShape
     {
+        public List<PointF> Points { get; set; } = new List<PointF>();
         public MyPolygon()
         {
             this.Name = "Polygon";
@@ -95,6 +97,23 @@ namespace Paint_Midterm
             {
                 Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
+        }
+        public void FindRegion()
+        {
+            float minX = float.MaxValue;
+            float minY = float.MaxValue;
+            float maxX = float.MinValue;
+            float maxY = float.MinValue;
+
+            this.Points.ForEach(p =>
+            {
+                if (minX > p.X) { minX = p.X; }
+                if (minY > p.Y) { minY = p.Y; }
+                if (maxX < p.X) { maxX = p.X; }
+                if (maxY < p.Y) { maxY = p.Y; }
+            });
+            P1 = new PointF(minX, minY);
+            P2 = new PointF(maxX, maxY);
         }
     }
 }
