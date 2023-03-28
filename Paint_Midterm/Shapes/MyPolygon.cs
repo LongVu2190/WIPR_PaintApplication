@@ -9,9 +9,9 @@ namespace Paint_Midterm
         {
             this.Name = "Polygon";
         }
-        public MyPolygon(float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
+        public MyPolygon(float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
         {
-            this.Size = Size;
+            this.Width = Width;
             this.ShapeColor = ShapeColor;
             this.ShapeDashStyle = ShapeDashStyle;
             this.IsFill = IsFill;
@@ -42,7 +42,7 @@ namespace Paint_Midterm
             {
                 if (!IsFill)
                 {
-                    using (Pen pen = new Pen(this.ShapeColor, this.Size + 3))
+                    using (Pen pen = new Pen(this.ShapeColor, this.Width + 3))
                     {
                         result = path.IsOutlineVisible(Point, pen);
                     }
@@ -73,7 +73,7 @@ namespace Paint_Midterm
         {
             using (GraphicsPath path = this.GetPath)
             {
-                using (Pen pen = new Pen(this.ShapeColor, this.Size) { DashStyle = this.ShapeDashStyle })
+                using (Pen pen = new Pen(this.ShapeColor, this.Width) { DashStyle = this.ShapeDashStyle })
                 {
                     graphics.DrawPath(pen, path);
                 }

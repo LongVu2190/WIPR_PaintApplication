@@ -14,7 +14,7 @@ namespace Paint_Midterm
         {
             this.Name = "Rectangle";
         }
-        public MyRec(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor) : base(P1, P2, Size, ShapeColor, ShapeDashStyle)
+        public MyRec(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
         {
             this.Name = "Rectangle";
             this.IsFill = IsFill;
@@ -40,7 +40,7 @@ namespace Paint_Midterm
             {
                 if (!IsFill)
                 {
-                    using (Pen MyPen = new Pen(ShapeColor, Size + 2))
+                    using (Pen MyPen = new Pen(ShapeColor, Width + 2))
                     {
                         result = path.IsOutlineVisible(Point, MyPen);
                     }
@@ -57,7 +57,7 @@ namespace Paint_Midterm
         {
             using (GraphicsPath path = GetPath)
             {
-                using (Pen myPen = new Pen(ShapeColor, Size))
+                using (Pen myPen = new Pen(ShapeColor, Width))
                 {
                     myPen.DashStyle = ShapeDashStyle;
                     graphics.DrawPath(myPen, path);

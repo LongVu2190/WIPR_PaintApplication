@@ -17,12 +17,12 @@ namespace Paint_Midterm
     public partial class MyPaint : Form
     {
         Color MyColor, MyFillColor;
-        float MySize;
+        float MyWidth;
         List<MyShape> Shapes = new List<MyShape>();
 
         MyShape SelectedShape;
         MyShape LastSelectedShape;
-        List<MyShape> mySelectedShapes = new List<MyShape>();
+        List<MyShape> MySelectedShapes = new List<MyShape>();
 
         PointF PreviousPoint = Point.Empty;
         PaintType Mode = PaintType.Line;
@@ -56,7 +56,7 @@ namespace Paint_Midterm
         {
             MyColor = Color.Black;
             MyFillColor = Color.Black;
-            MySize = 5;
+            MyWidth = 5;
             Mode = PaintType.Group;
             for (float i = 1; i <= 5; i++)
             {
@@ -78,11 +78,11 @@ namespace Paint_Midterm
 
                         if (Shapes[i].IsSelected == true)
                         {
-                            mySelectedShapes.Add(Shapes[i]);
+                            MySelectedShapes.Add(Shapes[i]);
                         }
                         else
                         {
-                            mySelectedShapes.Remove(Shapes[i]);
+                            MySelectedShapes.Remove(Shapes[i]);
                         }
                         Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
                         Main_PBox.Invalidate();
@@ -115,26 +115,26 @@ namespace Paint_Midterm
                     break;
                 case PaintType.Line:
                     IsStart = true;
-                    MyLine myLine = new MyLine(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    MyLine myLine = new MyLine(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
                     Shapes.Add(myLine);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Rec:
                     IsStart = true;
-                    MyRec myRec = new MyRec(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                    MyRec myRec = new MyRec(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                     Shapes.Add(myRec);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Ellipse:
                     IsStart = true;
-                    MyEllipse myEllipse = new MyEllipse(e.Location, e.Location, MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
+                    MyEllipse myEllipse = new MyEllipse(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
                     Shapes.Add(myEllipse);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Polygon:
                     if (!PolygonStatus)
                     {
-                        MyPolygon polygon = new MyPolygon(MySize, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                        MyPolygon polygon = new MyPolygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 
@@ -221,7 +221,7 @@ namespace Paint_Midterm
                         if (polygon.IsGroupHit(rec.P1, rec.P2))
                         {
                             Shapes[i].IsSelected = true;
-                            mySelectedShapes.Add(Shapes[i]);
+                            MySelectedShapes.Add(Shapes[i]);
                         }
                     }
                     else if (Shapes[i].P1.X >= rec.P1.X &&
@@ -230,7 +230,7 @@ namespace Paint_Midterm
                         Shapes[i].P2.Y <= rec.P2.Y + (rec.P2.Y - rec.P1.Y))
                     {
                         Shapes[i].IsSelected = true;
-                        mySelectedShapes.Add(Shapes[i]);
+                        MySelectedShapes.Add(Shapes[i]);
                     }
                 }
                 PointF p = new PointF(0, 0);
@@ -331,10 +331,9 @@ namespace Paint_Midterm
             }
         }
 
-
         private void PenSize_ValueChanged(object sP2er, EventArgs e)
         {
-            MySize = (float)PenSize.Value;
+            MyWidth = (float)PenSize.Value;
         }
 
         // Chức năng
@@ -359,6 +358,10 @@ namespace Paint_Midterm
         private void Delete_btn_Click(object sP2er, EventArgs e)
         {
             Shapes.Remove(LastSelectedShape);
+            foreach (var shape in MySelectedShapes)
+            {
+                Shapes.Remove(shape);
+            }
             Main_PBox.Invalidate();
             LastSelectedShape = null;
             Shape_txb.Text = "NULL";
@@ -399,6 +402,7 @@ namespace Paint_Midterm
             Shapes.Remove(group);
             Main_PBox.Invalidate();
             LastSelectedShape = null;
+            Mode = PaintType.Move;
             MessageBox.Show("Ungrouped", "Notification");
         }
         private void Fill_btn_Click(object sP2er, EventArgs e)
@@ -410,7 +414,7 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape != null)
             {
-                LastSelectedShape.Size += 5;
+                LastSelectedShape.Width += 5;
                 Main_PBox.Invalidate();
             }
         }
@@ -418,8 +422,8 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape != null)
             {
-                if (LastSelectedShape.Size > 5)
-                    LastSelectedShape.Size -= 5;
+                if (LastSelectedShape.Width > 5)
+                    LastSelectedShape.Width -= 5;
                 Main_PBox.Invalidate();
             }
         }
@@ -443,13 +447,13 @@ namespace Paint_Midterm
             isControlKeyPress = e.Control;
             Debug.Text = isControlKeyPress.ToString();
 
-            if (mySelectedShapes.Count > 1 && Mode == PaintType.Group)
+            if (MySelectedShapes.Count > 1 && Mode == PaintType.Group)
             {
                 DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                 if (dlr == DialogResult.Yes)
                 {
                     MyGroup group = new MyGroup();
-                    foreach (var shape in mySelectedShapes)
+                    foreach (var shape in MySelectedShapes)
                     {
                         group.Add(shape);
                         Shapes.Remove(shape);
@@ -457,22 +461,22 @@ namespace Paint_Midterm
                     group.FindRegion();
                     Shapes.Add(group);
                     group.IsSelected = false;
-                    mySelectedShapes.Clear();
+                    MySelectedShapes.Clear();
                 }
                 else
                 {
-                    foreach (var shape in mySelectedShapes)
+                    foreach (var shape in MySelectedShapes)
                     {
                         shape.IsSelected = false;
                     }
-                    mySelectedShapes.Clear();
+                    MySelectedShapes.Clear();
                 }
                 Mode = PaintType.Move;
                 Main_PBox.Invalidate();
             }
             else
             {
-                foreach (var shape in mySelectedShapes)
+                foreach (var shape in MySelectedShapes)
                 {
                     shape.IsSelected = false;
                 }

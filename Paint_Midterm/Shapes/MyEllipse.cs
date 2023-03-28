@@ -16,7 +16,7 @@ namespace Paint_Midterm
         {
             this.Name = "Ellipse";
         }
-        public MyEllipse(PointF P1, PointF P2, float Size, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor, bool IsCircle) : base(P1, P2, Size, ShapeColor, ShapeDashStyle)
+        public MyEllipse(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor, bool IsCircle) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
         {           
             this.IsFill = IsFill;
             this.ShapeFillColor = ShapeFillColor;
@@ -53,7 +53,7 @@ namespace Paint_Midterm
             {
                 if (!IsFill)
                 {
-                    using (Pen pen = new Pen(this.ShapeColor, this.Size + 3))
+                    using (Pen pen = new Pen(this.ShapeColor, this.Width + 3))
                     {
                         result = path.IsOutlineVisible(Point, pen);
                     }
@@ -70,7 +70,7 @@ namespace Paint_Midterm
         {
             using (GraphicsPath path = GetPath)
             {
-                using (Pen pen = new Pen(this.ShapeColor, this.Size) { DashStyle = ShapeDashStyle })
+                using (Pen pen = new Pen(this.ShapeColor, this.Width) { DashStyle = ShapeDashStyle })
                 {
                     graphics.DrawPath(pen, path);
                 }

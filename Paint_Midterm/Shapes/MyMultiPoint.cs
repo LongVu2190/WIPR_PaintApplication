@@ -9,7 +9,7 @@ namespace Paint_Midterm
     {
         public List<PointF> Points { get; set; } = new List<PointF>();
         protected MyMultiPoint() { }
-        protected MyMultiPoint(float Size, Color ShapeColor, DashStyle ShapeDashStyle) : base()
+        protected MyMultiPoint(float Width, Color ShapeColor, DashStyle ShapeDashStyle) : base()
         {
 
         }
