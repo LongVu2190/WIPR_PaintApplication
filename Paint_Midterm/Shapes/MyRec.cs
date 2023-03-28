@@ -52,21 +52,20 @@ namespace Paint_Midterm
             }
             return result;
         }
-
-        public override void Draw(Graphics graphics)
+        public override void Draw(Graphics Gra)
         {
             using (GraphicsPath path = GetPath)
             {
                 using (Pen myPen = new Pen(ShapeColor, Width))
                 {
                     myPen.DashStyle = ShapeDashStyle;
-                    graphics.DrawPath(myPen, path);
+                    Gra.DrawPath(myPen, path);
                 }
                 if (IsFill)
                 {
                     using (Brush myBrush = new SolidBrush(ShapeFillColor))
                     {
-                        graphics.FillPath(myBrush, path);
+                        Gra.FillPath(myBrush, path);
                     }
                 }
             }

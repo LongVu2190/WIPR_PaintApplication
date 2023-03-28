@@ -35,7 +35,7 @@
             this.Shape_txb = new System.Windows.Forms.TextBox();
             this.ZoomOut_btn = new System.Windows.Forms.Button();
             this.DashStyle = new System.Windows.Forms.ComboBox();
-            this.PenSize = new System.Windows.Forms.NumericUpDown();
+            this.PenWidth = new System.Windows.Forms.NumericUpDown();
             this.Delete_btn = new System.Windows.Forms.Button();
             this.Color_btn = new System.Windows.Forms.Button();
             this.Clear_btn = new System.Windows.Forms.Button();
@@ -51,7 +51,7 @@
             this.Circle_btn = new System.Windows.Forms.Button();
             this.Polygon_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PenSize)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.SuspendLayout();
             // 
             // Group_btn
@@ -127,24 +127,24 @@
             this.DashStyle.TabIndex = 8;
             this.DashStyle.Text = "1";
             // 
-            // PenSize
+            // PenWidth
             // 
-            this.PenSize.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.PenSize.Location = new System.Drawing.Point(151, 138);
-            this.PenSize.Minimum = new decimal(new int[] {
+            this.PenWidth.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.PenWidth.Location = new System.Drawing.Point(151, 138);
+            this.PenWidth.Minimum = new decimal(new int[] {
             1,
             0,
             0,
             0});
-            this.PenSize.Name = "PenSize";
-            this.PenSize.Size = new System.Drawing.Size(75, 26);
-            this.PenSize.TabIndex = 9;
-            this.PenSize.Value = new decimal(new int[] {
+            this.PenWidth.Name = "PenWidth";
+            this.PenWidth.Size = new System.Drawing.Size(75, 26);
+            this.PenWidth.TabIndex = 9;
+            this.PenWidth.Value = new decimal(new int[] {
             5,
             0,
             0,
             0});
-            this.PenSize.ValueChanged += new System.EventHandler(this.PenSize_ValueChanged);
+            this.PenWidth.ValueChanged += new System.EventHandler(this.PenSize_ValueChanged);
             // 
             // Delete_btn
             // 
@@ -306,7 +306,7 @@
             this.Controls.Add(this.Clear_btn);
             this.Controls.Add(this.Color_btn);
             this.Controls.Add(this.Delete_btn);
-            this.Controls.Add(this.PenSize);
+            this.Controls.Add(this.PenWidth);
             this.Controls.Add(this.DashStyle);
             this.Controls.Add(this.ZoomOut_btn);
             this.Controls.Add(this.Shape_txb);
@@ -319,12 +319,11 @@
             this.MinimizeBox = false;
             this.Name = "MyPaint";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "MyPaint";
             this.Load += new System.EventHandler(this.MyPaint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyUp);
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.PenSize)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -338,7 +337,7 @@
         private System.Windows.Forms.TextBox Shape_txb;
         private System.Windows.Forms.Button ZoomOut_btn;
         private System.Windows.Forms.ComboBox DashStyle;
-        private System.Windows.Forms.NumericUpDown PenSize;
+        private System.Windows.Forms.NumericUpDown PenWidth;
         private System.Windows.Forms.Button Delete_btn;
         private System.Windows.Forms.Button Color_btn;
         private System.Windows.Forms.Button Clear_btn;

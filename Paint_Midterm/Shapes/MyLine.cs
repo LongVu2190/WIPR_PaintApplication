@@ -5,6 +5,7 @@ using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace Paint_Midterm
 {
@@ -38,16 +39,15 @@ namespace Paint_Midterm
                 }
             }
             return result;
-        }
-        
-        public override void Draw(Graphics graphics)
+        }       
+        public override void Draw(Graphics Gra)
         {
             using (GraphicsPath path = GetPath)
             {
                 using (Pen myPen = new Pen(ShapeColor, Width))
                 {
                     myPen.DashStyle = ShapeDashStyle;
-                    graphics.DrawPath(myPen, path);
+                    Gra.DrawPath(myPen, path);
                 }
             }
         }

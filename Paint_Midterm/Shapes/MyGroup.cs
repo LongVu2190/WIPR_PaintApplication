@@ -66,7 +66,7 @@ namespace Paint_Midterm
             }
         }
         public void Add(MyShape shape) { Shapes.Add(shape); }
-        public override void Draw(Graphics graphics)
+        public override void Draw(Graphics Gra)
         {
             GraphicsPath[] paths = this.GetPaths;
             for (int i = 0; i < paths.Length; i++)
@@ -77,22 +77,22 @@ namespace Paint_Midterm
                     {
                         using (Brush brush = new SolidBrush(Shapes[i].ShapeFillColor))
                         {
-                            graphics.FillPath(brush, path);
+                            Gra.FillPath(brush, path);
                         }
                         using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width))
                         {
-                            graphics.DrawPath(pen, path);
+                            Gra.DrawPath(pen, path);
                         }
                     }
                     else if (Shapes[i] is MyGroup group)
                     {
-                        group.Draw(graphics);
+                        group.Draw(Gra);
                     }
                     else
                     {
                         using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width) { DashStyle = Shapes[i].ShapeDashStyle })
                         {
-                            graphics.DrawPath(pen, path);
+                            Gra.DrawPath(pen, path);
                         }
                     }
 

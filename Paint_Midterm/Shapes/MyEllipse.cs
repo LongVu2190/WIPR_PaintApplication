@@ -10,8 +10,7 @@ namespace Paint_Midterm
 {
     internal class MyEllipse : MyShape
     {
-        public bool IsCircle { get; set; } = false;
-        public float Diameter { get; set; } = 0f;
+        
         public MyEllipse()
         {
             this.Name = "Ellipse";
@@ -27,6 +26,8 @@ namespace Paint_Midterm
             else
                 this.Name = "Ellipse";
         }
+        public bool IsCircle { get; set; } = false;
+        public float Diameter { get; set; } = 0f;
         public override GraphicsPath GetPath
         {
             get
@@ -34,6 +35,7 @@ namespace Paint_Midterm
                 GraphicsPath path = new GraphicsPath();
                 if (IsCircle)
                 {
+
                     Diameter = ((P2.X - P1.X) + (P2.Y - P1.Y)) / 2;
                     path.AddEllipse(new RectangleF(P1.X, P1.Y, Diameter, Diameter));
 
@@ -65,20 +67,19 @@ namespace Paint_Midterm
             }
             return result;
         }
-
-        public override void Draw(Graphics graphics)
+        public override void Draw(Graphics Gra)
         {
             using (GraphicsPath path = GetPath)
             {
                 using (Pen pen = new Pen(this.ShapeColor, this.Width) { DashStyle = ShapeDashStyle })
                 {
-                    graphics.DrawPath(pen, path);
+                    Gra.DrawPath(pen, path);
                 }
                 if (this.IsFill)
                 {
                     using (Brush brush = new SolidBrush(this.ShapeFillColor))
                     {
-                        graphics.FillPath(brush, path);
+                        Gra.FillPath(brush, path);
                     }
                 }
             }
