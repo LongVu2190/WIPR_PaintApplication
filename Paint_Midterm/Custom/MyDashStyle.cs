@@ -14,23 +14,23 @@ namespace Paint_Midterm
             switch (n)
             {
 
-                case 1:
+                case 0:
                     {
                         return DashStyle.Solid;
                     }
-                case 2:
+                case 1:
                     {
                         return DashStyle.Dash;
                     }
-                case 3:
+                case 2:
                     {
                         return DashStyle.Dot;
                     }
-                case 4:
+                case 3:
                     {
                         return DashStyle.DashDot;
                     }
-                case 5:
+                case 4:
                     {
                         return DashStyle.DashDotDot;
                     }

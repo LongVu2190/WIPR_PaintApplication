@@ -46,6 +46,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Button\ButtonE.cs">
+      <SubType>Component</SubType>
+    </Compile>
     <Compile Include="Custom\ShapeFrame.cs" />
     <Compile Include="Enums\PaintType.cs" />
     <Compile Include="Custom\MyDashStyle.cs" />
@@ -87,6 +90,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\arc.png" />
+    <Content Include="Assets\circle.png" />
+    <Content Include="Assets\clear.png" />
+    <Content Include="Assets\dash.png" />
+    <Content Include="Assets\DashStyle\0.png" />
+    <Content Include="Assets\DashStyle\1.png" />
+    <Content Include="Assets\DashStyle\2.png" />
+    <Content Include="Assets\DashStyle\3.png" />
+    <Content Include="Assets\DashStyle\4.png" />
+    <Content Include="Assets\ellipse.png" />
+    <Content Include="Assets\eraser.png" />
+    <Content Include="Assets\group.png" />
+    <Content Include="Assets\icon.ico" />
+    <Content Include="Assets\line.png" />
+    <Content Include="Assets\Logo.ico" />
+    <Content Include="Assets\polygon.png" />
+    <Content Include="Assets\rec.png" />
+    <Content Include="Assets\select.png" />
+    <Content Include="Assets\ungroup.png" />
+    <Content Include="Assets\width.png" />
+    <Content Include="Assets\zoomin.png" />
+    <Content Include="Assets\zoomout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Assets\Buttons\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

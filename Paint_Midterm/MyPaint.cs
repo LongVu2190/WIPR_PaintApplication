@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Linq;
 using System.Reflection;
+using System.Runtime.InteropServices;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,11 +20,11 @@ namespace Paint_Midterm
         Color MyColor, MyFillColor;
         float MyWidth;
         List<MyShape> Shapes = new List<MyShape>(); // Chứa các hình sẽ vẽ
-                    
+
         PaintType Mode = PaintType.Line; // Chế độ vẽ
 
         bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
-        
+
         MyRec rec = new MyRec(); // Dành cho không vẽ hình (Mode: Group)
         bool isControlKeyPress; // Dành cho group shapes (Mode: Group)
         List<MyShape> MySelectedShapes = new List<MyShape>(); // Biến tạm thời lưu các hình để group
@@ -45,20 +46,23 @@ namespace Paint_Midterm
             DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
         };
 
+        [DllImport("kernel32.dll", SetLastError = true)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        static extern bool AllocConsole();
+
         public MyPaint()
         {
             InitializeComponent();
         }
         private void MyPaint_Load(object sender, EventArgs e)
         {
+            //AllocConsole();
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MyWidth = 5;
+            DashStyle.SelectedIndex = 0;
             Mode = PaintType.Group;
-            for (float i = 1; i <= 5; i++)
-            {
-                DashStyle.Items.Add(i.ToString());
-            }
+            Fill_Color_btn.Visible = false;
         }
 
         // Vẽ
@@ -81,7 +85,7 @@ namespace Paint_Midterm
                         {
                             MySelectedShapes.Remove(Shapes[i]);
                         }
-                        Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
+                        Shape_txb.Text = Shapes[i].Name;
                         Main_PBox.Invalidate();
                         break;
                     }
@@ -94,7 +98,7 @@ namespace Paint_Midterm
                     if (Shapes[i].IsHit(e.Location))
                     {
                         SelectedShape = Shapes[i];
-                        Shape_txb.Text = "Shape " + i.ToString() + " (" + Shapes[i].Name + ")";
+                        Shape_txb.Text = Shapes[i].Name;
                         PreviousPoint = e.Location;
                         Moving = true;
                         break;
@@ -161,10 +165,6 @@ namespace Paint_Midterm
                     SelectedShape.Move(d);
                     PreviousPoint = e.Location;
                     Main_PBox.Invalidate();
-
-                    int i = Shapes.IndexOf(SelectedShape);
-                    if (i >= 0 && DrawnShapes.Items.Count > i)
-                        DrawnShapes.SetItemChecked(i, true);
                 }
             }
 
@@ -206,7 +206,6 @@ namespace Paint_Midterm
             // Xóa khung hình chữ nhật sau khi thả chuột
             if (Mode == PaintType.Group && !isControlKeyPress)
             {
-
                 for (int i = 0; i < Shapes.Count; i++)
                 {
                     Shapes[i].IsSelected = false;
@@ -232,17 +231,12 @@ namespace Paint_Midterm
                 rec.P1 = p;
                 rec.P2 = p;
                 Main_PBox.Invalidate();
+                Shape_txb.Text = "Group";
             }
 
             base.OnMouseUp(e);
             if (Mode != PaintType.Polygon)
                 IsStart = false;
-
-            DrawnShapes.Items.Clear();
-            for (int i = 0; i < Shapes.Count; i++)
-            {
-                DrawnShapes.Items.Add("Shape " + i.ToString() + " " + Shapes[i].IsSelected.ToString());
-            }
         }
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
         {
@@ -352,36 +346,23 @@ namespace Paint_Midterm
         }
         private void Delete_btn_Click(object sender, EventArgs e)
         {
-            Shapes.Remove(LastSelectedShape);
-            foreach (var shape in MySelectedShapes)
-            {
-                Shapes.Remove(shape);
-            }
-            Main_PBox.Invalidate();
-            LastSelectedShape = null;
-            Shape_txb.Text = "NULL";
-
-            DrawnShapes.Items.Clear();
-            for (int i = 0; i < Shapes.Count; i++)
-            {
-                DrawnShapes.Items.Add("Shape " + i.ToString() + " (" + Shapes[i].Name + ")");
-            }
-
-            Main_PBox.Invalidate();
+            DeleteShapes();
         }
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             Shapes.Clear();
-            DrawnShapes.Items.Clear();
+            Shape_txb.Text = "NULL";
             Main_PBox.Invalidate();
         }
         private void Select_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Move;
+            Mode_tb.Text = "MODE: SELECT & MOVE";
         }
         private void Group_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Group;
+            Mode_tb.Text = "MODE: GROUP";
         }
         private void Ungroup_btn_Click(object sender, EventArgs e)
         {
@@ -403,7 +384,17 @@ namespace Paint_Midterm
         private void Fill_btn_Click(object sender, EventArgs e)
         {
             IsFill = (IsFill == true) ? false : true;
-            check.Text = IsFill.ToString();
+            if (IsFill == true)
+            {
+                Fill_Color_btn.Visible = true;
+                Fill_btn.Text = "Fill: On";
+            }                
+            else
+            {
+                Fill_Color_btn.Visible = false;
+                Fill_btn.Text = "Fill: Off";
+            }
+                
         }
         private void ZoomIn_btn_Click(object sender, EventArgs e)
         {
@@ -412,6 +403,8 @@ namespace Paint_Midterm
                 LastSelectedShape.Width += 5;
                 Main_PBox.Invalidate();
             }
+            else
+                MessageBox.Show("Please select a shape", "Notification");
         }
         private void ZoomOut_btn_Click(object sender, EventArgs e)
         {
@@ -421,42 +414,63 @@ namespace Paint_Midterm
                     LastSelectedShape.Width -= 5;
                 Main_PBox.Invalidate();
             }
+            else
+                MessageBox.Show("Please select a shape", "Notification");
         }
 
-        // Nhấn ctrl
+        // Nhấn ctrl và delete
         private void MyPaint_KeyDown(object sender, KeyEventArgs e)
         {
-            isControlKeyPress = e.Control;
-            Debug.Text = isControlKeyPress.ToString();
-            if (Mode == PaintType.Polygon)
+            if (e.KeyCode == Keys.ControlKey)
             {
-                isControlKeyPress = false;
-                MessageBox.Show("Drew a Polygon", "Notification");
-                IsStart = false;
-                PolygonStatus = true;
-                Mode = PaintType.Move;
+                isControlKeyPress = true;
+                if (Mode == PaintType.Polygon)
+                {
+                    isControlKeyPress = false;
+                    MessageBox.Show("Drew a Polygon", "Notification");
+                    Mode_tb.Text = "MODE: SELECT & MOVE";
+                    IsStart = false;
+                    PolygonStatus = true;
+                    Mode = PaintType.Move;
+                }
+            }
+            if (e.KeyCode == Keys.Delete)
+            {
+                DeleteShapes();
             }
         }
         private void MyPaint_KeyUp(object sender, KeyEventArgs e)
         {
-            isControlKeyPress = e.Control;
-            Debug.Text = isControlKeyPress.ToString();
-
-            if (MySelectedShapes.Count > 1 && Mode == PaintType.Group)
+            if (e.KeyCode == Keys.ControlKey)
             {
-                DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
-                if (dlr == DialogResult.Yes)
+                isControlKeyPress = e.Control;
+
+                if (MySelectedShapes.Count > 1 && Mode == PaintType.Group)
                 {
-                    MyGroup group = new MyGroup();
-                    foreach (var shape in MySelectedShapes)
+                    DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    if (dlr == DialogResult.Yes)
                     {
-                        group.AddSingleShape(shape);
-                        Shapes.Remove(shape);
+                        MyGroup group = new MyGroup();
+                        foreach (var shape in MySelectedShapes)
+                        {
+                            group.AddSingleShape(shape);
+                            Shapes.Remove(shape);
+                        }
+                        group.LinkShapes();
+                        Shapes.Add(group);
+                        group.IsSelected = false;
+                        MySelectedShapes.Clear();
                     }
-                    group.LinkShapes();
-                    Shapes.Add(group);
-                    group.IsSelected = false;
-                    MySelectedShapes.Clear();
+                    else
+                    {
+                        foreach (var shape in MySelectedShapes)
+                        {
+                            shape.IsSelected = false;
+                        }
+                        MySelectedShapes.Clear();
+                    }
+                    Mode = PaintType.Move;
+                    Main_PBox.Invalidate();
                 }
                 else
                 {
@@ -464,45 +478,68 @@ namespace Paint_Midterm
                     {
                         shape.IsSelected = false;
                     }
-                    MySelectedShapes.Clear();
+                    Mode = PaintType.Move;
+                    Main_PBox.Invalidate();
                 }
-                Mode = PaintType.Move;
-                Main_PBox.Invalidate();
+                Mode_tb.Text = "MODE: SELECT & MOVE";
             }
-            else
+        }
+
+
+        private void DeleteShapes()
+        {
+            Shapes.Remove(LastSelectedShape);
+            foreach (var shape in MySelectedShapes)
             {
-                foreach (var shape in MySelectedShapes)
-                {
-                    shape.IsSelected = false;
-                }
-                Mode = PaintType.Move;
-                Main_PBox.Invalidate();
+                Shapes.Remove(shape);
             }
+            Main_PBox.Invalidate();
+            LastSelectedShape = null;
+            Shape_txb.Text = "NULL";
+            Main_PBox.Invalidate();
+        }
+        private void DashStyle_DrawItem(object sender, DrawItemEventArgs e)
+        {
+            e.DrawBackground();
+            if (e.Index != -1)
+            {
+                e.Graphics.DrawImage(DashList.Images[e.Index], e.Bounds.Left, e.Bounds.Top);
+            }
+            e.DrawFocusRectangle();
         }
 
         // Chọn Mode vẽ
         private void Line_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Line;
+            Mode_tb.Text = "MODE: DRAW LINE";
         }
         private void Rec_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Rec;
+            Mode_tb.Text = "MODE: DRAW RECTANGLE";
         }
         private void Ellipse_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = false;
+            Mode_tb.Text = "MODE: DRAW ELLIPSE";
         }
         private void Circle_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = true;
+            Mode_tb.Text = "MODE: DRAW CIRCLE";
         }
         private void Polygon_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Polygon;
             PolygonStatus = false;
+            Mode_tb.Text = "MODE: DRAW POLYGON";
+        }
+        private void Arc_btn_Click(object sender, EventArgs e)
+        {
+            Mode_tb.Text = "MODE: DRAW ARC";
         }
     }
 }
