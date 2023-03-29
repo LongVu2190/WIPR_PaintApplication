@@ -36,8 +36,6 @@
             this.PenWidth = new System.Windows.Forms.NumericUpDown();
             this.Fill_btn = new System.Windows.Forms.Button();
             this.Fill_pl = new System.Windows.Forms.Panel();
-            this.Fill_Color_btn = new Paint_Midterm.ButtonE();
-            this.Color_btn = new Paint_Midterm.ButtonE();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -62,6 +60,8 @@
             this.Shapes_lb = new System.Windows.Forms.Label();
             this.Tools_lb = new System.Windows.Forms.Label();
             this.Mode_tb = new System.Windows.Forms.TextBox();
+            this.Fill_Color_btn = new Paint_Midterm.ButtonE();
+            this.Color_btn = new Paint_Midterm.ButtonE();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
@@ -90,7 +90,7 @@
             this.Main_PBox.BackColor = System.Drawing.SystemColors.Window;
             this.Main_PBox.Location = new System.Drawing.Point(35, 136);
             this.Main_PBox.Name = "Main_PBox";
-            this.Main_PBox.Size = new System.Drawing.Size(1121, 691);
+            this.Main_PBox.Size = new System.Drawing.Size(1120, 691);
             this.Main_PBox.TabIndex = 3;
             this.Main_PBox.TabStop = false;
             this.Main_PBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Panel_Paint);
@@ -166,30 +166,6 @@
             this.Fill_pl.Name = "Fill_pl";
             this.Fill_pl.Size = new System.Drawing.Size(107, 92);
             this.Fill_pl.TabIndex = 27;
-            // 
-            // Fill_Color_btn
-            // 
-            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Fill_Color_btn.FlatAppearance.BorderSize = 0;
-            this.Fill_Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Fill_Color_btn.Location = new System.Drawing.Point(61, 13);
-            this.Fill_Color_btn.Name = "Fill_Color_btn";
-            this.Fill_Color_btn.Size = new System.Drawing.Size(30, 30);
-            this.Fill_Color_btn.TabIndex = 26;
-            this.Fill_Color_btn.UseVisualStyleBackColor = false;
-            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
-            // 
-            // Color_btn
-            // 
-            this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.FlatAppearance.BorderSize = 0;
-            this.Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Color_btn.Location = new System.Drawing.Point(17, 13);
-            this.Color_btn.Name = "Color_btn";
-            this.Color_btn.Size = new System.Drawing.Size(30, 30);
-            this.Color_btn.TabIndex = 25;
-            this.Color_btn.UseVisualStyleBackColor = false;
-            this.Color_btn.Click += new System.EventHandler(this.Color_btn_Click);
             // 
             // panel2
             // 
@@ -456,6 +432,30 @@
             this.Mode_tb.Size = new System.Drawing.Size(230, 26);
             this.Mode_tb.TabIndex = 48;
             this.Mode_tb.Text = "MODE: GROUP";
+            // 
+            // Fill_Color_btn
+            // 
+            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Fill_Color_btn.FlatAppearance.BorderSize = 0;
+            this.Fill_Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Fill_Color_btn.Location = new System.Drawing.Point(61, 13);
+            this.Fill_Color_btn.Name = "Fill_Color_btn";
+            this.Fill_Color_btn.Size = new System.Drawing.Size(30, 30);
+            this.Fill_Color_btn.TabIndex = 26;
+            this.Fill_Color_btn.UseVisualStyleBackColor = false;
+            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
+            // 
+            // Color_btn
+            // 
+            this.Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Color_btn.FlatAppearance.BorderSize = 0;
+            this.Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.Color_btn.Location = new System.Drawing.Point(17, 13);
+            this.Color_btn.Name = "Color_btn";
+            this.Color_btn.Size = new System.Drawing.Size(30, 30);
+            this.Color_btn.TabIndex = 25;
+            this.Color_btn.UseVisualStyleBackColor = false;
+            this.Color_btn.Click += new System.EventHandler(this.Color_btn_Click);
             // 
             // MyPaint
             // 

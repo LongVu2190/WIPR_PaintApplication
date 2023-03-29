@@ -358,11 +358,13 @@ namespace Paint_Midterm
         {
             Mode = PaintType.Move;
             Mode_tb.Text = "MODE: SELECT & MOVE";
+            Main_PBox.Invalidate();
         }
         private void Group_btn_Click(object sender, EventArgs e)
         {
-            Mode = PaintType.Group;
+            Mode = PaintType.Group;          
             Mode_tb.Text = "MODE: GROUP";
+            Main_PBox.Invalidate();
         }
         private void Ungroup_btn_Click(object sender, EventArgs e)
         {
@@ -484,7 +486,6 @@ namespace Paint_Midterm
                 Mode_tb.Text = "MODE: SELECT & MOVE";
             }
         }
-
 
         private void DeleteShapes()
         {
