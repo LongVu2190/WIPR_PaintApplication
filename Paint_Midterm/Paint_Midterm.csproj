@@ -77,6 +77,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -92,31 +93,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\arc.png" />
-    <Content Include="Assets\circle.png" />
-    <Content Include="Assets\clear.png" />
-    <Content Include="Assets\dash.png" />
+    <Content Include="Assets\Buttons\arc.png" />
+    <Content Include="Assets\Buttons\circle.png" />
+    <Content Include="Assets\Buttons\clear.png" />
+    <Content Include="Assets\Buttons\dash.png" />
+    <Content Include="Assets\Buttons\ellipse.png" />
+    <Content Include="Assets\Buttons\eraser.png" />
+    <Content Include="Assets\Buttons\group.png" />
+    <Content Include="Assets\Buttons\line.png" />
+    <Content Include="Assets\Buttons\polygon.png" />
+    <Content Include="Assets\Buttons\rec.png" />
+    <Content Include="Assets\Buttons\select.png" />
+    <Content Include="Assets\Buttons\ungroup.png" />
+    <Content Include="Assets\Buttons\width.png" />
+    <Content Include="Assets\Buttons\zoomin.png" />
+    <Content Include="Assets\Buttons\zoomout.png" />
     <Content Include="Assets\DashStyle\0.png" />
     <Content Include="Assets\DashStyle\1.png" />
     <Content Include="Assets\DashStyle\2.png" />
     <Content Include="Assets\DashStyle\3.png" />
     <Content Include="Assets\DashStyle\4.png" />
-    <Content Include="Assets\ellipse.png" />
-    <Content Include="Assets\eraser.png" />
-    <Content Include="Assets\group.png" />
     <Content Include="Assets\icon.ico" />
-    <Content Include="Assets\line.png" />
-    <Content Include="Assets\Logo.ico" />
-    <Content Include="Assets\polygon.png" />
-    <Content Include="Assets\rec.png" />
-    <Content Include="Assets\select.png" />
-    <Content Include="Assets\ungroup.png" />
-    <Content Include="Assets\width.png" />
-    <Content Include="Assets\zoomin.png" />
-    <Content Include="Assets\zoomout.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Assets\Buttons\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

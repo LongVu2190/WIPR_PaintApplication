@@ -205,7 +205,7 @@
             // 
             // pictureBox2
             // 
-            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Image = global::Paint_Midterm.Properties.Resources.dash;
             this.pictureBox2.Location = new System.Drawing.Point(15, 46);
             this.pictureBox2.Name = "pictureBox2";
             this.pictureBox2.Size = new System.Drawing.Size(28, 32);
@@ -215,7 +215,7 @@
             // 
             // pictureBox1
             // 
-            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Image = global::Paint_Midterm.Properties.Resources.width;
             this.pictureBox1.Location = new System.Drawing.Point(15, 10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(28, 28);
@@ -239,7 +239,7 @@
             // 
             // Arc_btn
             // 
-            this.Arc_btn.Image = ((System.Drawing.Image)(resources.GetObject("Arc_btn.Image")));
+            this.Arc_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
             this.Arc_btn.Location = new System.Drawing.Point(107, 47);
             this.Arc_btn.Name = "Arc_btn";
             this.Arc_btn.Size = new System.Drawing.Size(36, 36);
@@ -250,7 +250,7 @@
             // 
             // Polygon_btn
             // 
-            this.Polygon_btn.Image = ((System.Drawing.Image)(resources.GetObject("Polygon_btn.Image")));
+            this.Polygon_btn.Image = global::Paint_Midterm.Properties.Resources.polygon;
             this.Polygon_btn.Location = new System.Drawing.Point(60, 45);
             this.Polygon_btn.Name = "Polygon_btn";
             this.Polygon_btn.Size = new System.Drawing.Size(40, 40);
@@ -261,7 +261,7 @@
             // 
             // Circle_btn
             // 
-            this.Circle_btn.Image = ((System.Drawing.Image)(resources.GetObject("Circle_btn.Image")));
+            this.Circle_btn.Image = global::Paint_Midterm.Properties.Resources.circle;
             this.Circle_btn.Location = new System.Drawing.Point(14, 45);
             this.Circle_btn.Name = "Circle_btn";
             this.Circle_btn.Size = new System.Drawing.Size(40, 40);
@@ -272,7 +272,7 @@
             // 
             // Rec_btn
             // 
-            this.Rec_btn.Image = ((System.Drawing.Image)(resources.GetObject("Rec_btn.Image")));
+            this.Rec_btn.Image = global::Paint_Midterm.Properties.Resources.rec;
             this.Rec_btn.Location = new System.Drawing.Point(60, 6);
             this.Rec_btn.Name = "Rec_btn";
             this.Rec_btn.Size = new System.Drawing.Size(40, 40);
@@ -283,7 +283,7 @@
             // 
             // Ellipse_btn
             // 
-            this.Ellipse_btn.Image = ((System.Drawing.Image)(resources.GetObject("Ellipse_btn.Image")));
+            this.Ellipse_btn.Image = global::Paint_Midterm.Properties.Resources.ellipse;
             this.Ellipse_btn.Location = new System.Drawing.Point(106, 5);
             this.Ellipse_btn.Name = "Ellipse_btn";
             this.Ellipse_btn.Size = new System.Drawing.Size(40, 40);
@@ -294,7 +294,7 @@
             // 
             // Line_btn
             // 
-            this.Line_btn.Image = ((System.Drawing.Image)(resources.GetObject("Line_btn.Image")));
+            this.Line_btn.Image = global::Paint_Midterm.Properties.Resources.line;
             this.Line_btn.Location = new System.Drawing.Point(14, 6);
             this.Line_btn.Name = "Line_btn";
             this.Line_btn.Size = new System.Drawing.Size(40, 40);
@@ -331,7 +331,7 @@
             // 
             // Select_btn
             // 
-            this.Select_btn.Image = ((System.Drawing.Image)(resources.GetObject("Select_btn.Image")));
+            this.Select_btn.Image = global::Paint_Midterm.Properties.Resources.select;
             this.Select_btn.Location = new System.Drawing.Point(7, 15);
             this.Select_btn.Name = "Select_btn";
             this.Select_btn.Size = new System.Drawing.Size(60, 60);
@@ -343,7 +343,7 @@
             // Ungroup_btn
             // 
             this.Ungroup_btn.BackColor = System.Drawing.SystemColors.Window;
-            this.Ungroup_btn.Image = ((System.Drawing.Image)(resources.GetObject("Ungroup_btn.Image")));
+            this.Ungroup_btn.Image = global::Paint_Midterm.Properties.Resources.ungroup;
             this.Ungroup_btn.Location = new System.Drawing.Point(252, 45);
             this.Ungroup_btn.Name = "Ungroup_btn";
             this.Ungroup_btn.Size = new System.Drawing.Size(35, 35);
@@ -354,7 +354,7 @@
             // 
             // Group_btn
             // 
-            this.Group_btn.Image = ((System.Drawing.Image)(resources.GetObject("Group_btn.Image")));
+            this.Group_btn.Image = global::Paint_Midterm.Properties.Resources.group;
             this.Group_btn.Location = new System.Drawing.Point(211, 45);
             this.Group_btn.Name = "Group_btn";
             this.Group_btn.Size = new System.Drawing.Size(35, 35);
@@ -365,7 +365,7 @@
             // 
             // ZoomOut_btn
             // 
-            this.ZoomOut_btn.Image = ((System.Drawing.Image)(resources.GetObject("ZoomOut_btn.Image")));
+            this.ZoomOut_btn.Image = global::Paint_Midterm.Properties.Resources.zoomout;
             this.ZoomOut_btn.Location = new System.Drawing.Point(170, 45);
             this.ZoomOut_btn.Name = "ZoomOut_btn";
             this.ZoomOut_btn.Size = new System.Drawing.Size(35, 35);
@@ -376,7 +376,7 @@
             // 
             // ZoomIn_btn
             // 
-            this.ZoomIn_btn.Image = ((System.Drawing.Image)(resources.GetObject("ZoomIn_btn.Image")));
+            this.ZoomIn_btn.Image = global::Paint_Midterm.Properties.Resources.zoomin;
             this.ZoomIn_btn.Location = new System.Drawing.Point(127, 45);
             this.ZoomIn_btn.Name = "ZoomIn_btn";
             this.ZoomIn_btn.Size = new System.Drawing.Size(35, 35);
@@ -387,7 +387,7 @@
             // 
             // Clear_btn
             // 
-            this.Clear_btn.Image = ((System.Drawing.Image)(resources.GetObject("Clear_btn.Image")));
+            this.Clear_btn.Image = global::Paint_Midterm.Properties.Resources.clear;
             this.Clear_btn.Location = new System.Drawing.Point(75, 43);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(40, 40);
@@ -398,7 +398,7 @@
             // 
             // Delete_btn
             // 
-            this.Delete_btn.Image = ((System.Drawing.Image)(resources.GetObject("Delete_btn.Image")));
+            this.Delete_btn.Image = global::Paint_Midterm.Properties.Resources.eraser;
             this.Delete_btn.Location = new System.Drawing.Point(76, 6);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(40, 40);
