@@ -1,16 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Drawing.Drawing2D;
-using System.Linq;
-using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace Paint_Midterm
@@ -232,6 +224,7 @@ namespace Paint_Midterm
                 rec.P2 = p;
                 Main_PBox.Invalidate();
                 Shape_txb.Text = "Group";
+                Note_tb.Text = "NOTE: Press Ctrl to group";
             }
 
             base.OnMouseUp(e);
@@ -357,13 +350,18 @@ namespace Paint_Midterm
         private void Select_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Move;
-            Mode_tb.Text = "MODE: SELECT & MOVE";
+            ChangeTextBox("MODE: SELECT & MOVE", "NOTE: Choose a shape");
             Main_PBox.Invalidate();
         }
         private void Group_btn_Click(object sender, EventArgs e)
         {
+            for (int i = 0; i < MySelectedShapes.Count; i++)
+            {
+                MySelectedShapes[i].IsSelected = false;
+            }
             Mode = PaintType.Group;          
             Mode_tb.Text = "MODE: GROUP";
+            Note_tb.Text = "NOTE: Hold Ctrl to select Shapes";
             Main_PBox.Invalidate();
         }
         private void Ungroup_btn_Click(object sender, EventArgs e)
@@ -389,12 +387,12 @@ namespace Paint_Midterm
             if (IsFill == true)
             {
                 Fill_Color_btn.Visible = true;
-                Fill_btn.Text = "Fill: On";
+                Fill_btn.Text = "FILL: ON";
             }                
             else
             {
                 Fill_Color_btn.Visible = false;
-                Fill_btn.Text = "Fill: Off";
+                Fill_btn.Text = "FILL: OFF";
             }
                 
         }
@@ -430,7 +428,7 @@ namespace Paint_Midterm
                 {
                     isControlKeyPress = false;
                     MessageBox.Show("Drew a Polygon", "Notification");
-                    Mode_tb.Text = "MODE: SELECT & MOVE";
+                    ChangeTextBox("MODE: SELECT & MOVE", "NOTE: ");
                     IsStart = false;
                     PolygonStatus = true;
                     Mode = PaintType.Move;
@@ -483,7 +481,7 @@ namespace Paint_Midterm
                     Mode = PaintType.Move;
                     Main_PBox.Invalidate();
                 }
-                Mode_tb.Text = "MODE: SELECT & MOVE";
+                ChangeTextBox("MODE: SELECT & MOVE", "NOTE: ");
             }
         }
 
@@ -499,6 +497,11 @@ namespace Paint_Midterm
             Shape_txb.Text = "NULL";
             Main_PBox.Invalidate();
         }
+        private void ChangeTextBox(string mode, string note)
+        {
+            Mode_tb.Text = mode;
+            Note_tb.Text = note;
+        }
         private void DashStyle_DrawItem(object sender, DrawItemEventArgs e)
         {
             e.DrawBackground();
@@ -513,34 +516,34 @@ namespace Paint_Midterm
         private void Line_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Line;
-            Mode_tb.Text = "MODE: DRAW LINE";
+            ChangeTextBox("MODE: DRAW LINE", "NOTE: ");
         }
         private void Rec_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Rec;
-            Mode_tb.Text = "MODE: DRAW RECTANGLE";
+            ChangeTextBox("MODE: DRAW RECTANGLE", "NOTE: ");
         }
         private void Ellipse_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = false;
-            Mode_tb.Text = "MODE: DRAW ELLIPSE";
+            ChangeTextBox("MODE: DRAW ELLIPSE", "NOTE: ");
         }
         private void Circle_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Ellipse;
             IsCircle = true;
-            Mode_tb.Text = "MODE: DRAW CIRCLE";
+            ChangeTextBox("MODE: DRAW CIRCLE", "NOTE: ");
         }
         private void Polygon_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Polygon;
             PolygonStatus = false;
-            Mode_tb.Text = "MODE: DRAW POLYGON";
+            ChangeTextBox("MODE: DRAW POLYGON", "NOTE: Press Ctrl to finish Polygon");
         }
         private void Arc_btn_Click(object sender, EventArgs e)
         {
-            Mode_tb.Text = "MODE: DRAW ARC";
+            ChangeTextBox("MODE: DRAW ARC", "NOTE:");
         }
     }
 }

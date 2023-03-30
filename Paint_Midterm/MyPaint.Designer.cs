@@ -60,6 +60,7 @@
             this.Shapes_lb = new System.Windows.Forms.Label();
             this.Tools_lb = new System.Windows.Forms.Label();
             this.Mode_tb = new System.Windows.Forms.TextBox();
+            this.Note_tb = new System.Windows.Forms.TextBox();
             this.Fill_Color_btn = new Paint_Midterm.ButtonE();
             this.Color_btn = new Paint_Midterm.ButtonE();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
@@ -152,7 +153,7 @@
             this.Fill_btn.Name = "Fill_btn";
             this.Fill_btn.Size = new System.Drawing.Size(75, 23);
             this.Fill_btn.TabIndex = 14;
-            this.Fill_btn.Text = "Fill: Off";
+            this.Fill_btn.Text = "FILL: OFF";
             this.Fill_btn.UseVisualStyleBackColor = true;
             this.Fill_btn.Click += new System.EventHandler(this.Fill_btn_Click);
             // 
@@ -426,12 +427,22 @@
             // Mode_tb
             // 
             this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mode_tb.Location = new System.Drawing.Point(366, 18);
+            this.Mode_tb.Location = new System.Drawing.Point(356, 25);
             this.Mode_tb.Name = "Mode_tb";
             this.Mode_tb.ReadOnly = true;
-            this.Mode_tb.Size = new System.Drawing.Size(230, 26);
+            this.Mode_tb.Size = new System.Drawing.Size(255, 26);
             this.Mode_tb.TabIndex = 48;
             this.Mode_tb.Text = "MODE: GROUP";
+            // 
+            // Note_tb
+            // 
+            this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Note_tb.Location = new System.Drawing.Point(356, 63);
+            this.Note_tb.Name = "Note_tb";
+            this.Note_tb.ReadOnly = true;
+            this.Note_tb.Size = new System.Drawing.Size(255, 26);
+            this.Note_tb.TabIndex = 49;
+            this.Note_tb.Text = "NOTE: ";
             // 
             // Fill_Color_btn
             // 
@@ -463,6 +474,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
             this.ClientSize = new System.Drawing.Size(1184, 861);
+            this.Controls.Add(this.Note_tb);
             this.Controls.Add(this.Mode_tb);
             this.Controls.Add(this.Tools_lb);
             this.Controls.Add(this.Shapes_lb);
@@ -544,6 +556,7 @@
         private System.Windows.Forms.Label Tools_lb;
         private System.Windows.Forms.PictureBox Select_btn;
         private System.Windows.Forms.TextBox Mode_tb;
+        private System.Windows.Forms.TextBox Note_tb;
     }
 }
 
