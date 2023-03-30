@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Drawing;
+using System.Reflection;
 
 namespace Paint_Midterm
 {
@@ -39,9 +40,16 @@ namespace Paint_Midterm
                     {
                         path.AddPolygon(polygon.Points.ToArray());
                     }
-                    else if (Shapes[i] is MyRec rect)
+                    else if (Shapes[i] is MyRec rec)
                     {
-                        path.AddRectangle(new RectangleF(rect.P1.X, rect.P1.Y, rect.P2.X - rect.P1.X, rect.P2.Y - rect.P1.Y));
+                        path.AddRectangle(new RectangleF(rec.P1.X, rec.P1.Y, rec.P2.X - rec.P1.X, rec.P2.Y - rec.P1.Y));
+                    }
+                    else if (Shapes[i] is MyFreehand freehand)
+                    {
+                        for (int j = 0; j < freehand.Points.Count - 1; j++)
+                        {
+                            path.AddLine(freehand.Points[j], freehand.Points[j + 1]);
+                        }
                     }
                     else if (Shapes[i] is MyEllipse ellip)
                     {
@@ -63,7 +71,7 @@ namespace Paint_Midterm
         public void AddSingleShape(MyShape shape) { Shapes.Add(shape); }
         public override void Draw(Graphics Gra)
         {
-            GraphicsPath[] paths = this.GetPaths;
+            GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
             {
                 using (GraphicsPath path = paths[i])

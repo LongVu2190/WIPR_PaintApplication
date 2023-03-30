@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyPaint));
             this.Main_PBox = new System.Windows.Forms.PictureBox();
-            this.Shape_txb = new System.Windows.Forms.TextBox();
+            this.Shape_tb = new System.Windows.Forms.TextBox();
             this.DashStyle = new System.Windows.Forms.ComboBox();
             this.PenWidth = new System.Windows.Forms.NumericUpDown();
             this.Fill_btn = new System.Windows.Forms.Button();
@@ -40,7 +40,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.Arc_btn = new System.Windows.Forms.PictureBox();
+            this.Freehand_btn = new System.Windows.Forms.PictureBox();
             this.Polygon_btn = new System.Windows.Forms.PictureBox();
             this.Circle_btn = new System.Windows.Forms.PictureBox();
             this.Rec_btn = new System.Windows.Forms.PictureBox();
@@ -70,7 +70,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).BeginInit();
@@ -99,15 +99,15 @@
             this.Main_PBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseMove);
             this.Main_PBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseUp);
             // 
-            // Shape_txb
+            // Shape_tb
             // 
-            this.Shape_txb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shape_txb.Location = new System.Drawing.Point(127, 13);
-            this.Shape_txb.Name = "Shape_txb";
-            this.Shape_txb.ReadOnly = true;
-            this.Shape_txb.Size = new System.Drawing.Size(160, 26);
-            this.Shape_txb.TabIndex = 5;
-            this.Shape_txb.Text = "NULL";
+            this.Shape_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Shape_tb.Location = new System.Drawing.Point(127, 13);
+            this.Shape_tb.Name = "Shape_tb";
+            this.Shape_tb.ReadOnly = true;
+            this.Shape_tb.Size = new System.Drawing.Size(160, 26);
+            this.Shape_tb.TabIndex = 5;
+            this.Shape_tb.Text = "NULL";
             // 
             // DashStyle
             // 
@@ -203,7 +203,7 @@
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
-            this.panel3.Controls.Add(this.Arc_btn);
+            this.panel3.Controls.Add(this.Freehand_btn);
             this.panel3.Controls.Add(this.Polygon_btn);
             this.panel3.Controls.Add(this.Circle_btn);
             this.panel3.Controls.Add(this.Rec_btn);
@@ -214,16 +214,16 @@
             this.panel3.Size = new System.Drawing.Size(157, 92);
             this.panel3.TabIndex = 29;
             // 
-            // Arc_btn
+            // Freehand_btn
             // 
-            this.Arc_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
-            this.Arc_btn.Location = new System.Drawing.Point(107, 47);
-            this.Arc_btn.Name = "Arc_btn";
-            this.Arc_btn.Size = new System.Drawing.Size(36, 36);
-            this.Arc_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Arc_btn.TabIndex = 40;
-            this.Arc_btn.TabStop = false;
-            this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
+            this.Freehand_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
+            this.Freehand_btn.Location = new System.Drawing.Point(107, 47);
+            this.Freehand_btn.Name = "Freehand_btn";
+            this.Freehand_btn.Size = new System.Drawing.Size(36, 36);
+            this.Freehand_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Freehand_btn.TabIndex = 40;
+            this.Freehand_btn.TabStop = false;
+            this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
             // 
             // Polygon_btn
             // 
@@ -300,7 +300,7 @@
             this.panel4.Controls.Add(this.ZoomIn_btn);
             this.panel4.Controls.Add(this.Clear_btn);
             this.panel4.Controls.Add(this.Delete_btn);
-            this.panel4.Controls.Add(this.Shape_txb);
+            this.panel4.Controls.Add(this.Shape_tb);
             this.panel4.Location = new System.Drawing.Point(35, 12);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(307, 91);
@@ -503,7 +503,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).EndInit();
@@ -525,7 +525,7 @@
 
         #endregion
         private System.Windows.Forms.PictureBox Main_PBox;
-        private System.Windows.Forms.TextBox Shape_txb;
+        private System.Windows.Forms.TextBox Shape_tb;
         private System.Windows.Forms.ComboBox DashStyle;
         private System.Windows.Forms.NumericUpDown PenWidth;
         private System.Windows.Forms.Button Fill_btn;
@@ -542,7 +542,7 @@
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox Line_btn;
-        private System.Windows.Forms.PictureBox Arc_btn;
+        private System.Windows.Forms.PictureBox Freehand_btn;
         private System.Windows.Forms.PictureBox Polygon_btn;
         private System.Windows.Forms.PictureBox Circle_btn;
         private System.Windows.Forms.PictureBox Rec_btn;

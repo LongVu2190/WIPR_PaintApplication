@@ -9,13 +9,20 @@ namespace Paint_Midterm
 {
     public static class ShapeFrame
     {
-        public static void DrawRectangle(this Graphics g, Pen pen, RectangleF rect) =>
+        public static void DrawRectangle(this Graphics g, Pen pen, RectangleF rect)
+        {
             g.DrawRectangle(pen, rect.X, rect.Y, rect.Width, rect.Height);
+        }
 
         public static void DrawSelectPoints(Graphics graphics, Brush brush, Brush brushShadow, PointF point0, PointF point1)
         {
             graphics.FillEllipse(brushShadow, new RectangleF(point0.X - 5, point0.Y - 5, 12, 12));
             graphics.FillEllipse(brushShadow, new RectangleF(point1.X - 5, point1.Y - 5, 12, 12));
+            graphics.FillEllipse(brush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
+            graphics.FillEllipse(brush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
+        }
+        public static void DrawPoints(Graphics graphics, Brush brush, Brush brushShadow, PointF point0, PointF point1)
+        {
             graphics.FillEllipse(brush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
             graphics.FillEllipse(brush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
         }

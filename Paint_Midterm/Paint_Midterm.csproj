@@ -61,6 +61,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Shapes\MyEllipse.cs" />
+    <Compile Include="Shapes\MyFreehand.cs" />
     <Compile Include="Shapes\MyGroup.cs" />
     <Compile Include="Shapes\MyLine.cs" />
     <Compile Include="Shapes\MyPolygon.cs" />

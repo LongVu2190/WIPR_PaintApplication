@@ -6,7 +6,7 @@
         Line,
         Rec,
         Ellipse,
-        Arc,
+        Freehand,
         Polygon,
         Group,
     }
