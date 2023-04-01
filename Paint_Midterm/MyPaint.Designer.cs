@@ -30,12 +30,13 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MyPaint));
-            this.Main_PBox = new System.Windows.Forms.PictureBox();
             this.Shape_tb = new System.Windows.Forms.TextBox();
             this.DashStyle = new System.Windows.Forms.ComboBox();
             this.PenWidth = new System.Windows.Forms.NumericUpDown();
             this.Fill_btn = new System.Windows.Forms.Button();
             this.Fill_pl = new System.Windows.Forms.Panel();
+            this.Fill_Color_btn = new System.Windows.Forms.Button();
+            this.Color_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
@@ -48,6 +49,7 @@
             this.Line_btn = new System.Windows.Forms.PictureBox();
             this.DashList = new System.Windows.Forms.ImageList(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
+            this.Save_btn = new System.Windows.Forms.PictureBox();
             this.Select_btn = new System.Windows.Forms.PictureBox();
             this.Ungroup_btn = new System.Windows.Forms.PictureBox();
             this.Group_btn = new System.Windows.Forms.PictureBox();
@@ -61,9 +63,11 @@
             this.Tools_lb = new System.Windows.Forms.Label();
             this.Mode_tb = new System.Windows.Forms.TextBox();
             this.Note_tb = new System.Windows.Forms.TextBox();
-            this.Color_btn = new System.Windows.Forms.Button();
-            this.Fill_Color_btn = new System.Windows.Forms.Button();
-            ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.Exit_btn = new System.Windows.Forms.PictureBox();
+            this.Main_PBox = new System.Windows.Forms.PictureBox();
+            this.Title = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -77,6 +81,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Ellipse_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).BeginInit();
             this.panel4.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Save_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Select_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ungroup_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Group_btn)).BeginInit();
@@ -84,20 +89,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.ZoomIn_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Clear_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Delete_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             this.SuspendLayout();
-            // 
-            // Main_PBox
-            // 
-            this.Main_PBox.BackColor = System.Drawing.SystemColors.Window;
-            this.Main_PBox.Location = new System.Drawing.Point(35, 136);
-            this.Main_PBox.Name = "Main_PBox";
-            this.Main_PBox.Size = new System.Drawing.Size(1120, 691);
-            this.Main_PBox.TabIndex = 3;
-            this.Main_PBox.TabStop = false;
-            this.Main_PBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Panel_Paint);
-            this.Main_PBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseDown);
-            this.Main_PBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseMove);
-            this.Main_PBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseUp);
             // 
             // Shape_tb
             // 
@@ -126,6 +121,7 @@
             this.DashStyle.Name = "DashStyle";
             this.DashStyle.Size = new System.Drawing.Size(132, 27);
             this.DashStyle.TabIndex = 8;
+            this.toolTip.SetToolTip(this.DashStyle, "Change dash style of the shape");
             this.DashStyle.DrawItem += new System.Windows.Forms.DrawItemEventHandler(this.DashStyle_DrawItem);
             // 
             // PenWidth
@@ -140,6 +136,7 @@
             this.PenWidth.Name = "PenWidth";
             this.PenWidth.Size = new System.Drawing.Size(132, 26);
             this.PenWidth.TabIndex = 9;
+            this.toolTip.SetToolTip(this.PenWidth, "Change width of the shape");
             this.PenWidth.Value = new decimal(new int[] {
             5,
             0,
@@ -154,6 +151,7 @@
             this.Fill_btn.Size = new System.Drawing.Size(75, 23);
             this.Fill_btn.TabIndex = 14;
             this.Fill_btn.Text = "FILL: OFF";
+            this.toolTip.SetToolTip(this.Fill_btn, "Change to Fill Mode");
             this.Fill_btn.UseVisualStyleBackColor = true;
             this.Fill_btn.Click += new System.EventHandler(this.Fill_btn_Click);
             // 
@@ -163,10 +161,32 @@
             this.Fill_pl.Controls.Add(this.Fill_Color_btn);
             this.Fill_pl.Controls.Add(this.Fill_btn);
             this.Fill_pl.Controls.Add(this.Color_btn);
-            this.Fill_pl.Location = new System.Drawing.Point(814, 11);
+            this.Fill_pl.Location = new System.Drawing.Point(814, 57);
             this.Fill_pl.Name = "Fill_pl";
             this.Fill_pl.Size = new System.Drawing.Size(107, 92);
             this.Fill_pl.TabIndex = 27;
+            // 
+            // Fill_Color_btn
+            // 
+            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Fill_Color_btn.Location = new System.Drawing.Point(58, 14);
+            this.Fill_Color_btn.Name = "Fill_Color_btn";
+            this.Fill_Color_btn.Size = new System.Drawing.Size(35, 35);
+            this.Fill_Color_btn.TabIndex = 50;
+            this.toolTip.SetToolTip(this.Fill_Color_btn, "Fill Color");
+            this.Fill_Color_btn.UseVisualStyleBackColor = false;
+            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
+            // 
+            // Color_btn
+            // 
+            this.Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Color_btn.Location = new System.Drawing.Point(16, 14);
+            this.Color_btn.Name = "Color_btn";
+            this.Color_btn.Size = new System.Drawing.Size(35, 35);
+            this.Color_btn.TabIndex = 15;
+            this.toolTip.SetToolTip(this.Color_btn, "Border Color");
+            this.Color_btn.UseVisualStyleBackColor = false;
+            this.Color_btn.Click += new System.EventHandler(this.Color_btn_Click);
             // 
             // panel2
             // 
@@ -175,7 +195,7 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.DashStyle);
             this.panel2.Controls.Add(this.PenWidth);
-            this.panel2.Location = new System.Drawing.Point(952, 11);
+            this.panel2.Location = new System.Drawing.Point(952, 57);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(203, 92);
             this.panel2.TabIndex = 28;
@@ -209,7 +229,7 @@
             this.panel3.Controls.Add(this.Rec_btn);
             this.panel3.Controls.Add(this.Ellipse_btn);
             this.panel3.Controls.Add(this.Line_btn);
-            this.panel3.Location = new System.Drawing.Point(627, 11);
+            this.panel3.Location = new System.Drawing.Point(627, 57);
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(157, 92);
             this.panel3.TabIndex = 29;
@@ -223,6 +243,7 @@
             this.Freehand_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Freehand_btn.TabIndex = 40;
             this.Freehand_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Freehand_btn, "Draw a Freehand");
             this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
             // 
             // Polygon_btn
@@ -234,6 +255,7 @@
             this.Polygon_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Polygon_btn.TabIndex = 39;
             this.Polygon_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Polygon_btn, "Draw a Polygon");
             this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
             // 
             // Circle_btn
@@ -245,6 +267,7 @@
             this.Circle_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Circle_btn.TabIndex = 38;
             this.Circle_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Circle_btn, "Draw a Circle");
             this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
             // 
             // Rec_btn
@@ -256,6 +279,7 @@
             this.Rec_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Rec_btn.TabIndex = 37;
             this.Rec_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Rec_btn, "Draw a Rectangle");
             this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
             // 
             // Ellipse_btn
@@ -267,6 +291,7 @@
             this.Ellipse_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Ellipse_btn.TabIndex = 36;
             this.Ellipse_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Ellipse_btn, "Draw a Ellipse");
             this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
             // 
             // Line_btn
@@ -278,6 +303,7 @@
             this.Line_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Line_btn.TabIndex = 35;
             this.Line_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Line_btn, "Draw a Line");
             this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
             // 
             // DashList
@@ -293,6 +319,7 @@
             // panel4
             // 
             this.panel4.BackColor = System.Drawing.SystemColors.Window;
+            this.panel4.Controls.Add(this.Save_btn);
             this.panel4.Controls.Add(this.Select_btn);
             this.panel4.Controls.Add(this.Ungroup_btn);
             this.panel4.Controls.Add(this.Group_btn);
@@ -301,20 +328,33 @@
             this.panel4.Controls.Add(this.Clear_btn);
             this.panel4.Controls.Add(this.Delete_btn);
             this.panel4.Controls.Add(this.Shape_tb);
-            this.panel4.Location = new System.Drawing.Point(35, 12);
+            this.panel4.Location = new System.Drawing.Point(35, 58);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(307, 91);
             this.panel4.TabIndex = 30;
             // 
+            // Save_btn
+            // 
+            this.Save_btn.Image = global::Paint_Midterm.Properties.Resources.save;
+            this.Save_btn.Location = new System.Drawing.Point(21, 48);
+            this.Save_btn.Name = "Save_btn";
+            this.Save_btn.Size = new System.Drawing.Size(33, 33);
+            this.Save_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Save_btn.TabIndex = 48;
+            this.Save_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Save_btn, "Save the drawn picture");
+            this.Save_btn.Click += new System.EventHandler(this.Save_btn_Click);
+            // 
             // Select_btn
             // 
             this.Select_btn.Image = global::Paint_Midterm.Properties.Resources.select;
-            this.Select_btn.Location = new System.Drawing.Point(7, 15);
+            this.Select_btn.Location = new System.Drawing.Point(17, 5);
             this.Select_btn.Name = "Select_btn";
-            this.Select_btn.Size = new System.Drawing.Size(60, 60);
+            this.Select_btn.Size = new System.Drawing.Size(40, 40);
             this.Select_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Select_btn.TabIndex = 47;
             this.Select_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Select_btn, "Select or Move a shape");
             this.Select_btn.Click += new System.EventHandler(this.Select_btn_Click);
             // 
             // Ungroup_btn
@@ -327,6 +367,7 @@
             this.Ungroup_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Ungroup_btn.TabIndex = 46;
             this.Ungroup_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Ungroup_btn, "Ungroup the selecting shape");
             this.Ungroup_btn.Click += new System.EventHandler(this.Ungroup_btn_Click);
             // 
             // Group_btn
@@ -338,6 +379,7 @@
             this.Group_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Group_btn.TabIndex = 45;
             this.Group_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Group_btn, "Group shapes");
             this.Group_btn.Click += new System.EventHandler(this.Group_btn_Click);
             // 
             // ZoomOut_btn
@@ -349,6 +391,7 @@
             this.ZoomOut_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ZoomOut_btn.TabIndex = 44;
             this.ZoomOut_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.ZoomOut_btn, "Zoom out the selecting shape");
             this.ZoomOut_btn.Click += new System.EventHandler(this.ZoomOut_btn_Click);
             // 
             // ZoomIn_btn
@@ -360,35 +403,38 @@
             this.ZoomIn_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.ZoomIn_btn.TabIndex = 43;
             this.ZoomIn_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.ZoomIn_btn, "Zoom in the selecting shape");
             this.ZoomIn_btn.Click += new System.EventHandler(this.ZoomIn_btn_Click);
             // 
             // Clear_btn
             // 
             this.Clear_btn.Image = global::Paint_Midterm.Properties.Resources.clear;
-            this.Clear_btn.Location = new System.Drawing.Point(75, 43);
+            this.Clear_btn.Location = new System.Drawing.Point(68, 43);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(40, 40);
             this.Clear_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Clear_btn.TabIndex = 42;
             this.Clear_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Clear_btn, "Clear all shapes");
             this.Clear_btn.Click += new System.EventHandler(this.Clear_btn_Click);
             // 
             // Delete_btn
             // 
             this.Delete_btn.Image = global::Paint_Midterm.Properties.Resources.eraser;
-            this.Delete_btn.Location = new System.Drawing.Point(76, 6);
+            this.Delete_btn.Location = new System.Drawing.Point(69, 6);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(40, 40);
             this.Delete_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Delete_btn.TabIndex = 41;
             this.Delete_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Delete_btn, "Detele the selecting shape");
             this.Delete_btn.Click += new System.EventHandler(this.Delete_btn_Click);
             // 
             // Modify_lb
             // 
             this.Modify_lb.AutoSize = true;
             this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Modify_lb.Location = new System.Drawing.Point(1025, 108);
+            this.Modify_lb.Location = new System.Drawing.Point(1025, 154);
             this.Modify_lb.Name = "Modify_lb";
             this.Modify_lb.Size = new System.Drawing.Size(52, 19);
             this.Modify_lb.TabIndex = 29;
@@ -398,7 +444,7 @@
             // 
             this.Color_lb.AutoSize = true;
             this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color_lb.Location = new System.Drawing.Point(849, 109);
+            this.Color_lb.Location = new System.Drawing.Point(849, 155);
             this.Color_lb.Name = "Color_lb";
             this.Color_lb.Size = new System.Drawing.Size(42, 19);
             this.Color_lb.TabIndex = 31;
@@ -408,7 +454,7 @@
             // 
             this.Shapes_lb.AutoSize = true;
             this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_lb.Location = new System.Drawing.Point(680, 109);
+            this.Shapes_lb.Location = new System.Drawing.Point(680, 155);
             this.Shapes_lb.Name = "Shapes_lb";
             this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
             this.Shapes_lb.TabIndex = 32;
@@ -418,7 +464,7 @@
             // 
             this.Tools_lb.AutoSize = true;
             this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_lb.Location = new System.Drawing.Point(156, 112);
+            this.Tools_lb.Location = new System.Drawing.Point(156, 158);
             this.Tools_lb.Name = "Tools_lb";
             this.Tools_lb.Size = new System.Drawing.Size(40, 19);
             this.Tools_lb.TabIndex = 33;
@@ -427,7 +473,7 @@
             // Mode_tb
             // 
             this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mode_tb.Location = new System.Drawing.Point(356, 25);
+            this.Mode_tb.Location = new System.Drawing.Point(356, 71);
             this.Mode_tb.Name = "Mode_tb";
             this.Mode_tb.ReadOnly = true;
             this.Mode_tb.Size = new System.Drawing.Size(255, 26);
@@ -437,39 +483,66 @@
             // Note_tb
             // 
             this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Note_tb.Location = new System.Drawing.Point(356, 63);
+            this.Note_tb.Location = new System.Drawing.Point(356, 109);
             this.Note_tb.Name = "Note_tb";
             this.Note_tb.ReadOnly = true;
             this.Note_tb.Size = new System.Drawing.Size(255, 26);
             this.Note_tb.TabIndex = 49;
             this.Note_tb.Text = "NOTE: ";
             // 
-            // Color_btn
+            // pictureBox3
             // 
-            this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.Location = new System.Drawing.Point(16, 14);
-            this.Color_btn.Name = "Color_btn";
-            this.Color_btn.Size = new System.Drawing.Size(35, 35);
-            this.Color_btn.TabIndex = 15;
-            this.Color_btn.UseVisualStyleBackColor = false;
-            this.Color_btn.Click += new System.EventHandler(this.Color_btn_Click);
+            this.pictureBox3.Image = global::Paint_Midterm.Properties.Resources.Icon;
+            this.pictureBox3.Location = new System.Drawing.Point(35, 11);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 50;
+            this.pictureBox3.TabStop = false;
             // 
-            // Fill_Color_btn
+            // Exit_btn
             // 
-            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Fill_Color_btn.Location = new System.Drawing.Point(58, 14);
-            this.Fill_Color_btn.Name = "Fill_Color_btn";
-            this.Fill_Color_btn.Size = new System.Drawing.Size(35, 35);
-            this.Fill_Color_btn.TabIndex = 50;
-            this.Fill_Color_btn.UseVisualStyleBackColor = false;
-            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
+            this.Exit_btn.Image = global::Paint_Midterm.Properties.Resources.exit;
+            this.Exit_btn.Location = new System.Drawing.Point(1115, 11);
+            this.Exit_btn.Name = "Exit_btn";
+            this.Exit_btn.Size = new System.Drawing.Size(40, 40);
+            this.Exit_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Exit_btn.TabIndex = 48;
+            this.Exit_btn.TabStop = false;
+            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
+            // 
+            // Main_PBox
+            // 
+            this.Main_PBox.BackColor = System.Drawing.SystemColors.Window;
+            this.Main_PBox.Location = new System.Drawing.Point(35, 180);
+            this.Main_PBox.Name = "Main_PBox";
+            this.Main_PBox.Size = new System.Drawing.Size(1120, 565);
+            this.Main_PBox.TabIndex = 3;
+            this.Main_PBox.TabStop = false;
+            this.Main_PBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Panel_Paint);
+            this.Main_PBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseDown);
+            this.Main_PBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseMove);
+            this.Main_PBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseUp);
+            // 
+            // Title
+            // 
+            this.Title.AutoSize = true;
+            this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(85, 17);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(223, 25);
+            this.Title.TabIndex = 52;
+            this.Title.Text = "Super Paint Application";
             // 
             // MyPaint
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuBar;
-            this.ClientSize = new System.Drawing.Size(1184, 861);
+            this.ClientSize = new System.Drawing.Size(1184, 775);
+            this.Controls.Add(this.Title);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.Exit_btn);
             this.Controls.Add(this.Note_tb);
             this.Controls.Add(this.Mode_tb);
             this.Controls.Add(this.Tools_lb);
@@ -481,7 +554,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.Fill_pl);
             this.Controls.Add(this.Main_PBox);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.KeyPreview = true;
             this.MaximizeBox = false;
@@ -492,7 +565,6 @@
             this.Load += new System.EventHandler(this.MyPaint_Load);
             this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyDown);
             this.KeyUp += new System.Windows.Forms.KeyEventHandler(this.MyPaint_KeyUp);
-            ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).EndInit();
             this.Fill_pl.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -507,6 +579,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Save_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Select_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ungroup_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Group_btn)).EndInit();
@@ -514,6 +587,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.ZoomIn_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Clear_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Delete_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -553,6 +629,11 @@
         private System.Windows.Forms.TextBox Note_tb;
         private System.Windows.Forms.Button Color_btn;
         private System.Windows.Forms.Button Fill_Color_btn;
+        private System.Windows.Forms.PictureBox Save_btn;
+        private System.Windows.Forms.PictureBox Exit_btn;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Label Title;
+        private System.Windows.Forms.ToolTip toolTip;
     }
 }
 

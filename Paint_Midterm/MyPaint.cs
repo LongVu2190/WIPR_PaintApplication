@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.Drawing.Imaging;
 using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
@@ -381,6 +382,7 @@ namespace Paint_Midterm
             SelectedShape = null;
             Shape_tb.Text = "NULL";
             Main_PBox.Invalidate();
+            MessageBox.Show("Cleared", "Notification");
         }
         private void Select_btn_Click(object sender, EventArgs e)
         {
@@ -469,6 +471,10 @@ namespace Paint_Midterm
                     Mode = PaintType.Move;
                 }
             }
+            if (e.KeyCode == Keys.S && isControlKeyPress)
+            {
+                Save_Picture();
+            }
             if (e.KeyCode == Keys.Delete)
             {
                 DeleteShapes();
@@ -482,7 +488,7 @@ namespace Paint_Midterm
 
                 if (MySelectedShapes.Count > 1 && Mode == PaintType.Group)
                 {
-                    DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+                    DialogResult dlr = MessageBox.Show("Group these shapes?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (dlr == DialogResult.Yes)
                     {
                         C_Group group = new C_Group();
@@ -522,13 +528,17 @@ namespace Paint_Midterm
 
         private void DeleteShapes()
         {
+            if (LastSelectedShape == null)
+            {
+                MessageBox.Show("Please choose a shape to delete", "Notification");
+                return;
+            }
             Shapes.Remove(LastSelectedShape);
             foreach (var shape in MySelectedShapes)
             {
                 Shapes.Remove(shape);
             }
             MySelectedShapes.Clear();
-            Main_PBox.Invalidate();
             LastSelectedShape = null;
             Shape_tb.Text = "NULL";
             Main_PBox.Invalidate();
@@ -537,6 +547,21 @@ namespace Paint_Midterm
         {
             Mode_tb.Text = mode;
             Note_tb.Text = note;
+        }
+        private void Save_Picture()
+        {
+            using (SaveFileDialog saveFileDialog = new SaveFileDialog())
+            {
+                saveFileDialog.FileName = "MyPaint";
+                saveFileDialog.Filter = "PNG | *.png|" +
+                                            "JPEG | *.jpg *.jpeg *.jpe *.jfif";
+                if (saveFileDialog.ShowDialog() == DialogResult.OK)
+                {
+                    Bitmap bmp = new Bitmap(Main_PBox.ClientSize.Width, Main_PBox.ClientSize.Height);
+                    Main_PBox.DrawToBitmap(bmp, Main_PBox.ClientRectangle);
+                    bmp.Save(saveFileDialog.FileName);
+                }
+            }
         }
         private void DashStyle_DrawItem(object sender, DrawItemEventArgs e)
         {
@@ -581,6 +606,24 @@ namespace Paint_Midterm
         {
             ChangeTextBox("MODE: DRAW ARC", "NOTE:");
             Mode = PaintType.Freehand;
+        }
+
+        private void Save_btn_Click(object sender, EventArgs e)
+        {
+            Save_Picture();
+        }
+        private void Exit_btn_Click(object sender, EventArgs e)
+        {
+            DialogResult dlr = MessageBox.Show("Do you want to save pircute before exit?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (dlr == DialogResult.Yes)
+            {
+                Save_Picture();
+                Application.Exit();
+            }
+            if (dlr == DialogResult.No)
+            {
+                Application.Exit();
+            }
         }
     }
 }

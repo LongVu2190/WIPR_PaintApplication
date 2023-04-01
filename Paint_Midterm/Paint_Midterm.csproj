@@ -97,10 +97,12 @@
     <Content Include="Assets\Buttons\dash.png" />
     <Content Include="Assets\Buttons\ellipse.png" />
     <Content Include="Assets\Buttons\eraser.png" />
+    <Content Include="Assets\Buttons\exit.png" />
     <Content Include="Assets\Buttons\group.png" />
     <Content Include="Assets\Buttons\line.png" />
     <Content Include="Assets\Buttons\polygon.png" />
     <Content Include="Assets\Buttons\rec.png" />
+    <Content Include="Assets\Buttons\save.png" />
     <Content Include="Assets\Buttons\select.png" />
     <Content Include="Assets\Buttons\ungroup.png" />
     <Content Include="Assets\Buttons\width.png" />
@@ -112,6 +114,7 @@
     <Content Include="Assets\DashStyle\3.png" />
     <Content Include="Assets\DashStyle\4.png" />
     <Content Include="Assets\icon.ico" />
+    <Content Include="Assets\Icon.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
