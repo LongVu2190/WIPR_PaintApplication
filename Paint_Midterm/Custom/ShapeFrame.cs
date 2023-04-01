@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Linq;
+using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -9,37 +10,40 @@ namespace Paint_Midterm
 {
     public static class ShapeFrame
     {
-        public static void DrawRectangle(this Graphics g, Pen pen, RectangleF rect)
+        static Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
+        static Brush MovingShadow = new SolidBrush(Color.White);
+        static Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
         {
-            g.DrawRectangle(pen, rect.X, rect.Y, rect.Width, rect.Height);
-        }
-
-        public static void DrawSelectPoints(Graphics graphics, Brush brush, Brush brushShadow, PointF point0, PointF point1)
+            DashPattern = new float[] { 3, 3, 3, 3 },
+        };
+        static Pen MovingFrameShadow = new Pen(Color.White, 2f)
         {
-            graphics.FillEllipse(brushShadow, new RectangleF(point0.X - 5, point0.Y - 5, 12, 12));
-            graphics.FillEllipse(brushShadow, new RectangleF(point1.X - 5, point1.Y - 5, 12, 12));
-            graphics.FillEllipse(brush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
-            graphics.FillEllipse(brush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
-        }
-        public static void DrawPoints(Graphics graphics, Brush brush, Brush brushShadow, PointF point0, PointF point1)
+            DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
+        };
+        public static void DrawStartEndPoints(Graphics graphics, PointF point0, PointF point1)
         {
-            graphics.FillEllipse(brush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
-            graphics.FillEllipse(brush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
+            graphics.FillEllipse(MovingBrush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
+            graphics.FillEllipse(MovingBrush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
         }
-
-        public static void DrawSelectPoints(Graphics graphics, Brush brush, Brush brushShadow, List<PointF> points)
+        public static void DrawRectanglePoints(Graphics graphics, PointF point0, PointF point1)
+        {
+            graphics.FillEllipse(MovingShadow, new RectangleF(point0.X - 5, point0.Y - 5, 12, 12));
+            graphics.FillEllipse(MovingShadow, new RectangleF(point1.X - 5, point1.Y - 5, 12, 12));
+            graphics.FillEllipse(MovingBrush, new RectangleF(point0.X - 5, point0.Y - 5, 10, 10));
+            graphics.FillEllipse(MovingBrush, new RectangleF(point1.X - 5, point1.Y - 5, 10, 10));
+        }
+        public static void DrawPolygonPoints(Graphics graphics, List<PointF> points)
         {
             for (int i = 0; i < points.Count; i++)
             {
-                graphics.FillEllipse(brush, new RectangleF(points[i].X - 5, points[i].Y - 5, 10, 10));
-                graphics.FillEllipse(brushShadow, new RectangleF(points[i].X - 4, points[i].Y - 4, 8, 8));
+                graphics.FillEllipse(MovingBrush, new RectangleF(points[i].X - 5, points[i].Y - 5, 10, 10));
+                graphics.FillEllipse(MovingShadow, new RectangleF(points[i].X - 4, points[i].Y - 4, 8, 8));
             }
         }
-
-        public static void DrawSelectFrame(Graphics graphics, Pen framePen, Pen framePenShadow, RectangleF selectZone)
+        public static void DrawRectangleFrame(Graphics graphics, RectangleF zone)
         {
-            graphics.DrawRectangle(framePenShadow, selectZone);
-            graphics.DrawRectangle(framePen, selectZone);
+            graphics.DrawRectangle(MovingFrameShadow, zone.X, zone.Y, zone.Width, zone.Height);
+            graphics.DrawRectangle(MovingFrame, zone.X, zone.Y, zone.Width, zone.Height);
         }
     }
 }

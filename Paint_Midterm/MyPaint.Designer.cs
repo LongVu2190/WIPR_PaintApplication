@@ -410,7 +410,7 @@
             // Clear_btn
             // 
             this.Clear_btn.Image = global::Paint_Midterm.Properties.Resources.clear;
-            this.Clear_btn.Location = new System.Drawing.Point(69, 43);
+            this.Clear_btn.Location = new System.Drawing.Point(68, 43);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(40, 40);
             this.Clear_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -496,7 +496,7 @@
             // pictureBox3
             // 
             this.pictureBox3.Image = global::Paint_Midterm.Properties.Resources.Icon;
-            this.pictureBox3.Location = new System.Drawing.Point(35, 11);
+            this.pictureBox3.Location = new System.Drawing.Point(32, 11);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(40, 40);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -531,7 +531,7 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(77, 17);
+            this.Title.Location = new System.Drawing.Point(74, 17);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(223, 25);
             this.Title.TabIndex = 52;

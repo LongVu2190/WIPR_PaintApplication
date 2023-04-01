@@ -27,18 +27,6 @@ namespace Paint_Midterm
         A_Shape SelectedShape; // Lưu shape di chuyển
         A_Shape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
 
-        // Vẽ ra khung xung quanh (frame) khi di chuyển hình
-        Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
-        Brush MovingShadow = new SolidBrush(Color.White);
-        Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
-        {
-            DashPattern = new float[] { 3, 3, 3, 3 },
-        };
-        Pen MovingFrameShadow = new Pen(Color.White, 2f)
-        {
-            DashPattern = new float[] { 3.25f, 3.25f, 3.25f, 3.25f },
-        };
-
         [DllImport("kernel32.dll", SetLastError = true)]
         [return: MarshalAs(UnmanagedType.Bool)]
         static extern bool AllocConsole();
@@ -285,7 +273,7 @@ namespace Paint_Midterm
                     {
                         if (!(shape is C_Line || shape is C_Freehand)) // Vẽ khung hình chữ nhật
                         {
-                            ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
+                            ShapeFrame.DrawRectangleFrame(e.Graphics,
                                 new RectangleF(shape.P1.X,
                                                shape.P1.Y,
                                                shape.P2.X - shape.P1.X,
@@ -294,20 +282,20 @@ namespace Paint_Midterm
 
                         if (shape is C_Line)
                         {
-                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
+                            ShapeFrame.DrawRectanglePoints(e.Graphics, shape.P1, shape.P2);
                             shape.Draw(e.Graphics);
                         }
                         else if (shape is C_Rec || shape is C_Ellipse)
                         {
-                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
+                            ShapeFrame.DrawRectanglePoints(e.Graphics, shape.P1, shape.P2);
                         }
                         else if (shape is C_Polygon polygon)
                         {
-                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, polygon.Points);
+                            ShapeFrame.DrawPolygonPoints(e.Graphics, polygon.Points);
                         }
                         else if (shape is C_Freehand)
                         {
-                            ShapeFrame.DrawPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
+                            ShapeFrame.DrawStartEndPoints(e.Graphics, shape.P1, shape.P2);
                         }
                     }
                 }
@@ -316,7 +304,7 @@ namespace Paint_Midterm
                     // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng và freehand
                     if (!(SelectedShape is C_Line || SelectedShape is C_Freehand))
                     {
-                        ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
+                        ShapeFrame.DrawRectangleFrame(e.Graphics,
                             new RectangleF(SelectedShape.P1.X,
                             SelectedShape.P1.Y,
                             SelectedShape.P2.X - SelectedShape.P1.X,
@@ -324,21 +312,19 @@ namespace Paint_Midterm
                     }
                     if (SelectedShape is C_Line)
                     {
-                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
+                        ShapeFrame.DrawRectanglePoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
                     else if (SelectedShape is C_Freehand)
                     {
-                        ShapeFrame.DrawPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
+                        ShapeFrame.DrawStartEndPoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
                     else if (SelectedShape is C_Rec || SelectedShape is C_Ellipse)
                     {
-                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
-                                                    SelectedShape.P1,
-                                                    SelectedShape.P2);
+                        ShapeFrame.DrawRectanglePoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
                     else if (shape is C_Polygon polygon)
                     {
-                        ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, polygon.Points);
+                        ShapeFrame.DrawPolygonPoints(e.Graphics, polygon.Points);
                     }
                     if (SelectedShape != shape || SelectedShape is C_Line)
                         shape.Draw(e.Graphics);
