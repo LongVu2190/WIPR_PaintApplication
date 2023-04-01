@@ -17,7 +17,7 @@ namespace Paint_Midterm
             this.IsFill = IsFill;
             this.ShapeFillColor = ShapeFillColor;
         }
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {                
@@ -89,7 +89,6 @@ namespace Paint_Midterm
             {
                 P1_Temp = P1;
                 P2_Temp = P2;
-
             }
             //Console.WriteLine("P1 After: " + P1.ToString());
             //Console.WriteLine("P2 After: " + P2.ToString());

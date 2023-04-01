@@ -9,7 +9,7 @@ namespace Paint_Midterm
     {
         public C_Polygon()
         {
-            this.Name = "Polygon";
+            Name = "Polygon";
         }
         public C_Polygon(float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
         {
@@ -21,7 +21,7 @@ namespace Paint_Midterm
             this.Name = "Polygon";
         }
         public List<PointF> Points { get; set; } = new List<PointF>();
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {
@@ -39,10 +39,9 @@ namespace Paint_Midterm
         }
         public override bool IsHit(PointF Point)
         {
-
             if (!IsFill)
             {
-               Pen myPen = new Pen(this.ShapeColor, this.Width + 3);
+               Pen myPen = new Pen(ShapeColor, Width + 5);
 
                     return GetPath.IsOutlineVisible(Point, myPen);
             }
@@ -53,11 +52,11 @@ namespace Paint_Midterm
         }
         public override void Draw(Graphics Gra)
         {
-            Pen myPen = new Pen(this.ShapeColor, this.Width) { DashStyle = this.ShapeDashStyle };
+            Pen myPen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle };
             Gra.DrawPath(myPen, GetPath);
-            if (this.IsFill)
+            if (IsFill)
             {
-                Brush myBrush = new SolidBrush(this.ShapeFillColor);
+                Brush myBrush = new SolidBrush(ShapeFillColor);
                 Gra.FillPath(myBrush, GetPath);
             }
         }
@@ -72,7 +71,7 @@ namespace Paint_Midterm
         }
         public bool IsGroupHit(PointF P1, PointF P2)
         {
-            for (int i = 0; i < this.Points.Count; i++)
+            for (int i = 0; i < Points.Count; i++)
             {
                 if (Points[i].X >= P1.X &&
                         Points[i].X <= P2.X + (P2.X - P1.X) &&
@@ -91,7 +90,7 @@ namespace Paint_Midterm
             float maxX = float.MinValue;
             float maxY = float.MinValue;
 
-            this.Points.ForEach(p =>
+            Points.ForEach(p =>
             {
                 if (minX > p.X) { minX = p.X; }
                 if (minY > p.Y) { minY = p.Y; }

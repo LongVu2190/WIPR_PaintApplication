@@ -26,7 +26,7 @@ namespace Paint_Midterm
         public bool IsChosen { get; set; } = false;
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }
-        public abstract GraphicsPath GetPath { get; }
+        protected abstract GraphicsPath GetPath { get; }
 
         public abstract void Draw(Graphics Gra); // Vẽ hình
         public abstract void Move(PointF Dis); // Di chuyển hình

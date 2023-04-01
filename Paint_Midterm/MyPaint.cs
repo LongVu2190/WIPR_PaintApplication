@@ -346,11 +346,6 @@ namespace Paint_Midterm
             }
         }
 
-        private void PenSize_ValueChanged(object sender, EventArgs e)
-        {
-            MyWidth = (float)PenWidth.Value;
-        }
-
         // Chức năng
         private void Color_btn_Click(object sender, EventArgs e)
         {
@@ -608,6 +603,7 @@ namespace Paint_Midterm
             Mode = PaintType.Freehand;
         }
 
+        // Lưu và thoát
         private void Save_btn_Click(object sender, EventArgs e)
         {
             Save_Picture();
@@ -624,6 +620,11 @@ namespace Paint_Midterm
             {
                 Application.Exit();
             }
+        }
+
+        private void PenSize_ValueChanged(object sender, EventArgs e)
+        {
+            MyWidth = (float)PenWidth.Value;
         }
     }
 }

@@ -146,7 +146,8 @@
             // 
             // Fill_btn
             // 
-            this.Fill_btn.Location = new System.Drawing.Point(17, 57);
+            this.Fill_btn.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Fill_btn.Location = new System.Drawing.Point(21, 57);
             this.Fill_btn.Name = "Fill_btn";
             this.Fill_btn.Size = new System.Drawing.Size(75, 23);
             this.Fill_btn.TabIndex = 14;
@@ -169,7 +170,7 @@
             // Fill_Color_btn
             // 
             this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Fill_Color_btn.Location = new System.Drawing.Point(58, 14);
+            this.Fill_Color_btn.Location = new System.Drawing.Point(61, 14);
             this.Fill_Color_btn.Name = "Fill_Color_btn";
             this.Fill_Color_btn.Size = new System.Drawing.Size(35, 35);
             this.Fill_Color_btn.TabIndex = 50;
@@ -180,7 +181,7 @@
             // Color_btn
             // 
             this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.Location = new System.Drawing.Point(16, 14);
+            this.Color_btn.Location = new System.Drawing.Point(20, 14);
             this.Color_btn.Name = "Color_btn";
             this.Color_btn.Size = new System.Drawing.Size(35, 35);
             this.Color_btn.TabIndex = 15;
@@ -273,7 +274,7 @@
             // Rec_btn
             // 
             this.Rec_btn.Image = global::Paint_Midterm.Properties.Resources.rec;
-            this.Rec_btn.Location = new System.Drawing.Point(60, 6);
+            this.Rec_btn.Location = new System.Drawing.Point(60, 5);
             this.Rec_btn.Name = "Rec_btn";
             this.Rec_btn.Size = new System.Drawing.Size(40, 40);
             this.Rec_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -336,7 +337,7 @@
             // Save_btn
             // 
             this.Save_btn.Image = global::Paint_Midterm.Properties.Resources.save;
-            this.Save_btn.Location = new System.Drawing.Point(21, 48);
+            this.Save_btn.Location = new System.Drawing.Point(22, 48);
             this.Save_btn.Name = "Save_btn";
             this.Save_btn.Size = new System.Drawing.Size(33, 33);
             this.Save_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -348,7 +349,7 @@
             // Select_btn
             // 
             this.Select_btn.Image = global::Paint_Midterm.Properties.Resources.select;
-            this.Select_btn.Location = new System.Drawing.Point(17, 5);
+            this.Select_btn.Location = new System.Drawing.Point(18, 5);
             this.Select_btn.Name = "Select_btn";
             this.Select_btn.Size = new System.Drawing.Size(40, 40);
             this.Select_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -409,7 +410,7 @@
             // Clear_btn
             // 
             this.Clear_btn.Image = global::Paint_Midterm.Properties.Resources.clear;
-            this.Clear_btn.Location = new System.Drawing.Point(68, 43);
+            this.Clear_btn.Location = new System.Drawing.Point(69, 43);
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(40, 40);
             this.Clear_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -421,7 +422,7 @@
             // Delete_btn
             // 
             this.Delete_btn.Image = global::Paint_Midterm.Properties.Resources.eraser;
-            this.Delete_btn.Location = new System.Drawing.Point(69, 6);
+            this.Delete_btn.Location = new System.Drawing.Point(70, 6);
             this.Delete_btn.Name = "Delete_btn";
             this.Delete_btn.Size = new System.Drawing.Size(40, 40);
             this.Delete_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -444,7 +445,7 @@
             // 
             this.Color_lb.AutoSize = true;
             this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color_lb.Location = new System.Drawing.Point(843, 155);
+            this.Color_lb.Location = new System.Drawing.Point(843, 154);
             this.Color_lb.Name = "Color_lb";
             this.Color_lb.Size = new System.Drawing.Size(42, 19);
             this.Color_lb.TabIndex = 31;
@@ -454,7 +455,7 @@
             // 
             this.Shapes_lb.AutoSize = true;
             this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_lb.Location = new System.Drawing.Point(679, 155);
+            this.Shapes_lb.Location = new System.Drawing.Point(678, 154);
             this.Shapes_lb.Name = "Shapes_lb";
             this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
             this.Shapes_lb.TabIndex = 32;
@@ -464,7 +465,7 @@
             // 
             this.Tools_lb.AutoSize = true;
             this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_lb.Location = new System.Drawing.Point(156, 158);
+            this.Tools_lb.Location = new System.Drawing.Point(171, 152);
             this.Tools_lb.Name = "Tools_lb";
             this.Tools_lb.Size = new System.Drawing.Size(40, 19);
             this.Tools_lb.TabIndex = 33;
@@ -472,6 +473,7 @@
             // 
             // Mode_tb
             // 
+            this.Mode_tb.BackColor = System.Drawing.Color.White;
             this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Mode_tb.Location = new System.Drawing.Point(356, 71);
             this.Mode_tb.Name = "Mode_tb";
@@ -482,6 +484,7 @@
             // 
             // Note_tb
             // 
+            this.Note_tb.BackColor = System.Drawing.Color.White;
             this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Note_tb.Location = new System.Drawing.Point(356, 109);
             this.Note_tb.Name = "Note_tb";
@@ -503,7 +506,7 @@
             // Exit_btn
             // 
             this.Exit_btn.Image = global::Paint_Midterm.Properties.Resources.exit;
-            this.Exit_btn.Location = new System.Drawing.Point(1115, 11);
+            this.Exit_btn.Location = new System.Drawing.Point(1117, 11);
             this.Exit_btn.Name = "Exit_btn";
             this.Exit_btn.Size = new System.Drawing.Size(40, 40);
             this.Exit_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -528,7 +531,7 @@
             // 
             this.Title.AutoSize = true;
             this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(85, 17);
+            this.Title.Location = new System.Drawing.Point(77, 17);
             this.Title.Name = "Title";
             this.Title.Size = new System.Drawing.Size(223, 25);
             this.Title.TabIndex = 52;

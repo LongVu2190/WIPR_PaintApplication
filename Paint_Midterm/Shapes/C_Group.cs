@@ -10,9 +10,9 @@ namespace Paint_Midterm
         public List<A_Shape> Shapes = new List<A_Shape>();
         public C_Group()
         {
-            this.Name = "Group";
+            Name = "Group";
         }
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {
@@ -26,11 +26,9 @@ namespace Paint_Midterm
             get
             {
                 GraphicsPath[] paths = new GraphicsPath[Shapes.Count];
-
                 for (int i = 0; i < Shapes.Count; i++)
                 {
                     GraphicsPath path = new GraphicsPath();
-
                     if (Shapes[i] is C_Line line)
                     {
                         path.AddLine(line.P1, line.P2);
@@ -183,8 +181,8 @@ namespace Paint_Midterm
                 }
             }
 
-            this.P1 = new PointF(minX, minY);
-            this.P2 = new PointF(maxX, maxY);
+            P1 = new PointF(minX, minY);
+            P2 = new PointF(maxX, maxY);
         }
         public void UnGroup(List<A_Shape> shapes)
         {

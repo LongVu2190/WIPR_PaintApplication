@@ -12,7 +12,7 @@ namespace Paint_Midterm
     {
         public C_Freehand()
         {
-            this.Name = "Freehand";
+            Name = "Freehand";
         }
         public C_Freehand(float Width, Color ShapeColor, DashStyle ShapeDashStyle)
         {
@@ -22,7 +22,7 @@ namespace Paint_Midterm
             this.Name = "Freehand";
         }
         public List<PointF> Points { get; set; } = new List<PointF>();
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {
@@ -56,7 +56,7 @@ namespace Paint_Midterm
         }
         public bool IsGroupHit(PointF P1, PointF P2)
         {
-            for (int i = 0; i < this.Points.Count; i++)
+            for (int i = 0; i < Points.Count; i++)
             {
                 if (Points[i].X >= P1.X &&
                         Points[i].X <= P2.X + (P2.X - P1.X) &&
@@ -75,7 +75,7 @@ namespace Paint_Midterm
             float maxX = float.MinValue;
             float maxY = float.MinValue;
 
-            this.Points.ForEach(p =>
+            Points.ForEach(p =>
             {
                 if (minX > p.X) { minX = p.X; }
                 if (minY > p.Y) { minY = p.Y; }

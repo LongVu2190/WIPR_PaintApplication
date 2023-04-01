@@ -5,7 +5,7 @@ namespace Paint_Midterm
 {
     public class C_Line : A_Shape
     {
-        public C_Line() 
+        public C_Line()
         {
             this.Name = "Line";
         }
@@ -13,7 +13,7 @@ namespace Paint_Midterm
         {
             this.Name = "Line";
         }
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {
@@ -21,7 +21,7 @@ namespace Paint_Midterm
                 GPath.AddLine(P1, P2);
                 return GPath;
             }
-        }      
+        }
         public override void Draw(Graphics Gra)
         {
             Pen myPen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle };
@@ -34,15 +34,8 @@ namespace Paint_Midterm
         }
         public override bool IsHit(PointF Point)
         {
-            bool result = false;
-            using (GraphicsPath path = GetPath)
-            {
-                using (Pen MyPen = new Pen(ShapeColor, Width + 2))
-                {
-                    result = path.IsOutlineVisible(Point, MyPen);
-                }
-            }
-            return result;
+            Pen MyPen = new Pen(ShapeColor, Width + 5);
+            return GetPath.IsOutlineVisible(Point, MyPen);
         }
     }
 }

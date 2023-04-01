@@ -22,14 +22,13 @@ namespace Paint_Midterm
                 this.Name = "Ellipse";
         }
         public bool IsCircle { get; set; } = false;
-        public override GraphicsPath GetPath
+        protected override GraphicsPath GetPath
         {
             get
             {
                 GraphicsPath path = new GraphicsPath();
                 if (IsCircle)
                 {
-
                     float Diameter = ((P2.X - P1.X) + (P2.Y - P1.Y)) / 2;
                     path.AddEllipse(new RectangleF(P1.X, P1.Y, Diameter, Diameter));
                     P2 = new PointF(P1.X + Diameter, P1.Y + Diameter);
@@ -46,22 +45,21 @@ namespace Paint_Midterm
             CheckPoints();
             if (!IsFill)
             {
-                Pen myPen = new Pen(this.ShapeColor, this.Width + 3);
+                Pen myPen = new Pen(ShapeColor, Width + 5);
                 return GetPath.IsOutlineVisible(Point, myPen);
             }
             else
             {
                 return GetPath.IsVisible(Point);
             }
-
         }
         public override void Draw(Graphics Gra)
         {
-            Pen myPen = new Pen(this.ShapeColor, this.Width) { DashStyle = ShapeDashStyle };
+            Pen myPen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle };
             Gra.DrawPath(myPen, GetPath);
-            if (this.IsFill)
+            if (IsFill)
             {
-                Brush myBrush = new SolidBrush(this.ShapeFillColor);
+                Brush myBrush = new SolidBrush(ShapeFillColor);
                 Gra.FillPath(myBrush, GetPath);
             }
         }
