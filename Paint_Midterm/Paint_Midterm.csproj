@@ -46,9 +46,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Button\ButtonE.cs">
-      <SubType>Component</SubType>
-    </Compile>
     <Compile Include="Custom\ShapeFrame.cs" />
     <Compile Include="Enums\PaintType.cs" />
     <Compile Include="Custom\MyDashStyle.cs" />
