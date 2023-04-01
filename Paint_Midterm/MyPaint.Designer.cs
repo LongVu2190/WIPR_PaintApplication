@@ -438,21 +438,21 @@
             // Arc_btn
             // 
             this.Arc_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
-            this.Arc_btn.Location = new System.Drawing.Point(106, 48);
+            this.Arc_btn.Location = new System.Drawing.Point(106, 47);
             this.Arc_btn.Name = "Arc_btn";
             this.Arc_btn.Size = new System.Drawing.Size(36, 36);
             this.Arc_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Arc_btn.TabIndex = 41;
             this.Arc_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Arc_btn, "Draw a Circle");
+            this.toolTip.SetToolTip(this.Arc_btn, "Draw a Arc");
             this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
             // 
             // Freehand_btn
             // 
             this.Freehand_btn.Image = global::Paint_Midterm.Properties.Resources.paint;
-            this.Freehand_btn.Location = new System.Drawing.Point(152, 6);
+            this.Freehand_btn.Location = new System.Drawing.Point(153, 8);
             this.Freehand_btn.Name = "Freehand_btn";
-            this.Freehand_btn.Size = new System.Drawing.Size(36, 36);
+            this.Freehand_btn.Size = new System.Drawing.Size(33, 33);
             this.Freehand_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.Freehand_btn.TabIndex = 40;
             this.Freehand_btn.TabStop = false;
