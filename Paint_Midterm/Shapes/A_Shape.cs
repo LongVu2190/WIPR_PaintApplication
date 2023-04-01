@@ -3,12 +3,12 @@ using System.Drawing.Drawing2D;
 
 namespace Paint_Midterm
 {
-    public abstract class MyShape
+    public abstract class A_Shape
     {
-        public MyShape() 
+        public A_Shape() 
         {
         }
-        public MyShape(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle)
+        public A_Shape(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle)
         {
             this.P1 = P1;
             this.P2 = P2;
@@ -23,13 +23,13 @@ namespace Paint_Midterm
         public float Width { get; set; }
         public bool IsFill { get; set; } = false;
         public Color ShapeFillColor { get; set; }
-        public bool IsSelected { get; set; } = false;
+        public bool IsChosen { get; set; } = false;
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }
         public abstract GraphicsPath GetPath { get; }
 
-        public abstract void Draw(Graphics Gra);
-        public abstract void Move(PointF Dis);
-        public abstract bool IsHit(PointF Point);
+        public abstract void Draw(Graphics Gra); // Vẽ hình
+        public abstract void Move(PointF Dis); // Di chuyển hình
+        public abstract bool IsHit(PointF Point); // Kiểm tra xem click chuột có chạm hình không
     }
 }

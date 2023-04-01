@@ -8,13 +8,13 @@ using System.Threading.Tasks;
 
 namespace Paint_Midterm
 {
-    public class MyFreehand : MyShape
+    public class C_Freehand : A_Shape
     {
-        public MyFreehand()
+        public C_Freehand()
         {
             this.Name = "Freehand";
         }
-        public MyFreehand(float Width, Color ShapeColor, DashStyle ShapeDashStyle)
+        public C_Freehand(float Width, Color ShapeColor, DashStyle ShapeDashStyle)
         {
             this.Width = Width;
             this.ShapeColor = ShapeColor;
@@ -36,13 +36,22 @@ namespace Paint_Midterm
         }
         public override void Draw(Graphics Gra)
         {
-            using (GraphicsPath path = GetPath)
+            Pen myPen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle };
+            myPen.StartCap = myPen.EndCap = LineCap.Round;
+            Gra.DrawPath(myPen, GetPath);
+        }
+        public override bool IsHit(PointF Point)
+        {
+            Pen myPen = new Pen(ShapeColor, Width + 3);
+            return GetPath.IsOutlineVisible(Point, myPen);
+        }
+        public override void Move(PointF Dis)
+        {
+            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
+            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
+            for (int i = 0; i < Points.Count; i++)
             {
-                using (Pen pen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle })
-                {
-                    pen.StartCap = pen.EndCap = LineCap.Round;
-                    Gra.DrawPath(pen, path);
-                }
+                Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
         }
         public bool IsGroupHit(PointF P1, PointF P2)
@@ -75,27 +84,6 @@ namespace Paint_Midterm
             });
             P1 = new PointF(minX, minY);
             P2 = new PointF(maxX, maxY);
-        }
-        public override bool IsHit(PointF Point)
-        {
-            bool result = false;
-            using (GraphicsPath path = GetPath)
-            {
-                using (Pen pen = new Pen(ShapeColor, Width + 3))
-                {
-                    result = path.IsOutlineVisible(Point, pen);
-                }
-            }
-            return result;
-        }        
-        public override void Move(PointF Dis)
-        {
-            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
-            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
-            for (int i = 0; i < Points.Count; i++)
-            {
-                Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
-            }
         }
     }
 }

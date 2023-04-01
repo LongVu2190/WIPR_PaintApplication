@@ -5,11 +5,10 @@ using System.Reflection;
 
 namespace Paint_Midterm
 {
-    public class MyGroup : MyShape
+    public class C_Group : A_Shape
     {
-        public List<MyShape> Shapes = new List<MyShape>();
-        public int Count => Shapes.Count;
-        public MyGroup()
+        public List<A_Shape> Shapes = new List<A_Shape>();
+        public C_Group()
         {
             this.Name = "Group";
         }
@@ -32,26 +31,26 @@ namespace Paint_Midterm
                 {
                     GraphicsPath path = new GraphicsPath();
 
-                    if (Shapes[i] is MyLine line)
+                    if (Shapes[i] is C_Line line)
                     {
                         path.AddLine(line.P1, line.P2);
                     }
-                    else if (Shapes[i] is MyPolygon polygon)
+                    else if (Shapes[i] is C_Polygon polygon)
                     {
                         path.AddPolygon(polygon.Points.ToArray());
                     }
-                    else if (Shapes[i] is MyRec rec)
+                    else if (Shapes[i] is C_Rec rec)
                     {
                         path.AddRectangle(new RectangleF(rec.P1.X, rec.P1.Y, rec.P2.X - rec.P1.X, rec.P2.Y - rec.P1.Y));
                     }
-                    else if (Shapes[i] is MyFreehand freehand)
+                    else if (Shapes[i] is C_Freehand freehand)
                     {
                         for (int j = 0; j < freehand.Points.Count - 1; j++)
                         {
                             path.AddLine(freehand.Points[j], freehand.Points[j + 1]);
                         }
                     }
-                    else if (Shapes[i] is MyEllipse ellip)
+                    else if (Shapes[i] is C_Ellipse ellip)
                     {
                         if (ellip.IsCircle == true)
                         {
@@ -67,38 +66,27 @@ namespace Paint_Midterm
                 }
                 return paths;
             }
-        }
-        public void AddSingleShape(MyShape shape) { Shapes.Add(shape); }
+        }       
         public override void Draw(Graphics Gra)
         {
             GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
             {
-                using (GraphicsPath path = paths[i])
+                if (Shapes[i].IsFill == true)
                 {
-                    if (Shapes[i].IsFill == true)
-                    {
-                        using (Brush brush = new SolidBrush(Shapes[i].ShapeFillColor))
-                        {
-                            Gra.FillPath(brush, path);
-                        }
-                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width))
-                        {
-                            Gra.DrawPath(pen, path);
-                        }
-                    }
-                    else if (Shapes[i] is MyGroup group)
-                    {
-                        group.Draw(Gra);
-                    }
-                    else
-                    {
-                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width) { DashStyle = Shapes[i].ShapeDashStyle })
-                        {
-                            Gra.DrawPath(pen, path);
-                        }
-                    }
-
+                    Brush myBrush = new SolidBrush(Shapes[i].ShapeFillColor);
+                    Gra.FillPath(myBrush, paths[i]);
+                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width);
+                    Gra.DrawPath(myPen, paths[i]);
+                }
+                else if (Shapes[i] is C_Group group)
+                {
+                    group.Draw(Gra);
+                }
+                else
+                {
+                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width) { DashStyle = Shapes[i].ShapeDashStyle };
+                    Gra.DrawPath(myPen, paths[i]);
                 }
             }
         }
@@ -107,35 +95,27 @@ namespace Paint_Midterm
             GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
             {
-                using (GraphicsPath path = paths[i])
+                if (Shapes[i].IsFill)
                 {
-
-                    if (Shapes[i].IsFill)
-                    {
-                        using (Brush brush = new SolidBrush(Shapes[i].ShapeColor))
-                        {
-                            if (path.IsVisible(point)) { return true; }
-                        }
-                    }
-                    else
-                    {
-                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width + 3))
-                        {
-                            if (path.IsOutlineVisible(point, pen)) { return true; }
-                        }
-                    }
-
-                    if (!(Shapes[i] is MyGroup))
-                    {
-                        using (Pen pen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width + 3))
-                        {
-                            if (path.IsOutlineVisible(point, pen)) { return true; }
-                        }
-                    }
-                    else if (Shapes[i] is MyGroup group) { return group.IsHit(point); }
+                    if (paths[i].IsVisible(point))
+                        return true;
                 }
-            }
+                else
+                {
+                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width + 3);
+                    if (paths[i].IsOutlineVisible(point, myPen))
+                        return true;
+                }
+                if (!(Shapes[i] is C_Group))
+                {
+                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width + 3);
+                    if (paths[i].IsOutlineVisible(point, myPen))
+                        return true;
+                }
+                else if (Shapes[i] is C_Group group)  
+                    return group.IsHit(point); 
 
+            }
             return false;
         }
         public override void Move(PointF Dis)
@@ -147,6 +127,10 @@ namespace Paint_Midterm
             P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
             P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
         }
+        public void AddSingleShape(A_Shape shape)
+        {
+            Shapes.Add(shape);
+        }
         public void LinkShapes()
         {
             float minX = float.MaxValue;
@@ -156,9 +140,9 @@ namespace Paint_Midterm
 
             for (int i = 0; i < this.Shapes.Count; i++)
             {
-                MyShape shape = Shapes[i];
+                A_Shape shape = Shapes[i];
 
-                if (shape is MyPolygon polygon)
+                if (shape is C_Polygon polygon)
                 {
                     polygon.LinkPoints();
                 }
@@ -202,11 +186,11 @@ namespace Paint_Midterm
             this.P1 = new PointF(minX, minY);
             this.P2 = new PointF(maxX, maxY);
         }
-        public void UnGroup(List<MyShape> shapes)
+        public void UnGroup(List<A_Shape> shapes)
         {
             foreach (var shape in Shapes)
             {
-                shape.IsSelected = false;
+                shape.IsChosen = false;
                 shapes.Add(shape);
             }
         }

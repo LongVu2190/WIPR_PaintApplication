@@ -11,22 +11,22 @@ namespace Paint_Midterm
     {
         Color MyColor, MyFillColor;
         float MyWidth;
-        List<MyShape> Shapes = new List<MyShape>(); // Chứa các hình sẽ vẽ
+        List<A_Shape> Shapes = new List<A_Shape>(); // Chứa các hình sẽ vẽ
 
         PaintType Mode = PaintType.Line; // Chế độ vẽ
 
         bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
 
-        MyRec rec = new MyRec(); // Dành cho không vẽ hình (Mode: Group)
+        C_Rec rec = new C_Rec(); // Dành cho không vẽ hình (Mode: Group)
         bool isControlKeyPress; // Dành cho group shapes (Mode: Group)
-        List<MyShape> MySelectedShapes = new List<MyShape>(); // Biến tạm thời lưu các hình để group
+        List<A_Shape> MySelectedShapes = new List<A_Shape>(); // Biến tạm thời lưu các hình để group
 
-        // Dành cho di chuyển shape (Mode: Mode)
+        // Dành cho di chuyển shape (Mode: Move)
         PointF PreviousPoint = Point.Empty;
-        MyShape SelectedShape; // Lưu shape di chuyển
-        MyShape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
+        A_Shape SelectedShape; // Lưu shape di chuyển
+        A_Shape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
 
-        // Vẽ ra khung xung quanh khi di chuyển hình
+        // Vẽ ra khung xung quanh (frame) khi di chuyển hình
         Brush MovingBrush = new SolidBrush(Color.FromArgb(0, 30, 81));
         Brush MovingShadow = new SolidBrush(Color.White);
         Pen MovingFrame = new Pen(Color.FromArgb(0, 30, 81), 1.5f)
@@ -48,7 +48,7 @@ namespace Paint_Midterm
         }
         private void MyPaint_Load(object sender, EventArgs e)
         {
-            //AllocConsole();
+            AllocConsole(); // Debug bằng console
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MyWidth = 5;
@@ -66,10 +66,10 @@ namespace Paint_Midterm
                 {
                     if (Shapes[i].IsHit(e.Location))
                     {
-                        Shapes[i].IsSelected = !Shapes[i].IsSelected;
+                        Shapes[i].IsChosen = !Shapes[i].IsChosen;
                         Shapes[i].PreviousPoint = e.Location;
 
-                        if (Shapes[i].IsSelected == true)
+                        if (Shapes[i].IsChosen == true)
                         {
                             MySelectedShapes.Add(Shapes[i]);
                         }
@@ -98,36 +98,35 @@ namespace Paint_Midterm
                 }
             }
 
-            base.OnMouseDown(e);
             switch (Mode)
             {
                 case PaintType.Group:
                     IsStart = true;
-                    rec = new MyRec(e.Location, e.Location, 2, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, false, Color.Black);
+                    rec = new C_Rec(e.Location, e.Location, 2, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, false, Color.Black);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Line:
                     IsStart = true;
-                    MyLine myLine = new MyLine(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    C_Line myLine = new C_Line(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
                     Shapes.Add(myLine);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Rec:
                     IsStart = true;
-                    MyRec myRec = new MyRec(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                    C_Rec myRec = new C_Rec(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                     Shapes.Add(myRec);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Ellipse:
                     IsStart = true;
-                    MyEllipse myEllipse = new MyEllipse(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
+                    C_Ellipse myEllipse = new C_Ellipse(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
                     Shapes.Add(myEllipse);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Polygon:
                     if (!PolygonStatus)
                     {
-                        MyPolygon polygon = new MyPolygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                        C_Polygon polygon = new C_Polygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                         polygon.Points.Add(e.Location);
                         polygon.Points.Add(e.Location);
 
@@ -136,7 +135,7 @@ namespace Paint_Midterm
                     }
                     else
                     {
-                        MyPolygon polygon = Shapes[Shapes.Count - 1] as MyPolygon;
+                        C_Polygon polygon = Shapes[Shapes.Count - 1] as C_Polygon;
                         polygon.Points[polygon.Points.Count - 1] = e.Location;
                         polygon.Points.Add(e.Location);
                     }
@@ -144,7 +143,7 @@ namespace Paint_Midterm
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Freehand:
-                    MyFreehand freehand = new MyFreehand(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    C_Freehand freehand = new C_Freehand(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
                     freehand.P1 = e.Location;
                     freehand.Points.Add(e.Location);
                     Shapes.Add(freehand);
@@ -158,6 +157,20 @@ namespace Paint_Midterm
         }
         private void Main_Panel_MouseMove(object sender, MouseEventArgs e)
         {
+            // Thay đổi con trỏ chuột khi di chuyển đến hình
+            Main_PBox.Cursor = Cursors.Default;
+            if (Mode == PaintType.Move)
+            {
+                for (int i = 0; i < Shapes.Count; i++)
+                {
+                    if (Shapes[i].IsHit(e.Location))
+                    {
+                        Main_PBox.Cursor = Cursors.SizeAll;
+                    }
+                }
+            }
+
+            // Di chuyển hình trong biến SelectedShape
             if (Moving && Mode == PaintType.Move)
             {
                 if (SelectedShape != null)
@@ -169,7 +182,6 @@ namespace Paint_Midterm
                 }
             }
 
-            base.OnMouseMove(e);
             if (!IsStart) return;
 
             switch (Mode)
@@ -181,12 +193,12 @@ namespace Paint_Midterm
                 case PaintType.Move:
                     break;
                 case PaintType.Polygon:
-                    MyPolygon polygon = Shapes[Shapes.Count - 1] as MyPolygon;
+                    C_Polygon polygon = Shapes[Shapes.Count - 1] as C_Polygon;
                     polygon.Points[polygon.Points.Count - 1] = e.Location;
                     Main_PBox.Refresh();
                     break;
                 case PaintType.Freehand:
-                    MyFreehand freehand = Shapes[Shapes.Count - 1] as MyFreehand;
+                    C_Freehand freehand = Shapes[Shapes.Count - 1] as C_Freehand;
                     freehand.Points.Add(e.Location);
                     Main_PBox.Refresh();
                     break;
@@ -207,34 +219,45 @@ namespace Paint_Midterm
 
             if (Mode == PaintType.Freehand)
             {
-                MyFreehand freehand = Shapes[Shapes.Count - 1] as MyFreehand;
+                C_Freehand freehand = Shapes[Shapes.Count - 1] as C_Freehand;
                 freehand.P2 = freehand.Points[freehand.Points.Count - 1];
                 Main_PBox.Invalidate();
             }
-            // Xóa khung hình chữ nhật sau khi thả chuột
+
             if (Mode == PaintType.Group && !isControlKeyPress)
             {
                 for (int i = 0; i < Shapes.Count; i++)
                 {
-                    Shapes[i].IsSelected = false;
+                    Shapes[i].IsChosen = false;
 
-                    if (Shapes[i] is MyPolygon polygon)
+                    if (Shapes[i] is C_Polygon polygon)
                     {
                         if (polygon.IsGroupHit(rec.P1, rec.P2))
                         {
-                            Shapes[i].IsSelected = true;
+                            Shapes[i].IsChosen = true;
                             MySelectedShapes.Add(Shapes[i]);
                         }
                     }
-                    else if (Shapes[i].P1.X >= rec.P1.X &&
+                    else if (Shapes[i] is C_Rec rec1)
+                    {
+                        rec1.CheckPoints(); // Đảo lại vị trí P1 và P2
+                    }
+                    else if (Shapes[i] is C_Ellipse ellipse)
+                    {
+                        ellipse.CheckPoints(); // Đảo lại vị trí P1 và P2
+                    }
+
+                    if (Shapes[i].P1.X >= rec.P1.X &&
                         Shapes[i].P2.X <= rec.P2.X + (rec.P2.X - rec.P1.X) &&
                         Shapes[i].P1.Y >= rec.P1.Y &&
                         Shapes[i].P2.Y <= rec.P2.Y + (rec.P2.Y - rec.P1.Y))
                     {
-                        Shapes[i].IsSelected = true;
+                        Shapes[i].IsChosen = true;
                         MySelectedShapes.Add(Shapes[i]);
                     }
                 }
+
+                // Xóa khung hình chữ nhật sau khi thả chuột
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
                 rec.P2 = p;
@@ -243,7 +266,6 @@ namespace Paint_Midterm
                 Note_tb.Text = "NOTE: Press Ctrl to group";
             }
 
-            base.OnMouseUp(e);
             if (Mode != PaintType.Polygon)
                 IsStart = false;
         }
@@ -258,47 +280,40 @@ namespace Paint_Midterm
                 shape.Draw(e.Graphics);
                 if (Mode == PaintType.Group)
                 {
-                    if (shape.IsSelected == true)
+                    if (shape.IsChosen == true) // Vẽ Frame cho những hình được chọn
                     {
-                        if (!(shape is MyLine))
+                        if (!(shape is C_Line || shape is C_Freehand)) // Vẽ khung hình chữ nhật
                         {
                             ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
                                 new RectangleF(shape.P1.X,
-                                shape.P1.Y,
-                                shape.P2.X - shape.P1.X,
-                                shape.P2.Y - shape.P1.Y));
+                                               shape.P1.Y,
+                                               shape.P2.X - shape.P1.X,
+                                               shape.P2.Y - shape.P1.Y));
                         }
-                        if (shape is MyLine)
+
+                        if (shape is C_Line)
+                        {
+                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
+                            shape.Draw(e.Graphics);
+                        }
+                        else if (shape is C_Rec || shape is C_Ellipse)
                         {
                             ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
                         }
-                        else if (shape is MyRec || shape is MyEllipse)
-                        {
-                            ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
-                                                        shape.P1,
-                                                        shape.P2);
-                        }
-                        else if (shape is MyPolygon polygon)
+                        else if (shape is C_Polygon polygon)
                         {
                             ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, polygon.Points);
                         }
-                        else if (shape is MyFreehand)
+                        else if (shape is C_Freehand)
                         {
                             ShapeFrame.DrawPoints(e.Graphics, MovingBrush, MovingShadow, shape.P1, shape.P2);
                         }
-                        if (shape is MyLine)
-                            shape.Draw(e.Graphics);
                     }
-                    else
-                    {
-                        shape.Draw(e.Graphics);
-                    }
-
                 }
                 else if (Moving)
                 {
                     // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng và freehand
-                    if (!(SelectedShape is MyLine))
+                    if (!(SelectedShape is C_Line || SelectedShape is C_Freehand))
                     {
                         ShapeFrame.DrawSelectFrame(e.Graphics, MovingFrame, MovingFrameShadow,
                             new RectangleF(SelectedShape.P1.X,
@@ -306,30 +321,27 @@ namespace Paint_Midterm
                             SelectedShape.P2.X - SelectedShape.P1.X,
                             SelectedShape.P2.Y - SelectedShape.P1.Y));
                     }
-                    if (SelectedShape is MyLine)
+                    if (SelectedShape is C_Line)
                     {
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
                     }
-                    else if (SelectedShape is MyFreehand)
+                    else if (SelectedShape is C_Freehand)
                     {
                         ShapeFrame.DrawPoints(e.Graphics, MovingBrush, MovingShadow, SelectedShape.P1, SelectedShape.P2);
                     }
-                    else if (SelectedShape is MyRec || SelectedShape is MyEllipse)
+                    else if (SelectedShape is C_Rec || SelectedShape is C_Ellipse)
                     {
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow,
                                                     SelectedShape.P1,
                                                     SelectedShape.P2);
                     }
-                    else if (shape is MyPolygon polygon)
+                    else if (shape is C_Polygon polygon)
                     {
                         ShapeFrame.DrawSelectPoints(e.Graphics, MovingBrush, MovingShadow, polygon.Points);
                     }
-                    if (SelectedShape != shape || SelectedShape is MyLine)
+                    if (SelectedShape != shape || SelectedShape is C_Line)
                         shape.Draw(e.Graphics);
                 }
-                // Vẽ lại các hình
-                else
-                    shape.Draw(e.Graphics);
             }
         }
 
@@ -364,6 +376,9 @@ namespace Paint_Midterm
         private void Clear_btn_Click(object sender, EventArgs e)
         {
             Shapes.Clear();
+            MySelectedShapes.Clear();
+            LastSelectedShape = null;
+            SelectedShape = null;
             Shape_tb.Text = "NULL";
             Main_PBox.Invalidate();
         }
@@ -377,7 +392,7 @@ namespace Paint_Midterm
         {
             for (int i = 0; i < MySelectedShapes.Count; i++)
             {
-                MySelectedShapes[i].IsSelected = false;
+                MySelectedShapes[i].IsChosen = false;
             }
             Mode = PaintType.Group;
             Mode_tb.Text = "MODE: GROUP";
@@ -391,8 +406,8 @@ namespace Paint_Midterm
                 MessageBox.Show("Please choose a group shape", "Notification");
                 return;
             }
-            MyGroup group = new MyGroup();
-            group = LastSelectedShape as MyGroup;
+            C_Group group = new C_Group();
+            group = LastSelectedShape as C_Group;
 
             group.UnGroup(Shapes);
             Shapes.Remove(group);
@@ -470,7 +485,7 @@ namespace Paint_Midterm
                     DialogResult dlr = MessageBox.Show("Group these shapes?", "Grouping", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
                     if (dlr == DialogResult.Yes)
                     {
-                        MyGroup group = new MyGroup();
+                        C_Group group = new C_Group();
                         foreach (var shape in MySelectedShapes)
                         {
                             group.AddSingleShape(shape);
@@ -478,14 +493,14 @@ namespace Paint_Midterm
                         }
                         group.LinkShapes();
                         Shapes.Add(group);
-                        group.IsSelected = false;
+                        group.IsChosen = false;
                         MySelectedShapes.Clear();
                     }
                     else
                     {
                         foreach (var shape in MySelectedShapes)
                         {
-                            shape.IsSelected = false;
+                            shape.IsChosen = false;
                         }
                         MySelectedShapes.Clear();
                     }
@@ -496,7 +511,7 @@ namespace Paint_Midterm
                 {
                     foreach (var shape in MySelectedShapes)
                     {
-                        shape.IsSelected = false;
+                        shape.IsChosen = false;
                     }
                     Mode = PaintType.Move;
                     Main_PBox.Invalidate();
@@ -512,6 +527,7 @@ namespace Paint_Midterm
             {
                 Shapes.Remove(shape);
             }
+            MySelectedShapes.Clear();
             Main_PBox.Invalidate();
             LastSelectedShape = null;
             Shape_tb.Text = "NULL";

@@ -61,8 +61,8 @@
             this.Tools_lb = new System.Windows.Forms.Label();
             this.Mode_tb = new System.Windows.Forms.TextBox();
             this.Note_tb = new System.Windows.Forms.TextBox();
-            this.Fill_Color_btn = new Paint_Midterm.ButtonE();
-            this.Color_btn = new Paint_Midterm.ButtonE();
+            this.Color_btn = new System.Windows.Forms.Button();
+            this.Fill_Color_btn = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
@@ -444,29 +444,25 @@
             this.Note_tb.TabIndex = 49;
             this.Note_tb.Text = "NOTE: ";
             // 
-            // Fill_Color_btn
-            // 
-            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Fill_Color_btn.FlatAppearance.BorderSize = 0;
-            this.Fill_Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Fill_Color_btn.Location = new System.Drawing.Point(61, 13);
-            this.Fill_Color_btn.Name = "Fill_Color_btn";
-            this.Fill_Color_btn.Size = new System.Drawing.Size(30, 30);
-            this.Fill_Color_btn.TabIndex = 26;
-            this.Fill_Color_btn.UseVisualStyleBackColor = false;
-            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
-            // 
             // Color_btn
             // 
             this.Color_btn.BackColor = System.Drawing.Color.Black;
-            this.Color_btn.FlatAppearance.BorderSize = 0;
-            this.Color_btn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.Color_btn.Location = new System.Drawing.Point(17, 13);
+            this.Color_btn.Location = new System.Drawing.Point(16, 14);
             this.Color_btn.Name = "Color_btn";
-            this.Color_btn.Size = new System.Drawing.Size(30, 30);
-            this.Color_btn.TabIndex = 25;
+            this.Color_btn.Size = new System.Drawing.Size(35, 35);
+            this.Color_btn.TabIndex = 15;
             this.Color_btn.UseVisualStyleBackColor = false;
             this.Color_btn.Click += new System.EventHandler(this.Color_btn_Click);
+            // 
+            // Fill_Color_btn
+            // 
+            this.Fill_Color_btn.BackColor = System.Drawing.Color.Black;
+            this.Fill_Color_btn.Location = new System.Drawing.Point(58, 14);
+            this.Fill_Color_btn.Name = "Fill_Color_btn";
+            this.Fill_Color_btn.Size = new System.Drawing.Size(35, 35);
+            this.Fill_Color_btn.TabIndex = 50;
+            this.Fill_Color_btn.UseVisualStyleBackColor = false;
+            this.Fill_Color_btn.Click += new System.EventHandler(this.Fill_Color_btn_Click);
             // 
             // MyPaint
             // 
@@ -529,8 +525,6 @@
         private System.Windows.Forms.ComboBox DashStyle;
         private System.Windows.Forms.NumericUpDown PenWidth;
         private System.Windows.Forms.Button Fill_btn;
-        private ButtonE Color_btn;
-        private ButtonE Fill_Color_btn;
         private System.Windows.Forms.Panel Fill_pl;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
@@ -557,6 +551,8 @@
         private System.Windows.Forms.PictureBox Select_btn;
         private System.Windows.Forms.TextBox Mode_tb;
         private System.Windows.Forms.TextBox Note_tb;
+        private System.Windows.Forms.Button Color_btn;
+        private System.Windows.Forms.Button Fill_Color_btn;
     }
 }
 

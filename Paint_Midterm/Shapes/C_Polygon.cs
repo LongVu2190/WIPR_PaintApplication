@@ -1,16 +1,17 @@
 ﻿using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Collections.Generic;
+using System.IO;
 
 namespace Paint_Midterm
 {
-    public class MyPolygon : MyShape
-    {        
-        public MyPolygon()
+    public class C_Polygon : A_Shape
+    {
+        public C_Polygon()
         {
             this.Name = "Polygon";
         }
-        public MyPolygon(float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
+        public C_Polygon(float Width, Color ShapeColor, DashStyle ShapeDashStyle, bool IsFill, Color ShapeFillColor)
         {
             this.Width = Width;
             this.ShapeColor = ShapeColor;
@@ -33,13 +34,45 @@ namespace Paint_Midterm
                 {
                     path.AddPolygon(Points.ToArray());
                 }
-
                 return path;
+            }
+        }
+        public override bool IsHit(PointF Point)
+        {
+
+            if (!IsFill)
+            {
+               Pen myPen = new Pen(this.ShapeColor, this.Width + 3);
+
+                    return GetPath.IsOutlineVisible(Point, myPen);
+            }
+            else
+            {
+                return GetPath.IsVisible(Point);
+            }
+        }
+        public override void Draw(Graphics Gra)
+        {
+            Pen myPen = new Pen(this.ShapeColor, this.Width) { DashStyle = this.ShapeDashStyle };
+            Gra.DrawPath(myPen, GetPath);
+            if (this.IsFill)
+            {
+                Brush myBrush = new SolidBrush(this.ShapeFillColor);
+                Gra.FillPath(myBrush, GetPath);
+            }
+        }
+        public override void Move(PointF Dis)
+        {
+            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
+            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
+            for (int i = 0; i < Points.Count; i++)
+            {
+                Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
         }
         public bool IsGroupHit(PointF P1, PointF P2)
         {
-            for (int i = 0; i < this.Points.Count; i++) 
+            for (int i = 0; i < this.Points.Count; i++)
             {
                 if (Points[i].X >= P1.X &&
                         Points[i].X <= P2.X + (P2.X - P1.X) &&
@@ -47,7 +80,7 @@ namespace Paint_Midterm
                         Points[i].Y <= P2.Y + (P2.Y - P1.Y))
                 {
                     return true;
-                }                
+                }
             }
             return false;
         }
@@ -68,51 +101,5 @@ namespace Paint_Midterm
             P1 = new PointF(minX, minY);
             P2 = new PointF(maxX, maxY);
         }
-        public override bool IsHit(PointF Point)
-        {
-            bool result = false;
-            using (GraphicsPath path = this.GetPath)
-            {
-                if (!IsFill)
-                {
-                    using (Pen pen = new Pen(this.ShapeColor, this.Width + 3))
-                    {
-                        result = path.IsOutlineVisible(Point, pen);
-                    }
-                }
-                else
-                {
-                    result = path.IsVisible(Point);
-                }
-            }
-            return result;
-        }
-        public override void Draw(Graphics Gra)
-        {
-            using (GraphicsPath path = this.GetPath)
-            {
-                using (Pen pen = new Pen(this.ShapeColor, this.Width) { DashStyle = this.ShapeDashStyle })
-                {
-                    Gra.DrawPath(pen, path);
-                }
-
-                if (this.IsFill)
-                {
-                    using (Brush brush = new SolidBrush(this.ShapeFillColor))
-                    {
-                        Gra.FillPath(brush, path);
-                    }
-                }
-            }
-        }
-        public override void Move(PointF Dis)
-        {
-            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
-            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
-            for (int i = 0; i < Points.Count; i++)
-            {
-                Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
-            }
-        }      
     }
 }

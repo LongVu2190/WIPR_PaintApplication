@@ -3,13 +3,13 @@ using System.Drawing.Drawing2D;
 
 namespace Paint_Midterm
 {
-    public class MyLine : MyShape
+    public class C_Line : A_Shape
     {
-        public MyLine() 
+        public C_Line() 
         {
             this.Name = "Line";
         }
-        public MyLine(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
+        public C_Line(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
         {
             this.Name = "Line";
         }
@@ -21,6 +21,16 @@ namespace Paint_Midterm
                 GPath.AddLine(P1, P2);
                 return GPath;
             }
+        }      
+        public override void Draw(Graphics Gra)
+        {
+            Pen myPen = new Pen(ShapeColor, Width) { DashStyle = ShapeDashStyle };
+            Gra.DrawPath(myPen, GetPath);
+        }
+        public override void Move(PointF Dis)
+        {
+            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
+            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
         }
         public override bool IsHit(PointF Point)
         {
@@ -33,22 +43,6 @@ namespace Paint_Midterm
                 }
             }
             return result;
-        }       
-        public override void Draw(Graphics Gra)
-        {
-            using (GraphicsPath path = GetPath)
-            {
-                using (Pen myPen = new Pen(ShapeColor, Width))
-                {
-                    myPen.DashStyle = ShapeDashStyle;
-                    Gra.DrawPath(myPen, path);
-                }
-            }
         }
-        public override void Move(PointF Dis)
-        {
-            P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
-            P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
-        }        
     }
 }
