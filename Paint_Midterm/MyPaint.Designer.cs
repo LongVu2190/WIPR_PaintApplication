@@ -161,9 +161,9 @@
             this.Fill_pl.Controls.Add(this.Fill_Color_btn);
             this.Fill_pl.Controls.Add(this.Fill_btn);
             this.Fill_pl.Controls.Add(this.Color_btn);
-            this.Fill_pl.Location = new System.Drawing.Point(814, 57);
+            this.Fill_pl.Location = new System.Drawing.Point(806, 57);
             this.Fill_pl.Name = "Fill_pl";
-            this.Fill_pl.Size = new System.Drawing.Size(107, 92);
+            this.Fill_pl.Size = new System.Drawing.Size(116, 92);
             this.Fill_pl.TabIndex = 27;
             // 
             // Fill_Color_btn
@@ -195,9 +195,9 @@
             this.panel2.Controls.Add(this.pictureBox1);
             this.panel2.Controls.Add(this.DashStyle);
             this.panel2.Controls.Add(this.PenWidth);
-            this.panel2.Location = new System.Drawing.Point(952, 57);
+            this.panel2.Location = new System.Drawing.Point(942, 57);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(203, 92);
+            this.panel2.Size = new System.Drawing.Size(213, 92);
             this.panel2.TabIndex = 28;
             // 
             // pictureBox2
@@ -434,7 +434,7 @@
             // 
             this.Modify_lb.AutoSize = true;
             this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Modify_lb.Location = new System.Drawing.Point(1025, 154);
+            this.Modify_lb.Location = new System.Drawing.Point(1022, 154);
             this.Modify_lb.Name = "Modify_lb";
             this.Modify_lb.Size = new System.Drawing.Size(52, 19);
             this.Modify_lb.TabIndex = 29;
@@ -444,7 +444,7 @@
             // 
             this.Color_lb.AutoSize = true;
             this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color_lb.Location = new System.Drawing.Point(849, 155);
+            this.Color_lb.Location = new System.Drawing.Point(843, 155);
             this.Color_lb.Name = "Color_lb";
             this.Color_lb.Size = new System.Drawing.Size(42, 19);
             this.Color_lb.TabIndex = 31;
@@ -454,7 +454,7 @@
             // 
             this.Shapes_lb.AutoSize = true;
             this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_lb.Location = new System.Drawing.Point(680, 155);
+            this.Shapes_lb.Location = new System.Drawing.Point(679, 155);
             this.Shapes_lb.Name = "Shapes_lb";
             this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
             this.Shapes_lb.TabIndex = 32;
