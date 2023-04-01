@@ -2,6 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Reflection;
+using System;
 
 namespace Paint_Midterm
 {
@@ -16,9 +17,9 @@ namespace Paint_Midterm
         {
             get
             {
-                GraphicsPath GPath = new GraphicsPath();
-                GPath.AddLine(P1, P2);
-                return GPath;
+                GraphicsPath path = new GraphicsPath();
+                path.AddLine(P1, P2);
+                return path;
             }
         }
         private GraphicsPath[] GetPaths
@@ -60,11 +61,50 @@ namespace Paint_Midterm
                             path.AddEllipse(new RectangleF(ellip.P1.X, ellip.P1.Y, ellip.P2.X - ellip.P1.X, ellip.P2.Y - ellip.P1.Y));
                         }
                     }
+                    else if (Shapes[i] is C_Arc arc)
+                    {
+                        if (Math.Abs(arc.P2.Y - arc.P1.Y) == 0 && Math.Abs(arc.P2.X - arc.P1.X) == 0)
+                        {
+                            RectangleF r = new RectangleF(
+                             Math.Min(arc.P1.X, arc.P2.X),
+                             Math.Min(arc.P1.Y, arc.P2.Y),
+                             Math.Abs(arc.P2.X - arc.P1.X + 10),
+                             Math.Abs(arc.P2.Y - arc.P1.Y + 10));
+                            path.AddArc(r, 0, arc.SweepAngle);
+                        }
+                        else if (Math.Abs(arc.P2.Y - arc.P1.Y) == 0)
+                        {
+                            RectangleF r = new RectangleF(
+                             Math.Min(arc.P1.X, arc.P2.X),
+                             Math.Min(arc.P1.Y, arc.P2.Y),
+                             Math.Abs(arc.P2.X - arc.P1.X),
+                             Math.Abs(arc.P2.Y - arc.P1.Y + 10));
+                            path.AddArc(r, 0, arc.SweepAngle);
+                        }
+                        else if (Math.Abs(arc.P2.X - arc.P1.X) == 0)
+                        {
+                            RectangleF r = new RectangleF(
+                            Math.Min(arc.P1.X, arc.P2.X),
+                            Math.Min(arc.P1.Y, arc.P2.Y),
+                            Math.Abs(arc.P2.X - arc.P1.X + 10),
+                            Math.Abs(arc.P2.Y - arc.P1.Y));
+                            path.AddArc(r, 0, arc.SweepAngle);
+                        }
+                        else
+                        {
+                            RectangleF r = new RectangleF(
+                              Math.Min(arc.P1.X, arc.P2.X),
+                              Math.Min(arc.P1.Y, arc.P2.Y),
+                              Math.Abs(arc.P2.X - arc.P1.X),
+                              Math.Abs(arc.P2.Y - arc.P1.Y));
+                            path.AddArc(r, 0, arc.SweepAngle);
+                        }
+                    }
                     paths[i] = path;
                 }
                 return paths;
             }
-        }       
+        }
         public override void Draw(Graphics Gra)
         {
             GraphicsPath[] paths = GetPaths;
@@ -110,8 +150,8 @@ namespace Paint_Midterm
                     if (paths[i].IsOutlineVisible(point, myPen))
                         return true;
                 }
-                else if (Shapes[i] is C_Group group)  
-                    return group.IsHit(point); 
+                else if (Shapes[i] is C_Group group)
+                    return group.IsHit(point);
 
             }
             return false;

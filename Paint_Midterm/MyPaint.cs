@@ -96,48 +96,54 @@ namespace Paint_Midterm
                     break;
                 case PaintType.Line:
                     IsStart = true;
-                    C_Line myLine = new C_Line(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
-                    Shapes.Add(myLine);
+                    C_Line Line = new C_Line(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    Shapes.Add(Line);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Rec:
                     IsStart = true;
-                    C_Rec myRec = new C_Rec(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
-                    Shapes.Add(myRec);
+                    C_Rec Rec = new C_Rec(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                    Shapes.Add(Rec);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Ellipse:
                     IsStart = true;
-                    C_Ellipse myEllipse = new C_Ellipse(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
-                    Shapes.Add(myEllipse);
+                    C_Ellipse Ellipse = new C_Ellipse(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor, IsCircle);
+                    Shapes.Add(Ellipse);
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Polygon:
                     if (!PolygonStatus)
                     {
-                        C_Polygon polygon = new C_Polygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
-                        polygon.Points.Add(e.Location);
-                        polygon.Points.Add(e.Location);
+                        C_Polygon Polygon = new C_Polygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
+                        Polygon.Points.Add(e.Location);
+                        Polygon.Points.Add(e.Location);
 
-                        Shapes.Add(polygon);
+                        Shapes.Add(Polygon);
                         PolygonStatus = true;
                     }
                     else
                     {
-                        C_Polygon polygon = Shapes[Shapes.Count - 1] as C_Polygon;
-                        polygon.Points[polygon.Points.Count - 1] = e.Location;
-                        polygon.Points.Add(e.Location);
+                        C_Polygon Polygon = Shapes[Shapes.Count - 1] as C_Polygon;
+                        Polygon.Points[Polygon.Points.Count - 1] = e.Location;
+                        Polygon.Points.Add(e.Location);
                     }
                     IsStart = true;
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Freehand:
-                    C_Freehand freehand = new C_Freehand(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
-                    freehand.P1 = e.Location;
-                    freehand.Points.Add(e.Location);
-                    Shapes.Add(freehand);
+                    C_Freehand Freehand = new C_Freehand(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    Freehand.P1 = e.Location;
+                    Freehand.Points.Add(e.Location);
+                    Shapes.Add(Freehand);
                     PolygonStatus = true;
                     IsStart = true;
+                    Main_PBox.Invalidate();
+                    break;
+                case PaintType.Arc:
+                    IsStart = true;
+                    C_Arc Arc = new C_Arc(e.Location, e.Location, MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)));
+                    Shapes.Add(Arc);
                     Main_PBox.Invalidate();
                     break;
                 default:
@@ -235,6 +241,10 @@ namespace Paint_Midterm
                     {
                         ellipse.CheckPoints(); // Đảo lại vị trí P1 và P2
                     }
+                    else if (Shapes[i] is C_Arc arc)
+                    {
+                        arc.CheckPoints();
+                    }
 
                     if (Shapes[i].P1.X >= rec.P1.X &&
                         Shapes[i].P2.X <= rec.P2.X + (rec.P2.X - rec.P1.X) &&
@@ -280,14 +290,10 @@ namespace Paint_Midterm
                                                shape.P2.Y - shape.P1.Y));
                         }
 
-                        if (shape is C_Line)
+                        if (shape is C_Line || shape is C_Rec || shape is C_Ellipse || shape is C_Arc)
                         {
                             ShapeFrame.DrawRectanglePoints(e.Graphics, shape.P1, shape.P2);
-                            shape.Draw(e.Graphics);
-                        }
-                        else if (shape is C_Rec || shape is C_Ellipse)
-                        {
-                            ShapeFrame.DrawRectanglePoints(e.Graphics, shape.P1, shape.P2);
+                            //shape.Draw(e.Graphics);
                         }
                         else if (shape is C_Polygon polygon)
                         {
@@ -310,17 +316,13 @@ namespace Paint_Midterm
                             SelectedShape.P2.X - SelectedShape.P1.X,
                             SelectedShape.P2.Y - SelectedShape.P1.Y));
                     }
-                    if (SelectedShape is C_Line)
+                    if (SelectedShape is C_Line || SelectedShape is C_Rec || SelectedShape is C_Ellipse || SelectedShape is C_Arc)
                     {
                         ShapeFrame.DrawRectanglePoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
                     else if (SelectedShape is C_Freehand)
                     {
                         ShapeFrame.DrawStartEndPoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
-                    }
-                    else if (SelectedShape is C_Rec || SelectedShape is C_Ellipse)
-                    {
-                        ShapeFrame.DrawRectanglePoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
                     else if (shape is C_Polygon polygon)
                     {
@@ -357,13 +359,17 @@ namespace Paint_Midterm
         }
         private void Clear_btn_Click(object sender, EventArgs e)
         {
-            Shapes.Clear();
-            MySelectedShapes.Clear();
-            LastSelectedShape = null;
-            SelectedShape = null;
-            Shape_tb.Text = "NULL";
-            Main_PBox.Invalidate();
-            MessageBox.Show("Cleared", "Notification");
+            DialogResult dlr = MessageBox.Show("Do you want to clear panel?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            if (dlr == DialogResult.Yes)
+            {
+                Shapes.Clear();
+                MySelectedShapes.Clear();
+                LastSelectedShape = null;
+                SelectedShape = null;
+                Shape_tb.Text = "NULL";
+                Main_PBox.Invalidate();
+                MessageBox.Show("Cleared", "Notification");
+            }
         }
         private void Select_btn_Click(object sender, EventArgs e)
         {
@@ -577,6 +583,11 @@ namespace Paint_Midterm
             IsCircle = true;
             ChangeTextBox("MODE: DRAW CIRCLE", "NOTE: ");
         }
+        private void Arc_btn_Click(object sender, EventArgs e)
+        {
+            Mode = PaintType.Arc;
+            ChangeTextBox("MODE: DRAW ARC", "NOTE: ");
+        }
         private void Polygon_btn_Click(object sender, EventArgs e)
         {
             Mode = PaintType.Polygon;
@@ -585,7 +596,7 @@ namespace Paint_Midterm
         }
         private void Freehand_btn_Click(object sender, EventArgs e)
         {
-            ChangeTextBox("MODE: DRAW ARC", "NOTE:");
+            ChangeTextBox("MODE: DRAW FREEHAND", "NOTE:");
             Mode = PaintType.Freehand;
         }
 

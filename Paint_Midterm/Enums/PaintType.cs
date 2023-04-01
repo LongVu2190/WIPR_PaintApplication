@@ -2,6 +2,7 @@
 {
     enum PaintType
     {
+        Arc,
         Move,
         Line,
         Rec,

@@ -21,13 +21,13 @@ namespace Paint_Midterm
         {
             get
             {                
-                GraphicsPath GPath = new GraphicsPath();
+                GraphicsPath path = new GraphicsPath();
                 RectangleF r = new RectangleF(Math.Min(P1.X, P2.X),
                                               Math.Min(P1.Y, P2.Y),
                                               Math.Abs(P2.X - P1.X),
                                               Math.Abs(P2.Y - P1.Y));
-                GPath.AddRectangle(r);
-                return GPath;
+                path.AddRectangle(r);
+                return path;
             }
         }
         public override bool IsHit(PointF Point)
