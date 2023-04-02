@@ -118,76 +118,76 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="3" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\DashStyle\3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="rec" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\rec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ungroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\ungroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="2" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\DashStyle\2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="arc" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\arc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="circle" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\circle.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="0" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\DashStyle\0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="arc" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\arc.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\polygon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\DashStyle\1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="ellipse" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\ellipse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="clear" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\clear.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="dash" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\dash.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="zoomin" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\zoomin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dash0" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\DashStyle\dash0.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="group" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dash1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\DashStyle\dash1.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="line" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="dash2" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\DashStyle\dash2.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dash3" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\DashStyle\dash3.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="dash4" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\DashStyle\dash4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="ellipse" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\ellipse.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="eraser" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\eraser.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
-  <data name="4" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\DashStyle\4.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <data name="exit" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\exit.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="group" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\group.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Icon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Icon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="line" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\line.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="paint" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\paint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="polygon" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\polygon.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="rec" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\rec.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="save" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\save.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="select" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\select.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="ungroup" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\ungroup.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="width" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\width.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="zoomin" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Assets\Buttons\zoomin.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="zoomout" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Assets\Buttons\zoomout.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="paint" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Assets\Buttons\paint.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

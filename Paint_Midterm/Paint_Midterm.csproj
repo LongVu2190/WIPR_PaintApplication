@@ -92,32 +92,76 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Assets\Buttons\arc.png" />
-    <Content Include="Assets\Buttons\circle.png" />
-    <Content Include="Assets\Buttons\clear.png" />
-    <Content Include="Assets\Buttons\dash.png" />
-    <Content Include="Assets\Buttons\ellipse.png" />
-    <Content Include="Assets\Buttons\eraser.png" />
-    <Content Include="Assets\Buttons\exit.png" />
-    <Content Include="Assets\Buttons\group.png" />
-    <Content Include="Assets\Buttons\line.png" />
-    <Content Include="Assets\Buttons\paint.png" />
-    <Content Include="Assets\Buttons\polygon.png" />
-    <Content Include="Assets\Buttons\rec.png" />
-    <Content Include="Assets\Buttons\save.png" />
-    <Content Include="Assets\Buttons\select.png" />
-    <Content Include="Assets\Buttons\ungroup.png" />
-    <Content Include="Assets\Buttons\width.png" />
-    <Content Include="Assets\Buttons\zoomin.png" />
-    <Content Include="Assets\Buttons\zoomout.png" />
-    <Content Include="Assets\DashStyle\0.png" />
-    <Content Include="Assets\DashStyle\1.png" />
-    <Content Include="Assets\DashStyle\2.png" />
-    <Content Include="Assets\DashStyle\3.png" />
-    <Content Include="Assets\DashStyle\4.png" />
-    <Content Include="Assets\icon.ico" />
-    <Content Include="Assets\Icon.png" />
+    <None Include="Assets\Icon.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="Assets\Buttons\arc.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\circle.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\clear.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\dash.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\ellipse.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\eraser.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\exit.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\group.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\line.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\paint.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\polygon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\rec.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\select.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\ungroup.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\width.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\zoomin.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\Buttons\zoomout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DashStyle\dash0.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DashStyle\dash1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DashStyle\dash2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DashStyle\dash3.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Assets\DashStyle\dash4.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
