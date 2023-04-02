@@ -13,7 +13,6 @@ namespace Paint_Midterm
         {
             switch (n)
             {
-
                 case 0:
                     {
                         return DashStyle.Solid;

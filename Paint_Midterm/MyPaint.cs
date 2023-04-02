@@ -547,6 +547,7 @@ namespace Paint_Midterm
                     Bitmap bmp = new Bitmap(Main_PBox.ClientSize.Width, Main_PBox.ClientSize.Height);
                     Main_PBox.DrawToBitmap(bmp, Main_PBox.ClientRectangle);
                     bmp.Save(saveFileDialog.FileName);
+                    MessageBox.Show("Saved", "Notification");
                 }
             }
         }
@@ -607,7 +608,7 @@ namespace Paint_Midterm
         }
         private void Exit_btn_Click(object sender, EventArgs e)
         {
-            DialogResult dlr = MessageBox.Show("Do you want to save pircute before exit?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult dlr = MessageBox.Show("Do you want to save picture before exit?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
                 Save_Picture();

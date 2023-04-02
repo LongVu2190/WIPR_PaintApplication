@@ -20,13 +20,13 @@ namespace Paint_Midterm
             this.Name = "Arc";
         }
         public int SweepAngle { get; set; }
-        private bool FlagCheckPoints { get; set; } = false;
+        private bool IsChecked { get; set; } = false;
         protected override GraphicsPath GetPath
         {
             get
             {
                 GraphicsPath path = new GraphicsPath();
-                if (FlagCheckPoints == false)
+                if (IsChecked == false)
                 {
                     SweepAngle = -180;
                     if (P1.Y >= P2.Y)
@@ -84,7 +84,7 @@ namespace Paint_Midterm
         }
         public override bool IsHit(PointF Point)
         {
-            if (FlagCheckPoints == false)
+            if (IsChecked == false)
             {
                 CheckPoints();
             }
@@ -134,7 +134,7 @@ namespace Paint_Midterm
                 P1_Temp = P1;
                 P2_Temp = P2;
             }
-            FlagCheckPoints = true;
+            IsChecked = true;
             //Console.WriteLine("P1 After: " + P1.ToString());
             //Console.WriteLine("P2 After: " + P2.ToString());
             P1 = P1_Temp;

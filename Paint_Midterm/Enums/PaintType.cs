@@ -2,13 +2,13 @@
 {
     enum PaintType
     {
-        Arc,
         Move,
+        Group,       
+        Arc,
         Line,
         Rec,
         Ellipse,
         Freehand,
-        Polygon,
-        Group,
+        Polygon,        
     }
 }

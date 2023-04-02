@@ -38,9 +38,26 @@
             this.Fill_Color_btn = new System.Windows.Forms.Button();
             this.Color_btn = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.Arc_btn = new System.Windows.Forms.PictureBox();
+            this.Freehand_btn = new System.Windows.Forms.PictureBox();
+            this.Polygon_btn = new System.Windows.Forms.PictureBox();
+            this.Circle_btn = new System.Windows.Forms.PictureBox();
+            this.Rec_btn = new System.Windows.Forms.PictureBox();
+            this.Ellipse_btn = new System.Windows.Forms.PictureBox();
+            this.Line_btn = new System.Windows.Forms.PictureBox();
             this.DashList = new System.Windows.Forms.ImageList(this.components);
             this.panel4 = new System.Windows.Forms.Panel();
+            this.Save_btn = new System.Windows.Forms.PictureBox();
+            this.Select_btn = new System.Windows.Forms.PictureBox();
+            this.Ungroup_btn = new System.Windows.Forms.PictureBox();
+            this.Group_btn = new System.Windows.Forms.PictureBox();
+            this.ZoomOut_btn = new System.Windows.Forms.PictureBox();
+            this.ZoomIn_btn = new System.Windows.Forms.PictureBox();
+            this.Clear_btn = new System.Windows.Forms.PictureBox();
+            this.Delete_btn = new System.Windows.Forms.PictureBox();
             this.Modify_lb = new System.Windows.Forms.Label();
             this.Color_lb = new System.Windows.Forms.Label();
             this.Shapes_lb = new System.Windows.Forms.Label();
@@ -51,31 +68,21 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
             this.Exit_btn = new System.Windows.Forms.PictureBox();
-            this.Save_btn = new System.Windows.Forms.PictureBox();
-            this.Select_btn = new System.Windows.Forms.PictureBox();
-            this.Ungroup_btn = new System.Windows.Forms.PictureBox();
-            this.Group_btn = new System.Windows.Forms.PictureBox();
-            this.ZoomOut_btn = new System.Windows.Forms.PictureBox();
-            this.ZoomIn_btn = new System.Windows.Forms.PictureBox();
-            this.Clear_btn = new System.Windows.Forms.PictureBox();
-            this.Delete_btn = new System.Windows.Forms.PictureBox();
-            this.Arc_btn = new System.Windows.Forms.PictureBox();
-            this.Freehand_btn = new System.Windows.Forms.PictureBox();
-            this.Polygon_btn = new System.Windows.Forms.PictureBox();
-            this.Circle_btn = new System.Windows.Forms.PictureBox();
-            this.Rec_btn = new System.Windows.Forms.PictureBox();
-            this.Ellipse_btn = new System.Windows.Forms.PictureBox();
-            this.Line_btn = new System.Windows.Forms.PictureBox();
-            this.pictureBox2 = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
             this.panel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panel3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Ellipse_btn)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).BeginInit();
             this.panel4.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Save_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Select_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ungroup_btn)).BeginInit();
@@ -84,15 +91,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ZoomIn_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Clear_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Delete_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Ellipse_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -203,6 +203,26 @@
             this.panel2.Size = new System.Drawing.Size(190, 92);
             this.panel2.TabIndex = 28;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = global::Paint_Midterm.Properties.Resources.dash;
+            this.pictureBox2.Location = new System.Drawing.Point(8, 46);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(28, 32);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 34;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = global::Paint_Midterm.Properties.Resources.width;
+            this.pictureBox1.Location = new System.Drawing.Point(8, 10);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 33;
+            this.pictureBox1.TabStop = false;
+            // 
             // panel3
             // 
             this.panel3.BackColor = System.Drawing.SystemColors.Window;
@@ -217,6 +237,90 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(199, 92);
             this.panel3.TabIndex = 29;
+            // 
+            // Arc_btn
+            // 
+            this.Arc_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
+            this.Arc_btn.Location = new System.Drawing.Point(106, 47);
+            this.Arc_btn.Name = "Arc_btn";
+            this.Arc_btn.Size = new System.Drawing.Size(36, 36);
+            this.Arc_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Arc_btn.TabIndex = 41;
+            this.Arc_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Arc_btn, "Draw a Arc");
+            this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
+            // 
+            // Freehand_btn
+            // 
+            this.Freehand_btn.Image = global::Paint_Midterm.Properties.Resources.paint;
+            this.Freehand_btn.Location = new System.Drawing.Point(153, 8);
+            this.Freehand_btn.Name = "Freehand_btn";
+            this.Freehand_btn.Size = new System.Drawing.Size(33, 33);
+            this.Freehand_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Freehand_btn.TabIndex = 40;
+            this.Freehand_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Freehand_btn, "Draw a Freehand");
+            this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
+            // 
+            // Polygon_btn
+            // 
+            this.Polygon_btn.Image = global::Paint_Midterm.Properties.Resources.polygon;
+            this.Polygon_btn.Location = new System.Drawing.Point(60, 45);
+            this.Polygon_btn.Name = "Polygon_btn";
+            this.Polygon_btn.Size = new System.Drawing.Size(40, 40);
+            this.Polygon_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Polygon_btn.TabIndex = 39;
+            this.Polygon_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Polygon_btn, "Draw a Polygon");
+            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            // 
+            // Circle_btn
+            // 
+            this.Circle_btn.Image = global::Paint_Midterm.Properties.Resources.circle;
+            this.Circle_btn.Location = new System.Drawing.Point(14, 45);
+            this.Circle_btn.Name = "Circle_btn";
+            this.Circle_btn.Size = new System.Drawing.Size(40, 40);
+            this.Circle_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Circle_btn.TabIndex = 38;
+            this.Circle_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Circle_btn, "Draw a Circle");
+            this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
+            // 
+            // Rec_btn
+            // 
+            this.Rec_btn.Image = global::Paint_Midterm.Properties.Resources.rec;
+            this.Rec_btn.Location = new System.Drawing.Point(60, 5);
+            this.Rec_btn.Name = "Rec_btn";
+            this.Rec_btn.Size = new System.Drawing.Size(40, 40);
+            this.Rec_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Rec_btn.TabIndex = 37;
+            this.Rec_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Rec_btn, "Draw a Rectangle");
+            this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
+            // 
+            // Ellipse_btn
+            // 
+            this.Ellipse_btn.Image = global::Paint_Midterm.Properties.Resources.ellipse;
+            this.Ellipse_btn.Location = new System.Drawing.Point(106, 5);
+            this.Ellipse_btn.Name = "Ellipse_btn";
+            this.Ellipse_btn.Size = new System.Drawing.Size(40, 40);
+            this.Ellipse_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Ellipse_btn.TabIndex = 36;
+            this.Ellipse_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Ellipse_btn, "Draw a Ellipse");
+            this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
+            // 
+            // Line_btn
+            // 
+            this.Line_btn.Image = global::Paint_Midterm.Properties.Resources.line;
+            this.Line_btn.Location = new System.Drawing.Point(14, 6);
+            this.Line_btn.Name = "Line_btn";
+            this.Line_btn.Size = new System.Drawing.Size(40, 40);
+            this.Line_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Line_btn.TabIndex = 35;
+            this.Line_btn.TabStop = false;
+            this.toolTip.SetToolTip(this.Line_btn, "Draw a Line");
+            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
             // 
             // DashList
             // 
@@ -244,99 +348,6 @@
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(307, 91);
             this.panel4.TabIndex = 30;
-            // 
-            // Modify_lb
-            // 
-            this.Modify_lb.AutoSize = true;
-            this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Modify_lb.Location = new System.Drawing.Point(1032, 154);
-            this.Modify_lb.Name = "Modify_lb";
-            this.Modify_lb.Size = new System.Drawing.Size(52, 19);
-            this.Modify_lb.TabIndex = 29;
-            this.Modify_lb.Text = "Modify";
-            // 
-            // Color_lb
-            // 
-            this.Color_lb.AutoSize = true;
-            this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color_lb.Location = new System.Drawing.Point(877, 154);
-            this.Color_lb.Name = "Color_lb";
-            this.Color_lb.Size = new System.Drawing.Size(42, 19);
-            this.Color_lb.TabIndex = 31;
-            this.Color_lb.Text = "Color";
-            // 
-            // Shapes_lb
-            // 
-            this.Shapes_lb.AutoSize = true;
-            this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_lb.Location = new System.Drawing.Point(678, 154);
-            this.Shapes_lb.Name = "Shapes_lb";
-            this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
-            this.Shapes_lb.TabIndex = 32;
-            this.Shapes_lb.Text = "Shapes";
-            // 
-            // Tools_lb
-            // 
-            this.Tools_lb.AutoSize = true;
-            this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_lb.Location = new System.Drawing.Point(171, 152);
-            this.Tools_lb.Name = "Tools_lb";
-            this.Tools_lb.Size = new System.Drawing.Size(40, 19);
-            this.Tools_lb.TabIndex = 33;
-            this.Tools_lb.Text = "Tools";
-            // 
-            // Mode_tb
-            // 
-            this.Mode_tb.BackColor = System.Drawing.Color.White;
-            this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mode_tb.Location = new System.Drawing.Point(356, 71);
-            this.Mode_tb.Name = "Mode_tb";
-            this.Mode_tb.ReadOnly = true;
-            this.Mode_tb.Size = new System.Drawing.Size(255, 26);
-            this.Mode_tb.TabIndex = 48;
-            this.Mode_tb.Text = "MODE: GROUP";
-            // 
-            // Note_tb
-            // 
-            this.Note_tb.BackColor = System.Drawing.Color.White;
-            this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Note_tb.Location = new System.Drawing.Point(356, 109);
-            this.Note_tb.Name = "Note_tb";
-            this.Note_tb.ReadOnly = true;
-            this.Note_tb.Size = new System.Drawing.Size(255, 26);
-            this.Note_tb.TabIndex = 49;
-            this.Note_tb.Text = "NOTE: ";
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(74, 17);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(223, 25);
-            this.Title.TabIndex = 52;
-            this.Title.Text = "Super Paint Application";
-            // 
-            // pictureBox3
-            // 
-            this.pictureBox3.Image = global::Paint_Midterm.Properties.Resources.Icon;
-            this.pictureBox3.Location = new System.Drawing.Point(32, 11);
-            this.pictureBox3.Name = "pictureBox3";
-            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
-            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox3.TabIndex = 50;
-            this.pictureBox3.TabStop = false;
-            // 
-            // Exit_btn
-            // 
-            this.Exit_btn.Image = global::Paint_Midterm.Properties.Resources.exit;
-            this.Exit_btn.Location = new System.Drawing.Point(1117, 11);
-            this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(40, 40);
-            this.Exit_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Exit_btn.TabIndex = 48;
-            this.Exit_btn.TabStop = false;
-            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
             // 
             // Save_btn
             // 
@@ -435,109 +446,98 @@
             this.toolTip.SetToolTip(this.Delete_btn, "Detele the selecting shape");
             this.Delete_btn.Click += new System.EventHandler(this.Delete_btn_Click);
             // 
-            // Arc_btn
+            // Modify_lb
             // 
-            this.Arc_btn.Image = global::Paint_Midterm.Properties.Resources.arc;
-            this.Arc_btn.Location = new System.Drawing.Point(106, 47);
-            this.Arc_btn.Name = "Arc_btn";
-            this.Arc_btn.Size = new System.Drawing.Size(36, 36);
-            this.Arc_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Arc_btn.TabIndex = 41;
-            this.Arc_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Arc_btn, "Draw a Arc");
-            this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
+            this.Modify_lb.AutoSize = true;
+            this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Modify_lb.Location = new System.Drawing.Point(1032, 152);
+            this.Modify_lb.Name = "Modify_lb";
+            this.Modify_lb.Size = new System.Drawing.Size(52, 19);
+            this.Modify_lb.TabIndex = 29;
+            this.Modify_lb.Text = "Modify";
             // 
-            // Freehand_btn
+            // Color_lb
             // 
-            this.Freehand_btn.Image = global::Paint_Midterm.Properties.Resources.paint;
-            this.Freehand_btn.Location = new System.Drawing.Point(153, 8);
-            this.Freehand_btn.Name = "Freehand_btn";
-            this.Freehand_btn.Size = new System.Drawing.Size(33, 33);
-            this.Freehand_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Freehand_btn.TabIndex = 40;
-            this.Freehand_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Freehand_btn, "Draw a Freehand");
-            this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
+            this.Color_lb.AutoSize = true;
+            this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Color_lb.Location = new System.Drawing.Point(873, 152);
+            this.Color_lb.Name = "Color_lb";
+            this.Color_lb.Size = new System.Drawing.Size(42, 19);
+            this.Color_lb.TabIndex = 31;
+            this.Color_lb.Text = "Color";
             // 
-            // Polygon_btn
+            // Shapes_lb
             // 
-            this.Polygon_btn.Image = global::Paint_Midterm.Properties.Resources.polygon;
-            this.Polygon_btn.Location = new System.Drawing.Point(60, 45);
-            this.Polygon_btn.Name = "Polygon_btn";
-            this.Polygon_btn.Size = new System.Drawing.Size(40, 40);
-            this.Polygon_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Polygon_btn.TabIndex = 39;
-            this.Polygon_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Polygon_btn, "Draw a Polygon");
-            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            this.Shapes_lb.AutoSize = true;
+            this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Shapes_lb.Location = new System.Drawing.Point(703, 152);
+            this.Shapes_lb.Name = "Shapes_lb";
+            this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
+            this.Shapes_lb.TabIndex = 32;
+            this.Shapes_lb.Text = "Shapes";
             // 
-            // Circle_btn
+            // Tools_lb
             // 
-            this.Circle_btn.Image = global::Paint_Midterm.Properties.Resources.circle;
-            this.Circle_btn.Location = new System.Drawing.Point(14, 45);
-            this.Circle_btn.Name = "Circle_btn";
-            this.Circle_btn.Size = new System.Drawing.Size(40, 40);
-            this.Circle_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Circle_btn.TabIndex = 38;
-            this.Circle_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Circle_btn, "Draw a Circle");
-            this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
+            this.Tools_lb.AutoSize = true;
+            this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_lb.Location = new System.Drawing.Point(169, 152);
+            this.Tools_lb.Name = "Tools_lb";
+            this.Tools_lb.Size = new System.Drawing.Size(40, 19);
+            this.Tools_lb.TabIndex = 33;
+            this.Tools_lb.Text = "Tools";
             // 
-            // Rec_btn
+            // Mode_tb
             // 
-            this.Rec_btn.Image = global::Paint_Midterm.Properties.Resources.rec;
-            this.Rec_btn.Location = new System.Drawing.Point(60, 5);
-            this.Rec_btn.Name = "Rec_btn";
-            this.Rec_btn.Size = new System.Drawing.Size(40, 40);
-            this.Rec_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Rec_btn.TabIndex = 37;
-            this.Rec_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Rec_btn, "Draw a Rectangle");
-            this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
+            this.Mode_tb.BackColor = System.Drawing.Color.White;
+            this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mode_tb.Location = new System.Drawing.Point(356, 71);
+            this.Mode_tb.Name = "Mode_tb";
+            this.Mode_tb.ReadOnly = true;
+            this.Mode_tb.Size = new System.Drawing.Size(255, 26);
+            this.Mode_tb.TabIndex = 48;
+            this.Mode_tb.Text = "MODE: GROUP";
             // 
-            // Ellipse_btn
+            // Note_tb
             // 
-            this.Ellipse_btn.Image = global::Paint_Midterm.Properties.Resources.ellipse;
-            this.Ellipse_btn.Location = new System.Drawing.Point(106, 5);
-            this.Ellipse_btn.Name = "Ellipse_btn";
-            this.Ellipse_btn.Size = new System.Drawing.Size(40, 40);
-            this.Ellipse_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Ellipse_btn.TabIndex = 36;
-            this.Ellipse_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Ellipse_btn, "Draw a Ellipse");
-            this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
+            this.Note_tb.BackColor = System.Drawing.Color.White;
+            this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Note_tb.Location = new System.Drawing.Point(356, 109);
+            this.Note_tb.Name = "Note_tb";
+            this.Note_tb.ReadOnly = true;
+            this.Note_tb.Size = new System.Drawing.Size(255, 26);
+            this.Note_tb.TabIndex = 49;
+            this.Note_tb.Text = "NOTE: ";
             // 
-            // Line_btn
+            // Title
             // 
-            this.Line_btn.Image = global::Paint_Midterm.Properties.Resources.line;
-            this.Line_btn.Location = new System.Drawing.Point(14, 6);
-            this.Line_btn.Name = "Line_btn";
-            this.Line_btn.Size = new System.Drawing.Size(40, 40);
-            this.Line_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Line_btn.TabIndex = 35;
-            this.Line_btn.TabStop = false;
-            this.toolTip.SetToolTip(this.Line_btn, "Draw a Line");
-            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
+            this.Title.AutoSize = true;
+            this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(74, 17);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(223, 25);
+            this.Title.TabIndex = 52;
+            this.Title.Text = "Super Paint Application";
             // 
-            // pictureBox2
+            // pictureBox3
             // 
-            this.pictureBox2.Image = global::Paint_Midterm.Properties.Resources.dash;
-            this.pictureBox2.Location = new System.Drawing.Point(8, 46);
-            this.pictureBox2.Name = "pictureBox2";
-            this.pictureBox2.Size = new System.Drawing.Size(28, 32);
-            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox2.TabIndex = 34;
-            this.pictureBox2.TabStop = false;
+            this.pictureBox3.Image = global::Paint_Midterm.Properties.Resources.Icon;
+            this.pictureBox3.Location = new System.Drawing.Point(32, 11);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(40, 40);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 50;
+            this.pictureBox3.TabStop = false;
             // 
-            // pictureBox1
+            // Exit_btn
             // 
-            this.pictureBox1.Image = global::Paint_Midterm.Properties.Resources.width;
-            this.pictureBox1.Location = new System.Drawing.Point(8, 10);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(28, 28);
-            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pictureBox1.TabIndex = 33;
-            this.pictureBox1.TabStop = false;
+            this.Exit_btn.Image = global::Paint_Midterm.Properties.Resources.exit;
+            this.Exit_btn.Location = new System.Drawing.Point(1117, 11);
+            this.Exit_btn.Name = "Exit_btn";
+            this.Exit_btn.Size = new System.Drawing.Size(40, 40);
+            this.Exit_btn.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Exit_btn.TabIndex = 48;
+            this.Exit_btn.TabStop = false;
+            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
             // 
             // Main_PBox
             // 
@@ -587,11 +587,18 @@
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).EndInit();
             this.Fill_pl.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panel3.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Ellipse_btn)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel4.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Save_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Select_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Ungroup_btn)).EndInit();
@@ -600,15 +607,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.ZoomIn_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Clear_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Delete_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Arc_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Freehand_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Polygon_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Circle_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Rec_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Ellipse_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Line_btn)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Exit_btn)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
