@@ -77,6 +77,11 @@ namespace Paint_Midterm
                           Math.Min(P1.Y, P2.Y),
                           Math.Abs(P2.X - P1.X),
                           Math.Abs(P2.Y - P1.Y));
+                    if (r.Width == 0 || r.Height == 0) // Trường hợp vẽ arc chỉ chấm 1 điểm
+                    {
+                        r.Width = 10;
+                        r.Height = 10;
+                    }
                     path.AddArc(r, 0, SweepAngle);
                 }
                 return path;
