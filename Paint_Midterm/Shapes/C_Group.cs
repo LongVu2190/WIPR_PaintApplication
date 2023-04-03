@@ -109,17 +109,18 @@ namespace Paint_Midterm
         {
             GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
+
             {
-                if (Shapes[i].IsFill == true)
+                if (Shapes[i] is C_Group group)
+                {
+                    group.Draw(Gra);
+                }
+                else if (Shapes[i].IsFill == true)
                 {
                     Brush myBrush = new SolidBrush(Shapes[i].ShapeFillColor);
                     Gra.FillPath(myBrush, paths[i]);
                     Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width);
                     Gra.DrawPath(myPen, paths[i]);
-                }
-                else if (Shapes[i] is C_Group group)
-                {
-                    group.Draw(Gra);
                 }
                 else
                 {
