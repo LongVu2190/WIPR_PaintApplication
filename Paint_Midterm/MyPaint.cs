@@ -36,7 +36,7 @@ namespace Paint_Midterm
         }
         private void MyPaint_Load(object sender, EventArgs e)
         {
-            //AllocConsole(); // Debug bằng console
+            //AllocConsole(); // Debug
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MyWidth = 5;
