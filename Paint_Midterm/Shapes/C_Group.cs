@@ -1,7 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Drawing;
-using System.Reflection;
 using System;
 
 namespace Paint_Midterm
