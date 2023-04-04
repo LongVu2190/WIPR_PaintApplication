@@ -1,10 +1,12 @@
-﻿using System.Drawing;
+﻿using System.ComponentModel;
+using System.Drawing;
 using System.Drawing.Drawing2D;
 
 namespace Paint_Midterm
 {
     public class C_Line : A_Shape
     {
+        private float OriWidth;
         public C_Line()
         {
             this.Name = "Line";
@@ -12,6 +14,7 @@ namespace Paint_Midterm
         public C_Line(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
         {
             this.Name = "Line";
+            OriWidth = Width;
         }
         protected override GraphicsPath GetPath
         {
@@ -36,6 +39,34 @@ namespace Paint_Midterm
         {
             Pen MyPen = new Pen(ShapeColor, Width + 5);
             return GetPath.IsOutlineVisible(Point, MyPen);
+        }
+        public override void ZoomIn()
+        {
+            if (P1.X < P2.X && P1.Y < P2.Y)
+            {
+                P1.X -= (P1.X * (float)0.05);
+                P1.Y -= (P1.Y * (float)0.05);
+                P2.X += (P2.X * (float)0.05);
+                P2.Y += (P2.Y * (float)0.05);
+                Width += Width * (float)0.15;
+            }
+            else if (P1.X < P2.X && P1.Y > P2.Y)
+            {
+                P2.X += (P2.X * (float)0.05);
+                P2.Y -= (P2.Y * (float)0.05);
+            }
+        }
+        public override void ZoomOut()
+        {
+            if (Width - Width * (float)0.15 > 2)
+            {
+                P1.X += (P1.X * (float)0.05);
+                P1.Y += (P1.Y * (float)0.05);
+                P2.X -= (P2.X * (float)0.05);
+                P2.Y -= (P2.Y * (float)0.05);
+                Width -= Width * (float)0.15;
+            }
+
         }
     }
 }

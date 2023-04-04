@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
+using System.Security.Cryptography;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Paint_Midterm
@@ -36,7 +38,7 @@ namespace Paint_Midterm
         }
         private void MyPaint_Load(object sender, EventArgs e)
         {
-            //AllocConsole(); // Debug
+            AllocConsole(); // Debug
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MyWidth = 5;
@@ -148,12 +150,23 @@ namespace Paint_Midterm
                 default:
                     break;
             }
+
+            // Nhấn chuột phải để kết thúc vẽ polygon
+            if (e.Button == MouseButtons.Right && Mode == PaintType.Polygon)
+            {
+                isControlKeyPress = false;
+                MessageBox.Show("Drew a Polygon", "Notification");
+                ChangeTextBox("MODE: SELECT & MOVE", "NOTE: ");
+                IsStart = false;
+                PolygonStatus = true;
+                Mode = PaintType.Move;
+            }
         }
         private void Main_Panel_MouseMove(object sender, MouseEventArgs e)
         {
             // Thay đổi con trỏ chuột khi di chuyển đến hình
             Main_PBox.Cursor = Cursors.Default;
-            if (Mode == PaintType.Move)
+            if (Mode == PaintType.Move || isControlKeyPress)
             {
                 for (int i = 0; i < Shapes.Count; i++)
                 {
@@ -220,21 +233,14 @@ namespace Paint_Midterm
 
             if (Mode == PaintType.Group && !isControlKeyPress)
             {
+                MySelectedShapes.Clear();
                 for (int i = 0; i < Shapes.Count; i++)
                 {
                     Shapes[i].IsChosen = false;
 
-                    if (Shapes[i] is C_Polygon polygon)
+                    if (Shapes[i] is C_Rec rect)
                     {
-                        if (polygon.IsGroupHit(rec.P1, rec.P2))
-                        {
-                            Shapes[i].IsChosen = true;
-                            MySelectedShapes.Add(Shapes[i]);
-                        }
-                    }
-                    else if (Shapes[i] is C_Rec rec1)
-                    {
-                        rec1.CheckPoints(); // Đảo lại vị trí P1 và P2
+                        rect.CheckPoints(); // Đảo lại vị trí P1 và P2
                     }
                     else if (Shapes[i] is C_Ellipse ellipse)
                     {
@@ -242,20 +248,37 @@ namespace Paint_Midterm
                     }
                     else if (Shapes[i] is C_Arc arc)
                     {
-                        arc.CheckPoints();
+                        arc.CheckPoints(); // Đảo lại vị trí P1 và P2
+                    }
+                    else if (Shapes[i] is C_Polygon polygon)
+                    {
+                        if (polygon.IsGroupHit(rec.P1, rec.P2) == true)
+                        {
+                            polygon.IsChosen = true;
+                            MySelectedShapes.Add(polygon);
+                        }
                     }
 
-                    if (Shapes[i].P1.X >= rec.P1.X &&
-                        Shapes[i].P2.X <= rec.P2.X + (rec.P2.X - rec.P1.X) &&
-                        Shapes[i].P1.Y >= rec.P1.Y &&
-                        Shapes[i].P2.Y <= rec.P2.Y + (rec.P2.Y - rec.P1.Y))
+                    // Kiểm tra xem vùng quét có chạm hình nào không
+                    if (Shapes[i].P1.X < Math.Max(rec.P2.X, rec.P1.X)
+                        && Shapes[i].P1.X > Math.Min(rec.P2.X, rec.P1.X)
+                        && Shapes[i].P1.Y < Math.Max(rec.P2.Y, rec.P1.Y)
+                        && Shapes[i].P1.Y > Math.Min(rec.P2.Y, rec.P1.Y))
+                    {
+                        Shapes[i].IsChosen = true;
+                        MySelectedShapes.Add(Shapes[i]);
+                    }
+                    else if (Shapes[i].P2.X < Math.Max(rec.P2.X, rec.P1.X)
+                        && Shapes[i].P2.X > Math.Min(rec.P2.X, rec.P1.X)
+                        && Shapes[i].P2.Y < Math.Max(rec.P2.Y, rec.P1.Y)
+                        && Shapes[i].P2.Y > Math.Min(rec.P2.Y, rec.P1.Y))
                     {
                         Shapes[i].IsChosen = true;
                         MySelectedShapes.Add(Shapes[i]);
                     }
                 }
 
-                // Xóa khung hình chữ nhật sau khi thả chuột
+                // Xóa vùng quét sau khi thả chuột
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
                 rec.P2 = p;
@@ -264,7 +287,7 @@ namespace Paint_Midterm
                 Note_tb.Text = "NOTE: Press Ctrl to group";
             }
 
-            if (Mode != PaintType.Polygon)
+            if (Mode != PaintType.Polygon) // Riêng vẽ Polygon
                 IsStart = false;
         }
         private void Main_Panel_Paint(object sender, PaintEventArgs e)
@@ -382,9 +405,9 @@ namespace Paint_Midterm
             {
                 MySelectedShapes[i].IsChosen = false;
             }
+            MySelectedShapes.Clear();
             Mode = PaintType.Group;
-            Mode_tb.Text = "MODE: GROUP";
-            Note_tb.Text = "NOTE: Hold Ctrl to select Shapes";
+            ChangeTextBox("MODE: GROUP", "NOTE: Hold Ctrl to select Shapes");
             Main_PBox.Invalidate();
         }
         private void Ungroup_btn_Click(object sender, EventArgs e)
@@ -423,7 +446,7 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape != null)
             {
-                LastSelectedShape.Width += 5;
+                LastSelectedShape.ZoomIn();
                 Main_PBox.Invalidate();
             }
             else
@@ -433,8 +456,7 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape != null)
             {
-                if (LastSelectedShape.Width > 5)
-                    LastSelectedShape.Width -= 5;
+                LastSelectedShape.ZoomOut();
                 Main_PBox.Invalidate();
             }
             else
@@ -447,15 +469,6 @@ namespace Paint_Midterm
             if (e.KeyCode == Keys.ControlKey)
             {
                 isControlKeyPress = true;
-                if (Mode == PaintType.Polygon)
-                {
-                    isControlKeyPress = false;
-                    MessageBox.Show("Drew a Polygon", "Notification");
-                    ChangeTextBox("MODE: SELECT & MOVE", "NOTE: ");
-                    IsStart = false;
-                    PolygonStatus = true;
-                    Mode = PaintType.Move;
-                }
             }
             if (e.KeyCode == Keys.S && isControlKeyPress)
             {
@@ -470,7 +483,7 @@ namespace Paint_Midterm
         {
             if (e.KeyCode == Keys.ControlKey)
             {
-                isControlKeyPress = e.Control;
+                isControlKeyPress = false;
 
                 if (MySelectedShapes.Count > 1 && Mode == PaintType.Group)
                 {
@@ -622,6 +635,11 @@ namespace Paint_Midterm
         private void PenSize_ValueChanged(object sender, EventArgs e)
         {
             MyWidth = (float)PenWidth.Value;
+        }
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Console.WriteLine("Shapes: " + Shapes.Count);
+            Console.WriteLine("MySelectedShapes: " + MySelectedShapes.Count);
         }
     }
 }

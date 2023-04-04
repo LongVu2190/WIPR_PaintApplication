@@ -2,6 +2,7 @@
 using System.Drawing;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 namespace Paint_Midterm
 {
@@ -69,19 +70,13 @@ namespace Paint_Midterm
                 Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
         }
-        public bool IsGroupHit(PointF P1, PointF P2)
+        public override void ZoomIn()
         {
-            for (int i = 0; i < Points.Count; i++)
-            {
-                if (Points[i].X >= P1.X &&
-                        Points[i].X <= P2.X + (P2.X - P1.X) &&
-                        Points[i].Y >= P1.Y &&
-                        Points[i].Y <= P2.Y + (P2.Y - P1.Y))
-                {
-                    return true;
-                }
-            }
-            return false;
+
+        }
+        public override void ZoomOut()
+        {
+
         }
         public void LinkPoints()
         {
@@ -99,6 +94,20 @@ namespace Paint_Midterm
             });
             P1 = new PointF(minX, minY);
             P2 = new PointF(maxX, maxY);
+        }
+        public bool IsGroupHit(PointF p1, PointF p2)
+        {
+            for (int i = 0; i < Points.Count; i++)
+            {
+                if (Points[i].X < Math.Max(p2.X, p1.X)
+                        && Points[i].X > Math.Min(p2.X, p1.X)
+                        && Points[i].Y < Math.Max(p2.Y, p1.Y)
+                        && Points[i].Y > Math.Min(p2.Y, p1.Y))
+                {
+                    return true;
+                }
+            }
+            return false;
         }
     }
 }

@@ -18,8 +18,8 @@ namespace Paint_Midterm
         }
         public PointF PreviousPoint = Point.Empty;
         public string Name { get; set; }
-        public PointF P1 { get; set; }
-        public PointF P2 { get; set; }
+        public PointF P1;
+        public PointF P2;
         public float Width { get; set; }
         public bool IsFill { get; set; } = false;
         public Color ShapeFillColor { get; set; }
@@ -31,5 +31,7 @@ namespace Paint_Midterm
         public abstract void Draw(Graphics Gra); // Vẽ hình
         public abstract void Move(PointF Dis); // Di chuyển hình
         public abstract bool IsHit(PointF Point); // Kiểm tra xem click chuột có chạm hình không
+        public abstract void ZoomIn();
+        public abstract void ZoomOut();
     }
 }

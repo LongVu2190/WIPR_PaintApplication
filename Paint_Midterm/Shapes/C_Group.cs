@@ -165,6 +165,14 @@ namespace Paint_Midterm
             P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
             P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
         }
+        public override void ZoomIn()
+        {
+
+        }
+        public override void ZoomOut()
+        {
+
+        }
         public void AddSingleShape(A_Shape shape)
         {
             Shapes.Add(shape);
@@ -180,6 +188,22 @@ namespace Paint_Midterm
             {
                 A_Shape shape = Shapes[i];
 
+                //if (shape is C_Polygon polygon)
+                //{
+                //    minX = Math.Min(minX, polygon.P1.X);
+                //    minY = Math.Min(minX, polygon.P1.Y);
+
+                //    maxX = Math.Max(maxX, polygon.P2.X);
+                //    maxY = Math.Max(maxY, polygon.P2.Y);
+                //}
+                //else
+                //{
+                //    minX = Math.Min(minX, Math.Min(shape.P1.X, shape.P2.X));
+                //    minY = Math.Min(minY, Math.Min(shape.P1.Y, shape.P2.Y));
+
+                //    maxX = Math.Max(maxX, Math.Max(shape.P1.X, shape.P2.X));
+                //    maxY = Math.Max(maxY, Math.Max(shape.P1.Y, shape.P2.Y));
+                //}
                 if (shape is C_Polygon polygon)
                 {
                     polygon.LinkPoints();

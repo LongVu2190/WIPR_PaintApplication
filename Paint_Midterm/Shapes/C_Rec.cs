@@ -20,7 +20,7 @@ namespace Paint_Midterm
         protected override GraphicsPath GetPath
         {
             get
-            {                
+            {
                 GraphicsPath path = new GraphicsPath();
                 RectangleF r = new RectangleF(Math.Min(P1.X, P2.X),
                                               Math.Min(P1.Y, P2.Y),
@@ -60,8 +60,23 @@ namespace Paint_Midterm
             P1 = new PointF(P1.X + Dis.X, P1.Y + Dis.Y);
             P2 = new PointF(P2.X + Dis.X, P2.Y + Dis.Y);
         }
+        public override void ZoomIn()
+        {
+            P2.X += (P2.X * (float)0.05);
+            P2.Y += (P2.Y * (float)0.05);
+            Width += Width * (float)0.15;
+        }
+        public override void ZoomOut()
+        {
+            if ((P2.X - P1.X) > 30 && Width > 2)
+            {
+                P2.X -= (P2.X * (float)0.05);
+                P2.Y -= (P2.Y * (float)0.05);
+                Width -= Width * (float)0.15;
+            }
+        }
         // Kiểm tra các hình vẽ từ phải qua trái, dưới lên trên -> trái trên qua phải dưới
-        public void CheckPoints() 
+        public void CheckPoints()
         {
             PointF P1_Temp = new PointF(), P2_Temp = new PointF();
             if (P1.X < P2.X && P1.Y > P2.Y)

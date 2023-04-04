@@ -50,6 +50,14 @@ namespace Paint_Midterm
                 Points[i] = new PointF(Points[i].X + Dis.X, Points[i].Y + Dis.Y);
             }
         }
+        public override void ZoomIn()
+        {
+
+        }
+        public override void ZoomOut()
+        {
+
+        }
         public bool IsGroupHit(PointF P1, PointF P2)
         {
             for (int i = 0; i < Points.Count; i++)
