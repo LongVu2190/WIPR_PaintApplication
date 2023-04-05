@@ -5,7 +5,7 @@ using System.Linq;
 using System;
 using System.Windows.Forms;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public class C_Freehand : A_Shape
     {
@@ -55,11 +55,14 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-            MessageBox.Show("Can not zoom a Freehand", "Notification");
+            Width = Width + 2;
         }
         public override void ZoomOut()
         {
-            MessageBox.Show("Can not zoom a Freehand", "Notification");
+            if (Width > 3)
+            {
+                Width -= 2;
+            }
         }
         public void LinkPoints()
         {

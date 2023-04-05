@@ -4,7 +4,7 @@ using System.Drawing;
 using System;
 using System.Windows.Forms;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public class C_Group : A_Shape
     {
@@ -109,7 +109,6 @@ namespace Paint_Midterm
         {
             GraphicsPath[] paths = GetPaths;
             for (int i = 0; i < paths.Length; i++)
-
             {
                 if (Shapes[i] is C_Group group)
                 {
@@ -119,7 +118,7 @@ namespace Paint_Midterm
                 {
                     Brush myBrush = new SolidBrush(Shapes[i].ShapeFillColor);
                     Gra.FillPath(myBrush, paths[i]);
-                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width);
+                    Pen myPen = new Pen(Shapes[i].ShapeColor, Shapes[i].Width) { DashStyle = Shapes[i].ShapeDashStyle };
                     Gra.DrawPath(myPen, paths[i]);
                 }
                 else
@@ -168,11 +167,17 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-            MessageBox.Show("Can not zoom a Group", "Notification");
+            foreach (var shape in Shapes)
+            {
+                shape.ZoomIn();
+            }
         }
         public override void ZoomOut()
         {
-            MessageBox.Show("Can not zoom a Group", "Notification");
+            foreach (var shape in Shapes)
+            {
+                shape.ZoomOut();
+            }
         }
         public void AddSingleShape(A_Shape shape)
         {

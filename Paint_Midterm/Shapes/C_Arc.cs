@@ -2,7 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Drawing;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public class C_Arc : A_Shape
     {

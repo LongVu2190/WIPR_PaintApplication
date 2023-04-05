@@ -5,7 +5,7 @@ using System.IO;
 using System;
 using System.Linq;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public class C_Polygon : A_Shape
     {

@@ -1,4 +1,4 @@
-﻿namespace Paint_Midterm
+﻿namespace Paint_Midterm.Enums
 {
     enum PaintType
     {

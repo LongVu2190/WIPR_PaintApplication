@@ -1,7 +1,7 @@
 ﻿using System.Drawing;
 using System.Drawing.Drawing2D;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public abstract class A_Shape
     {

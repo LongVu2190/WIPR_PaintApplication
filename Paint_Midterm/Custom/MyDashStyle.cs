@@ -1,6 +1,6 @@
 ﻿using System.Drawing.Drawing2D;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Custom
 {
     public static class MyDashStyle
     {
@@ -9,29 +9,17 @@ namespace Paint_Midterm
             switch (n)
             {
                 case 0:
-                    {
-                        return DashStyle.Solid;
-                    }
+                    return DashStyle.Solid;
                 case 1:
-                    {
-                        return DashStyle.Dash;
-                    }
+                    return DashStyle.Dash;
                 case 2:
-                    {
-                        return DashStyle.Dot;
-                    }
+                    return DashStyle.Dot;
                 case 3:
-                    {
-                        return DashStyle.DashDot;
-                    }
+                    return DashStyle.DashDot;
                 case 4:
-                    {
-                        return DashStyle.DashDotDot;
-                    }
+                    return DashStyle.DashDotDot;
                 default:
-                    {
-                        return DashStyle.Solid;
-                    }
+                    return DashStyle.Solid;
             }
         }
     }

@@ -2,7 +2,7 @@
 using System.Drawing;
 using System.IO;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     internal class C_Ellipse : A_Shape
     {

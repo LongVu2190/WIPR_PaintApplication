@@ -3,7 +3,7 @@ using System.Drawing.Drawing2D;
 using System.Drawing;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
-namespace Paint_Midterm
+namespace Paint_Midterm.Shapes
 {
     public class C_Rec : A_Shape
     {
@@ -105,12 +105,8 @@ namespace Paint_Midterm
                 P1_Temp = P1;
                 P2_Temp = P2;
             }
-            //Console.WriteLine("P1 After: " + P1.ToString());
-            //Console.WriteLine("P2 After: " + P2.ToString());
             P1 = P1_Temp;
             P2 = P2_Temp;
-            //Console.WriteLine("P1: " + P1.ToString());
-            //Console.WriteLine("P2: " + P2.ToString());
         }
     }
 }

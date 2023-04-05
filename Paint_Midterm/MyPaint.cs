@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.Runtime.InteropServices;
-using System.Security.Cryptography;
-using System.Text;
 using System.Windows.Forms;
+using Paint_Midterm.Custom;
+using Paint_Midterm.Enums;
+using Paint_Midterm.Shapes;
 
 namespace Paint_Midterm
 {
@@ -83,6 +84,7 @@ namespace Paint_Midterm
                         Shape_tb.Text = Shapes[i].Name;
                         PreviousPoint = e.Location;
                         Moving = true;
+                        Main_PBox.Invalidate();
                         break;
                     }
                 }
@@ -339,11 +341,11 @@ namespace Paint_Midterm
                             SelectedShape.P2.X - SelectedShape.P1.X,
                             SelectedShape.P2.Y - SelectedShape.P1.Y));
                     }
-                    if (SelectedShape is C_Line || SelectedShape is C_Rec || SelectedShape is C_Ellipse || SelectedShape is C_Arc)
+                    if (SelectedShape is C_Rec || SelectedShape is C_Ellipse || SelectedShape is C_Arc)
                     {
                         ShapeFrame.DrawRectanglePoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
-                    else if (SelectedShape is C_Freehand)
+                    else if (SelectedShape is C_Freehand || SelectedShape is C_Line)
                     {
                         ShapeFrame.DrawStartEndPoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
