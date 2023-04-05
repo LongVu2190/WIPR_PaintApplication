@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using System;
+using System.ComponentModel;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 
@@ -6,7 +7,6 @@ namespace Paint_Midterm
 {
     public class C_Line : A_Shape
     {
-        private float OriWidth;
         public C_Line()
         {
             this.Name = "Line";
@@ -14,7 +14,6 @@ namespace Paint_Midterm
         public C_Line(PointF P1, PointF P2, float Width, Color ShapeColor, DashStyle ShapeDashStyle) : base(P1, P2, Width, ShapeColor, ShapeDashStyle)
         {
             this.Name = "Line";
-            OriWidth = Width;
         }
         protected override GraphicsPath GetPath
         {
@@ -42,31 +41,37 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-            if (P1.X < P2.X && P1.Y < P2.Y)
+            float Dx = (float)(-P1.Y + P2.Y) / (P1.X - P2.X);
+            if (Dx == 0)
             {
-                P1.X -= (P1.X * (float)0.05);
-                P1.Y -= (P1.Y * (float)0.05);
-                P2.X += (P2.X * (float)0.05);
-                P2.Y += (P2.Y * (float)0.05);
-                Width += Width * (float)0.15;
+                Dx = (float)(-P1.Y + P2.Y) / (P1.X - P2.X);
             }
-            else if (P1.X < P2.X && P1.Y > P2.Y)
+
+            if (P2.X > P1.X)
             {
-                P2.X += (P2.X * (float)0.05);
-                P2.Y -= (P2.Y * (float)0.05);
+                P2 = new PointF(P2.X + 3, P2.Y - (3 * Dx));
             }
+            else
+            {
+                P1 = new PointF(P1.X + 3, P1.Y - (3 * Dx));
+            }
+            Width += 1;
         }
         public override void ZoomOut()
         {
-            if (Width - Width * (float)0.15 > 2)
-            {
-                P1.X += (P1.X * (float)0.05);
-                P1.Y += (P1.Y * (float)0.05);
-                P2.X -= (P2.X * (float)0.05);
-                P2.Y -= (P2.Y * (float)0.05);
-                Width -= Width * (float)0.15;
-            }
+            if (Width <= 2) return;
 
+            float Dx = (float)(-P1.Y + P2.Y) / (P1.X - P2.X);
+
+            if (P2.X > P1.X && P2.X - P1.X > 8)
+            {
+                P2 = new PointF(P2.X - 3, P2.Y + (3 * Dx));
+            }
+            else if (P1.X - P2.X > 8)
+            {
+                P1 = new PointF(P1.X - 3, P1.Y + (3 * Dx));
+            }
+            Width -= 1;
         }
     }
 }

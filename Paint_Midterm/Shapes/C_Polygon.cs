@@ -3,6 +3,7 @@ using System.Drawing;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Linq;
 
 namespace Paint_Midterm
 {
@@ -72,11 +73,88 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-
+            List<PointF> tmp = new List<PointF>();
+            tmp.Add(Points[0]);
+            if (Points.Count() > 2)
+            {
+                for (int i = 1; i < Points.Count(); i++)
+                {
+                    float Dx1 = (float)(-Points[0].Y + Points[i].Y) / (Points[0].X - Points[i].X);
+                    if (i == 1)
+                    {
+                        PointF p2 = new PointF(Points[i].X + 3, Points[i].Y - (3 * Dx1));
+                        tmp.Add(p2);
+                    }
+                    else
+                    {
+                        float Dx2 = (float)(-Points[i - 1].Y + Points[i].Y) / (Points[i - 1].X - Points[i].X);
+                        float x = Dx2 * (-tmp[i - 1].X) - tmp[i - 1].Y + Dx1 * (Points[0].X) + Points[0].Y;
+                        x /= (Dx1 - Dx2);
+                        float y = -Dx1 * (x - Points[0].X) + Points[0].Y;
+                        PointF p2 = new PointF(x, y);
+                        tmp.Add(p2);                    }
+                }
+                for (int i = 0; i < Points.Count(); i++)
+                    Points[i] = tmp[i];
+            }
+            else
+            {
+                float Dx = (float)(-Points[0].Y + Points[1].Y) / (Points[0].X - Points[1].X);
+                PointF p2 = new PointF(Points[1].X + 3, Points[1].Y - (3 * Dx));
+                Points[1] = p2;
+            }
+            Width += 1;
         }
         public override void ZoomOut()
         {
-
+            if (Width <= 2) return;
+            bool flag = true;
+            List<PointF> tmp = new List<PointF>();
+            tmp.Add(Points[0]);
+            if (Points.Count() > 2)
+            {
+                for (int i = 1; i < Points.Count(); i++)
+                {
+                    float Dx1 = (float)(-Points[0].Y + Points[i].Y) / (Points[0].X - Points[i].X);
+                    if (i == 1)
+                    {
+                        PointF p2 = new PointF(Points[i].X - 3, Points[i].Y + (3 * Dx1));
+                        float check = Points[i].X - 3 - Points[0].X;
+                        if (check > 5)
+                        {
+                            tmp.Add(p2);
+                            flag = true;
+                        }
+                        else
+                        {
+                            flag = false;
+                            break;
+                        }
+                    }
+                    else
+                    {
+                        float Dx2 = (float)(-Points[i - 1].Y + Points[i].Y) / (Points[i - 1].X - Points[i].X);
+                        float x = Dx2 * (-tmp[i - 1].X) - tmp[i - 1].Y + Dx1 * (Points[0].X) + Points[0].Y;
+                        x /= (Dx1 - Dx2);
+                        float y = -Dx1 * (x - Points[0].X) + Points[0].Y;
+                        PointF p2 = new PointF(x, y);
+                        tmp.Add(p2);
+                    }
+                }
+                if (flag == true)
+                    for (int i = 0; i < Points.Count(); i++)
+                        Points[i] = tmp[i];
+            }
+            else
+            {
+                if (Points[1].X - 10 - Points[0].X > 5)
+                {
+                    float Dx1 = (float)(-Points[0].Y + Points[1].Y) / (Points[0].X - Points[1].X);
+                    PointF p2 = new PointF(this.Points[1].X - 3, this.Points[1].Y + (3 * Dx1));
+                    Points[1] = p2;
+                }
+            }
+            Width -= 1;
         }
         public void LinkPoints()
         {

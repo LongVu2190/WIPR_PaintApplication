@@ -41,6 +41,7 @@
             this.Dash_PBox = new System.Windows.Forms.PictureBox();
             this.Width_PBox = new System.Windows.Forms.PictureBox();
             this.Shapes_pl = new System.Windows.Forms.Panel();
+            this.button1 = new System.Windows.Forms.Button();
             this.Circle_btn = new System.Windows.Forms.Button();
             this.Line_btn = new System.Windows.Forms.Button();
             this.Rec_btn = new System.Windows.Forms.Button();
@@ -71,7 +72,6 @@
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             this.Notes_pl = new System.Windows.Forms.Panel();
             this.Notes_lb = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
             this.Modify_pl.SuspendLayout();
@@ -87,7 +87,7 @@
             // Shape_tb
             // 
             this.Shape_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shape_tb.Location = new System.Drawing.Point(111, 9);
+            this.Shape_tb.Location = new System.Drawing.Point(111, 10);
             this.Shape_tb.Name = "Shape_tb";
             this.Shape_tb.ReadOnly = true;
             this.Shape_tb.Size = new System.Drawing.Size(174, 26);
@@ -229,6 +229,18 @@
             this.Shapes_pl.Size = new System.Drawing.Size(186, 92);
             this.Shapes_pl.TabIndex = 29;
             // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.Color.DarkGray;
+            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.button1.Location = new System.Drawing.Point(137, 47);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(40, 40);
+            this.button1.TabIndex = 60;
+            this.toolTip.SetToolTip(this.button1, "Arc");
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Circle_btn
             // 
             this.Circle_btn.BackColor = System.Drawing.Color.Transparent;
@@ -352,7 +364,7 @@
             this.Select_btn.BackColor = System.Drawing.Color.Transparent;
             this.Select_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.select;
             this.Select_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Select_btn.Location = new System.Drawing.Point(16, 4);
+            this.Select_btn.Location = new System.Drawing.Point(17, 4);
             this.Select_btn.Name = "Select_btn";
             this.Select_btn.Size = new System.Drawing.Size(40, 40);
             this.Select_btn.TabIndex = 67;
@@ -378,7 +390,7 @@
             this.Save_btn.BackColor = System.Drawing.Color.Transparent;
             this.Save_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.save;
             this.Save_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Save_btn.Location = new System.Drawing.Point(16, 45);
+            this.Save_btn.Location = new System.Drawing.Point(17, 45);
             this.Save_btn.Name = "Save_btn";
             this.Save_btn.Size = new System.Drawing.Size(40, 40);
             this.Save_btn.TabIndex = 65;
@@ -391,7 +403,7 @@
             this.ZoomIn_btn.BackColor = System.Drawing.Color.Transparent;
             this.ZoomIn_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.zoomin;
             this.ZoomIn_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ZoomIn_btn.Location = new System.Drawing.Point(111, 44);
+            this.ZoomIn_btn.Location = new System.Drawing.Point(111, 45);
             this.ZoomIn_btn.Name = "ZoomIn_btn";
             this.ZoomIn_btn.Size = new System.Drawing.Size(40, 40);
             this.ZoomIn_btn.TabIndex = 63;
@@ -404,7 +416,7 @@
             this.Group_btn.BackColor = System.Drawing.Color.Transparent;
             this.Group_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.group;
             this.Group_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Group_btn.Location = new System.Drawing.Point(202, 44);
+            this.Group_btn.Location = new System.Drawing.Point(202, 45);
             this.Group_btn.Name = "Group_btn";
             this.Group_btn.Size = new System.Drawing.Size(40, 40);
             this.Group_btn.TabIndex = 61;
@@ -430,7 +442,7 @@
             this.ZoomOut_btn.BackColor = System.Drawing.Color.Transparent;
             this.ZoomOut_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.zoomout;
             this.ZoomOut_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ZoomOut_btn.Location = new System.Drawing.Point(156, 44);
+            this.ZoomOut_btn.Location = new System.Drawing.Point(156, 45);
             this.ZoomOut_btn.Name = "ZoomOut_btn";
             this.ZoomOut_btn.Size = new System.Drawing.Size(40, 40);
             this.ZoomOut_btn.TabIndex = 62;
@@ -443,7 +455,7 @@
             this.Ungroup_btn.BackColor = System.Drawing.Color.Transparent;
             this.Ungroup_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.ungroup;
             this.Ungroup_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Ungroup_btn.Location = new System.Drawing.Point(248, 44);
+            this.Ungroup_btn.Location = new System.Drawing.Point(248, 45);
             this.Ungroup_btn.Name = "Ungroup_btn";
             this.Ungroup_btn.Size = new System.Drawing.Size(40, 40);
             this.Ungroup_btn.TabIndex = 60;
@@ -579,18 +591,6 @@
             this.Notes_lb.Size = new System.Drawing.Size(45, 19);
             this.Notes_lb.TabIndex = 63;
             this.Notes_lb.Text = "Notes";
-            // 
-            // button1
-            // 
-            this.button1.BackColor = System.Drawing.Color.DarkGray;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(137, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 40);
-            this.button1.TabIndex = 60;
-            this.toolTip.SetToolTip(this.button1, "Arc");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // MyPaint
             // 

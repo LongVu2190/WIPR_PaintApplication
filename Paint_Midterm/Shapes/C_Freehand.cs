@@ -1,6 +1,9 @@
 ﻿using System.Collections.Generic;
 using System.Drawing.Drawing2D;
 using System.Drawing;
+using System.Linq;
+using System;
+using System.Windows.Forms;
 
 namespace Paint_Midterm
 {
@@ -52,25 +55,11 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-
+            MessageBox.Show("Can not zoom a Freehand", "Notification");
         }
         public override void ZoomOut()
         {
-
-        }
-        public bool IsGroupHit(PointF P1, PointF P2)
-        {
-            for (int i = 0; i < Points.Count; i++)
-            {
-                if (Points[i].X >= P1.X &&
-                        Points[i].X <= P2.X + (P2.X - P1.X) &&
-                        Points[i].Y >= P1.Y &&
-                        Points[i].Y <= P2.Y + (P2.Y - P1.Y))
-                {
-                    return true;
-                }
-            }
-            return false;
+            MessageBox.Show("Can not zoom a Freehand", "Notification");
         }
         public void LinkPoints()
         {

@@ -2,6 +2,7 @@
 using System.Drawing.Drawing2D;
 using System.Drawing;
 using System;
+using System.Windows.Forms;
 
 namespace Paint_Midterm
 {
@@ -167,11 +168,11 @@ namespace Paint_Midterm
         }
         public override void ZoomIn()
         {
-
+            MessageBox.Show("Can not zoom a Group", "Notification");
         }
         public override void ZoomOut()
         {
-
+            MessageBox.Show("Can not zoom a Group", "Notification");
         }
         public void AddSingleShape(A_Shape shape)
         {

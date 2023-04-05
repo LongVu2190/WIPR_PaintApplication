@@ -109,7 +109,7 @@ namespace Paint_Midterm
         }
         public override void ZoomOut()
         {
-            if ((P2.X - P1.X) > 30 && Width > 2)
+            if ((P2.X - P1.X) > 30 && Width > 4)
             {
                 P2.X -= (P2.X * (float)0.05);
                 P2.Y -= (P2.Y * (float)0.05);
