@@ -607,6 +607,17 @@ namespace Paint_Midterm
             PolygonStatus = false;
             ChangeTextBox("MODE: DRAW POLYGON", "NOTE: Press Ctrl to finish Polygon");
         }
+
+        private void Icon_PBox_Click(object sender, EventArgs e)
+        {
+            if (Main_PBox.Image != null)
+            {
+                Main_PBox.Image = null;
+                return;
+            }
+            Main_PBox.Image = Properties.Resources.cat;
+        }
+
         private void Freehand_btn_Click(object sender, EventArgs e)
         {
             ChangeTextBox("MODE: DRAW FREEHAND", "NOTE:");
