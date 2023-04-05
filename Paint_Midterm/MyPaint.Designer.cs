@@ -438,7 +438,7 @@
             this.Clear_btn.Name = "Clear_btn";
             this.Clear_btn.Size = new System.Drawing.Size(40, 40);
             this.Clear_btn.TabIndex = 64;
-            this.toolTip.SetToolTip(this.Clear_btn, "Zoom out");
+            this.toolTip.SetToolTip(this.Clear_btn, "Clear panel");
             this.Clear_btn.UseVisualStyleBackColor = false;
             this.Clear_btn.Click += new System.EventHandler(this.Clear_btn_Click);
             // 

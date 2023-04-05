@@ -283,8 +283,9 @@ namespace Paint_Midterm
                 rec.P1 = p;
                 rec.P2 = p;
                 Main_PBox.Invalidate();
-                Shape_tb.Text = "Group";
-                Note_tb.Text = "NOTE: Press Ctrl to group";
+                if (MySelectedShapes.Count > 2)
+                    Shape_tb.Text = "GROUP";
+                ChangeTextBox("MODE: GROUP", "NOTES: Hold CTRL to group");
             }
 
             if (Mode != PaintType.Polygon) // Riêng vẽ Polygon
@@ -605,19 +606,8 @@ namespace Paint_Midterm
         {
             Mode = PaintType.Polygon;
             PolygonStatus = false;
-            ChangeTextBox("MODE: DRAW POLYGON", "NOTE: Press Ctrl to finish Polygon");
+            ChangeTextBox("MODE: DRAW POLYGON", "NOTE: Right click to finish polygon");
         }
-
-        private void Icon_PBox_Click(object sender, EventArgs e)
-        {
-            if (Main_PBox.Image != null)
-            {
-                Main_PBox.Image = null;
-                return;
-            }
-            Main_PBox.Image = Properties.Resources.cat;
-        }
-
         private void Freehand_btn_Click(object sender, EventArgs e)
         {
             ChangeTextBox("MODE: DRAW FREEHAND", "NOTE:");
@@ -652,5 +642,15 @@ namespace Paint_Midterm
             Console.WriteLine("Shapes: " + Shapes.Count);
             Console.WriteLine("MySelectedShapes: " + MySelectedShapes.Count);
         }
+        private void Icon_PBox_Click(object sender, EventArgs e)
+        {
+            if (Main_PBox.Image != null)
+            {
+                Main_PBox.Image = null;
+                return;
+            }
+            Main_PBox.Image = Properties.Resources.cat;
+        }
+
     }
 }
