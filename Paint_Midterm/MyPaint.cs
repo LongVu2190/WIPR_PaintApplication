@@ -191,8 +191,11 @@ namespace Paint_Midterm
             switch (Mode)
             {
                 case PaintType.Group:
-                    rec.P2 = e.Location;
-                    Main_PBox.Refresh();
+                    if (!isControlKeyPress)
+                    {
+                        rec.P2 = e.Location;
+                        Main_PBox.Refresh();
+                    }                    
                     break;
                 case PaintType.Move:
                     break;
@@ -292,7 +295,7 @@ namespace Paint_Midterm
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 
-            if (rec != null)
+            if (rec != null && !isControlKeyPress)
                 rec.Draw(e.Graphics);
             foreach (var shape in Shapes)
             {
@@ -412,7 +415,7 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape is null || LastSelectedShape.Name != "Group")
             {
-                MessageBox.Show("Please choose a group shape", "Notification");
+                MessageBox.Show("Please select a group shape", "Notification");
                 return;
             }
             C_Group group = new C_Group();
@@ -527,7 +530,7 @@ namespace Paint_Midterm
         {
             if (LastSelectedShape == null)
             {
-                MessageBox.Show("Please choose a shape to delete", "Notification");
+                MessageBox.Show("Please select a shape to delete", "Notification");
                 return;
             }
             Shapes.Remove(LastSelectedShape);
