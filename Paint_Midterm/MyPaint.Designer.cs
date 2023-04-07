@@ -38,22 +38,18 @@
             this.Fill_Color_btn = new System.Windows.Forms.Button();
             this.Color_btn = new System.Windows.Forms.Button();
             this.Modify_pl = new System.Windows.Forms.Panel();
+            this.Dash_PBox = new System.Windows.Forms.PictureBox();
+            this.Width_PBox = new System.Windows.Forms.PictureBox();
             this.Shapes_pl = new System.Windows.Forms.Panel();
-            this.button1 = new System.Windows.Forms.Button();
+            this.Circle_btn = new System.Windows.Forms.Button();
+            this.Line_btn = new System.Windows.Forms.Button();
+            this.Rec_btn = new System.Windows.Forms.Button();
+            this.Polygon_btn = new System.Windows.Forms.Button();
+            this.Arc_btn = new System.Windows.Forms.Button();
+            this.Ellipse_btn = new System.Windows.Forms.Button();
+            this.Freehand_btn = new System.Windows.Forms.Button();
             this.DashList = new System.Windows.Forms.ImageList(this.components);
             this.Tools_pl = new System.Windows.Forms.Panel();
-            this.Modify_lb = new System.Windows.Forms.Label();
-            this.Color_lb = new System.Windows.Forms.Label();
-            this.Shapes_lb = new System.Windows.Forms.Label();
-            this.Tools_lb = new System.Windows.Forms.Label();
-            this.Mode_tb = new System.Windows.Forms.TextBox();
-            this.Note_tb = new System.Windows.Forms.TextBox();
-            this.Title = new System.Windows.Forms.Label();
-            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.Notes_pl = new System.Windows.Forms.Panel();
-            this.Notes_lb = new System.Windows.Forms.Label();
-            this.Exit_btn = new System.Windows.Forms.Button();
-            this.Icon_PBox = new System.Windows.Forms.PictureBox();
             this.Select_btn = new System.Windows.Forms.Button();
             this.Delete_btn = new System.Windows.Forms.Button();
             this.Save_btn = new System.Windows.Forms.Button();
@@ -62,25 +58,28 @@
             this.Clear_btn = new System.Windows.Forms.Button();
             this.ZoomOut_btn = new System.Windows.Forms.Button();
             this.Ungroup_btn = new System.Windows.Forms.Button();
-            this.Circle_btn = new System.Windows.Forms.Button();
-            this.Line_btn = new System.Windows.Forms.Button();
-            this.Rec_btn = new System.Windows.Forms.Button();
-            this.Polygon_btn = new System.Windows.Forms.Button();
-            this.Arc_btn = new System.Windows.Forms.Button();
-            this.Ellipse_btn = new System.Windows.Forms.Button();
-            this.Freehand_btn = new System.Windows.Forms.Button();
-            this.Dash_PBox = new System.Windows.Forms.PictureBox();
-            this.Width_PBox = new System.Windows.Forms.PictureBox();
+            this.Modify_lb = new System.Windows.Forms.Label();
+            this.Color_lb = new System.Windows.Forms.Label();
+            this.Shapes_lb = new System.Windows.Forms.Label();
+            this.Tools_lb = new System.Windows.Forms.Label();
+            this.Mode_tb = new System.Windows.Forms.TextBox();
+            this.Note_tb = new System.Windows.Forms.TextBox();
+            this.Title = new System.Windows.Forms.Label();
+            this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.Exit_btn = new System.Windows.Forms.Button();
+            this.Notes_pl = new System.Windows.Forms.Panel();
+            this.Notes_lb = new System.Windows.Forms.Label();
+            this.Icon_PBox = new System.Windows.Forms.PictureBox();
             this.Main_PBox = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).BeginInit();
             this.Fill_pl.SuspendLayout();
             this.Modify_pl.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Dash_PBox)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Width_PBox)).BeginInit();
             this.Shapes_pl.SuspendLayout();
             this.Tools_pl.SuspendLayout();
             this.Notes_pl.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_PBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dash_PBox)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Width_PBox)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).BeginInit();
             this.SuspendLayout();
             // 
@@ -193,10 +192,29 @@
             this.Modify_pl.Size = new System.Drawing.Size(190, 92);
             this.Modify_pl.TabIndex = 28;
             // 
+            // Dash_PBox
+            // 
+            this.Dash_PBox.Image = global::Paint_Midterm.Properties.Resources.dash;
+            this.Dash_PBox.Location = new System.Drawing.Point(8, 46);
+            this.Dash_PBox.Name = "Dash_PBox";
+            this.Dash_PBox.Size = new System.Drawing.Size(28, 32);
+            this.Dash_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Dash_PBox.TabIndex = 34;
+            this.Dash_PBox.TabStop = false;
+            // 
+            // Width_PBox
+            // 
+            this.Width_PBox.Image = global::Paint_Midterm.Properties.Resources.width;
+            this.Width_PBox.Location = new System.Drawing.Point(8, 10);
+            this.Width_PBox.Name = "Width_PBox";
+            this.Width_PBox.Size = new System.Drawing.Size(28, 28);
+            this.Width_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Width_PBox.TabIndex = 33;
+            this.Width_PBox.TabStop = false;
+            // 
             // Shapes_pl
             // 
             this.Shapes_pl.BackColor = System.Drawing.SystemColors.Window;
-            this.Shapes_pl.Controls.Add(this.button1);
             this.Shapes_pl.Controls.Add(this.Circle_btn);
             this.Shapes_pl.Controls.Add(this.Line_btn);
             this.Shapes_pl.Controls.Add(this.Rec_btn);
@@ -209,17 +227,96 @@
             this.Shapes_pl.Size = new System.Drawing.Size(186, 92);
             this.Shapes_pl.TabIndex = 29;
             // 
-            // button1
+            // Circle_btn
             // 
-            this.button1.BackColor = System.Drawing.Color.DarkGray;
-            this.button1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.button1.Location = new System.Drawing.Point(137, 47);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(40, 40);
-            this.button1.TabIndex = 60;
-            this.toolTip.SetToolTip(this.button1, "Arc");
-            this.button1.UseVisualStyleBackColor = false;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.Circle_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Circle_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.circle;
+            this.Circle_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Circle_btn.Location = new System.Drawing.Point(8, 47);
+            this.Circle_btn.Name = "Circle_btn";
+            this.Circle_btn.Size = new System.Drawing.Size(40, 40);
+            this.Circle_btn.TabIndex = 59;
+            this.toolTip.SetToolTip(this.Circle_btn, "Circle");
+            this.Circle_btn.UseVisualStyleBackColor = false;
+            this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
+            // 
+            // Line_btn
+            // 
+            this.Line_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Line_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.line;
+            this.Line_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Line_btn.Location = new System.Drawing.Point(8, 4);
+            this.Line_btn.Name = "Line_btn";
+            this.Line_btn.Size = new System.Drawing.Size(40, 40);
+            this.Line_btn.TabIndex = 58;
+            this.toolTip.SetToolTip(this.Line_btn, "Line");
+            this.Line_btn.UseVisualStyleBackColor = false;
+            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
+            // 
+            // Rec_btn
+            // 
+            this.Rec_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Rec_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Rec_btn.BackgroundImage")));
+            this.Rec_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Rec_btn.Location = new System.Drawing.Point(51, 4);
+            this.Rec_btn.Name = "Rec_btn";
+            this.Rec_btn.Size = new System.Drawing.Size(40, 40);
+            this.Rec_btn.TabIndex = 57;
+            this.toolTip.SetToolTip(this.Rec_btn, "Rectangle");
+            this.Rec_btn.UseVisualStyleBackColor = false;
+            this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
+            // 
+            // Polygon_btn
+            // 
+            this.Polygon_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Polygon_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.polygon;
+            this.Polygon_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Polygon_btn.Location = new System.Drawing.Point(51, 47);
+            this.Polygon_btn.Name = "Polygon_btn";
+            this.Polygon_btn.Size = new System.Drawing.Size(40, 40);
+            this.Polygon_btn.TabIndex = 56;
+            this.toolTip.SetToolTip(this.Polygon_btn, "Polygon");
+            this.Polygon_btn.UseVisualStyleBackColor = false;
+            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            // 
+            // Arc_btn
+            // 
+            this.Arc_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Arc_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.arc;
+            this.Arc_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Arc_btn.Location = new System.Drawing.Point(94, 47);
+            this.Arc_btn.Name = "Arc_btn";
+            this.Arc_btn.Size = new System.Drawing.Size(40, 40);
+            this.Arc_btn.TabIndex = 55;
+            this.toolTip.SetToolTip(this.Arc_btn, "Arc");
+            this.Arc_btn.UseVisualStyleBackColor = false;
+            this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
+            // 
+            // Ellipse_btn
+            // 
+            this.Ellipse_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Ellipse_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.ellipse;
+            this.Ellipse_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Ellipse_btn.Location = new System.Drawing.Point(94, 4);
+            this.Ellipse_btn.Name = "Ellipse_btn";
+            this.Ellipse_btn.Size = new System.Drawing.Size(40, 40);
+            this.Ellipse_btn.TabIndex = 54;
+            this.toolTip.SetToolTip(this.Ellipse_btn, "Ellipse");
+            this.Ellipse_btn.UseVisualStyleBackColor = false;
+            this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
+            // 
+            // Freehand_btn
+            // 
+            this.Freehand_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Freehand_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.paint;
+            this.Freehand_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Freehand_btn.Location = new System.Drawing.Point(137, 4);
+            this.Freehand_btn.Name = "Freehand_btn";
+            this.Freehand_btn.Size = new System.Drawing.Size(40, 40);
+            this.Freehand_btn.TabIndex = 53;
+            this.toolTip.SetToolTip(this.Freehand_btn, "Freehand");
+            this.Freehand_btn.UseVisualStyleBackColor = false;
+            this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
             // 
             // DashList
             // 
@@ -247,122 +344,6 @@
             this.Tools_pl.Name = "Tools_pl";
             this.Tools_pl.Size = new System.Drawing.Size(307, 91);
             this.Tools_pl.TabIndex = 30;
-            // 
-            // Modify_lb
-            // 
-            this.Modify_lb.AutoSize = true;
-            this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Modify_lb.Location = new System.Drawing.Point(1032, 152);
-            this.Modify_lb.Name = "Modify_lb";
-            this.Modify_lb.Size = new System.Drawing.Size(52, 19);
-            this.Modify_lb.TabIndex = 29;
-            this.Modify_lb.Text = "Modify";
-            // 
-            // Color_lb
-            // 
-            this.Color_lb.AutoSize = true;
-            this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Color_lb.Location = new System.Drawing.Point(871, 152);
-            this.Color_lb.Name = "Color_lb";
-            this.Color_lb.Size = new System.Drawing.Size(42, 19);
-            this.Color_lb.TabIndex = 31;
-            this.Color_lb.Text = "Color";
-            // 
-            // Shapes_lb
-            // 
-            this.Shapes_lb.AutoSize = true;
-            this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Shapes_lb.Location = new System.Drawing.Point(702, 152);
-            this.Shapes_lb.Name = "Shapes_lb";
-            this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
-            this.Shapes_lb.TabIndex = 32;
-            this.Shapes_lb.Text = "Shapes";
-            // 
-            // Tools_lb
-            // 
-            this.Tools_lb.AutoSize = true;
-            this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Tools_lb.Location = new System.Drawing.Point(169, 152);
-            this.Tools_lb.Name = "Tools_lb";
-            this.Tools_lb.Size = new System.Drawing.Size(40, 19);
-            this.Tools_lb.TabIndex = 33;
-            this.Tools_lb.Text = "Tools";
-            // 
-            // Mode_tb
-            // 
-            this.Mode_tb.BackColor = System.Drawing.SystemColors.Control;
-            this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Mode_tb.Location = new System.Drawing.Point(11, 12);
-            this.Mode_tb.Name = "Mode_tb";
-            this.Mode_tb.ReadOnly = true;
-            this.Mode_tb.Size = new System.Drawing.Size(250, 26);
-            this.Mode_tb.TabIndex = 48;
-            this.Mode_tb.Text = "MODE: GROUP";
-            // 
-            // Note_tb
-            // 
-            this.Note_tb.BackColor = System.Drawing.SystemColors.Control;
-            this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Note_tb.Location = new System.Drawing.Point(11, 49);
-            this.Note_tb.Name = "Note_tb";
-            this.Note_tb.ReadOnly = true;
-            this.Note_tb.Size = new System.Drawing.Size(250, 26);
-            this.Note_tb.TabIndex = 49;
-            this.Note_tb.Text = "NOTE: ";
-            // 
-            // Title
-            // 
-            this.Title.AutoSize = true;
-            this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Title.Location = new System.Drawing.Point(74, 17);
-            this.Title.Name = "Title";
-            this.Title.Size = new System.Drawing.Size(165, 25);
-            this.Title.TabIndex = 52;
-            this.Title.Text = "Paint Application";
-            // 
-            // Notes_pl
-            // 
-            this.Notes_pl.BackColor = System.Drawing.SystemColors.Window;
-            this.Notes_pl.Controls.Add(this.Mode_tb);
-            this.Notes_pl.Controls.Add(this.Note_tb);
-            this.Notes_pl.Location = new System.Drawing.Point(353, 57);
-            this.Notes_pl.Name = "Notes_pl";
-            this.Notes_pl.Size = new System.Drawing.Size(272, 92);
-            this.Notes_pl.TabIndex = 62;
-            // 
-            // Notes_lb
-            // 
-            this.Notes_lb.AutoSize = true;
-            this.Notes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Notes_lb.Location = new System.Drawing.Point(467, 151);
-            this.Notes_lb.Name = "Notes_lb";
-            this.Notes_lb.Size = new System.Drawing.Size(45, 19);
-            this.Notes_lb.TabIndex = 63;
-            this.Notes_lb.Text = "Notes";
-            // 
-            // Exit_btn
-            // 
-            this.Exit_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Exit_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Exit_btn.BackgroundImage")));
-            this.Exit_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Exit_btn.Location = new System.Drawing.Point(1113, 11);
-            this.Exit_btn.Name = "Exit_btn";
-            this.Exit_btn.Size = new System.Drawing.Size(40, 40);
-            this.Exit_btn.TabIndex = 60;
-            this.toolTip.SetToolTip(this.Exit_btn, "Exit");
-            this.Exit_btn.UseVisualStyleBackColor = false;
-            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
-            // 
-            // Icon_PBox
-            // 
-            this.Icon_PBox.Image = global::Paint_Midterm.Properties.Resources.Icon;
-            this.Icon_PBox.Location = new System.Drawing.Point(32, 10);
-            this.Icon_PBox.Name = "Icon_PBox";
-            this.Icon_PBox.Size = new System.Drawing.Size(40, 40);
-            this.Icon_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Icon_PBox.TabIndex = 50;
-            this.Icon_PBox.TabStop = false;
-            this.Icon_PBox.Click += new System.EventHandler(this.Icon_PBox_Click);
             // 
             // Select_btn
             // 
@@ -468,116 +449,121 @@
             this.Ungroup_btn.UseVisualStyleBackColor = false;
             this.Ungroup_btn.Click += new System.EventHandler(this.Ungroup_btn_Click);
             // 
-            // Circle_btn
+            // Modify_lb
             // 
-            this.Circle_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Circle_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.circle;
-            this.Circle_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Circle_btn.Location = new System.Drawing.Point(8, 47);
-            this.Circle_btn.Name = "Circle_btn";
-            this.Circle_btn.Size = new System.Drawing.Size(40, 40);
-            this.Circle_btn.TabIndex = 59;
-            this.toolTip.SetToolTip(this.Circle_btn, "Circle");
-            this.Circle_btn.UseVisualStyleBackColor = false;
-            this.Circle_btn.Click += new System.EventHandler(this.Circle_btn_Click);
+            this.Modify_lb.AutoSize = true;
+            this.Modify_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Modify_lb.Location = new System.Drawing.Point(1032, 152);
+            this.Modify_lb.Name = "Modify_lb";
+            this.Modify_lb.Size = new System.Drawing.Size(52, 19);
+            this.Modify_lb.TabIndex = 29;
+            this.Modify_lb.Text = "Modify";
             // 
-            // Line_btn
+            // Color_lb
             // 
-            this.Line_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Line_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.line;
-            this.Line_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Line_btn.Location = new System.Drawing.Point(8, 4);
-            this.Line_btn.Name = "Line_btn";
-            this.Line_btn.Size = new System.Drawing.Size(40, 40);
-            this.Line_btn.TabIndex = 58;
-            this.toolTip.SetToolTip(this.Line_btn, "Line");
-            this.Line_btn.UseVisualStyleBackColor = false;
-            this.Line_btn.Click += new System.EventHandler(this.Line_btn_Click);
+            this.Color_lb.AutoSize = true;
+            this.Color_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Color_lb.Location = new System.Drawing.Point(871, 152);
+            this.Color_lb.Name = "Color_lb";
+            this.Color_lb.Size = new System.Drawing.Size(42, 19);
+            this.Color_lb.TabIndex = 31;
+            this.Color_lb.Text = "Color";
             // 
-            // Rec_btn
+            // Shapes_lb
             // 
-            this.Rec_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Rec_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Rec_btn.BackgroundImage")));
-            this.Rec_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Rec_btn.Location = new System.Drawing.Point(51, 4);
-            this.Rec_btn.Name = "Rec_btn";
-            this.Rec_btn.Size = new System.Drawing.Size(40, 40);
-            this.Rec_btn.TabIndex = 57;
-            this.toolTip.SetToolTip(this.Rec_btn, "Rectangle");
-            this.Rec_btn.UseVisualStyleBackColor = false;
-            this.Rec_btn.Click += new System.EventHandler(this.Rec_btn_Click);
+            this.Shapes_lb.AutoSize = true;
+            this.Shapes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Shapes_lb.Location = new System.Drawing.Point(702, 152);
+            this.Shapes_lb.Name = "Shapes_lb";
+            this.Shapes_lb.Size = new System.Drawing.Size(52, 19);
+            this.Shapes_lb.TabIndex = 32;
+            this.Shapes_lb.Text = "Shapes";
             // 
-            // Polygon_btn
+            // Tools_lb
             // 
-            this.Polygon_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Polygon_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.polygon;
-            this.Polygon_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Polygon_btn.Location = new System.Drawing.Point(51, 47);
-            this.Polygon_btn.Name = "Polygon_btn";
-            this.Polygon_btn.Size = new System.Drawing.Size(40, 40);
-            this.Polygon_btn.TabIndex = 56;
-            this.toolTip.SetToolTip(this.Polygon_btn, "Polygon");
-            this.Polygon_btn.UseVisualStyleBackColor = false;
-            this.Polygon_btn.Click += new System.EventHandler(this.Polygon_btn_Click);
+            this.Tools_lb.AutoSize = true;
+            this.Tools_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Tools_lb.Location = new System.Drawing.Point(169, 152);
+            this.Tools_lb.Name = "Tools_lb";
+            this.Tools_lb.Size = new System.Drawing.Size(40, 19);
+            this.Tools_lb.TabIndex = 33;
+            this.Tools_lb.Text = "Tools";
             // 
-            // Arc_btn
+            // Mode_tb
             // 
-            this.Arc_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Arc_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.arc;
-            this.Arc_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Arc_btn.Location = new System.Drawing.Point(94, 47);
-            this.Arc_btn.Name = "Arc_btn";
-            this.Arc_btn.Size = new System.Drawing.Size(40, 40);
-            this.Arc_btn.TabIndex = 55;
-            this.toolTip.SetToolTip(this.Arc_btn, "Arc");
-            this.Arc_btn.UseVisualStyleBackColor = false;
-            this.Arc_btn.Click += new System.EventHandler(this.Arc_btn_Click);
+            this.Mode_tb.BackColor = System.Drawing.SystemColors.Control;
+            this.Mode_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Mode_tb.Location = new System.Drawing.Point(11, 12);
+            this.Mode_tb.Name = "Mode_tb";
+            this.Mode_tb.ReadOnly = true;
+            this.Mode_tb.Size = new System.Drawing.Size(250, 26);
+            this.Mode_tb.TabIndex = 48;
+            this.Mode_tb.Text = "MODE: GROUP";
             // 
-            // Ellipse_btn
+            // Note_tb
             // 
-            this.Ellipse_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Ellipse_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.ellipse;
-            this.Ellipse_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Ellipse_btn.Location = new System.Drawing.Point(94, 4);
-            this.Ellipse_btn.Name = "Ellipse_btn";
-            this.Ellipse_btn.Size = new System.Drawing.Size(40, 40);
-            this.Ellipse_btn.TabIndex = 54;
-            this.toolTip.SetToolTip(this.Ellipse_btn, "Ellipse");
-            this.Ellipse_btn.UseVisualStyleBackColor = false;
-            this.Ellipse_btn.Click += new System.EventHandler(this.Ellipse_btn_Click);
+            this.Note_tb.BackColor = System.Drawing.SystemColors.Control;
+            this.Note_tb.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Note_tb.Location = new System.Drawing.Point(11, 49);
+            this.Note_tb.Name = "Note_tb";
+            this.Note_tb.ReadOnly = true;
+            this.Note_tb.Size = new System.Drawing.Size(250, 26);
+            this.Note_tb.TabIndex = 49;
+            this.Note_tb.Text = "NOTE: ";
             // 
-            // Freehand_btn
+            // Title
             // 
-            this.Freehand_btn.BackColor = System.Drawing.Color.Transparent;
-            this.Freehand_btn.BackgroundImage = global::Paint_Midterm.Properties.Resources.paint;
-            this.Freehand_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Freehand_btn.Location = new System.Drawing.Point(137, 4);
-            this.Freehand_btn.Name = "Freehand_btn";
-            this.Freehand_btn.Size = new System.Drawing.Size(40, 40);
-            this.Freehand_btn.TabIndex = 53;
-            this.toolTip.SetToolTip(this.Freehand_btn, "Freehand");
-            this.Freehand_btn.UseVisualStyleBackColor = false;
-            this.Freehand_btn.Click += new System.EventHandler(this.Freehand_btn_Click);
+            this.Title.AutoSize = true;
+            this.Title.Font = new System.Drawing.Font("Segoe UI", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Title.Location = new System.Drawing.Point(74, 17);
+            this.Title.Name = "Title";
+            this.Title.Size = new System.Drawing.Size(165, 25);
+            this.Title.TabIndex = 52;
+            this.Title.Text = "Paint Application";
             // 
-            // Dash_PBox
+            // Exit_btn
             // 
-            this.Dash_PBox.Image = global::Paint_Midterm.Properties.Resources.dash;
-            this.Dash_PBox.Location = new System.Drawing.Point(8, 46);
-            this.Dash_PBox.Name = "Dash_PBox";
-            this.Dash_PBox.Size = new System.Drawing.Size(28, 32);
-            this.Dash_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Dash_PBox.TabIndex = 34;
-            this.Dash_PBox.TabStop = false;
+            this.Exit_btn.BackColor = System.Drawing.Color.Transparent;
+            this.Exit_btn.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("Exit_btn.BackgroundImage")));
+            this.Exit_btn.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Exit_btn.Location = new System.Drawing.Point(1113, 11);
+            this.Exit_btn.Name = "Exit_btn";
+            this.Exit_btn.Size = new System.Drawing.Size(40, 40);
+            this.Exit_btn.TabIndex = 60;
+            this.toolTip.SetToolTip(this.Exit_btn, "Exit");
+            this.Exit_btn.UseVisualStyleBackColor = false;
+            this.Exit_btn.Click += new System.EventHandler(this.Exit_btn_Click);
             // 
-            // Width_PBox
+            // Notes_pl
             // 
-            this.Width_PBox.Image = global::Paint_Midterm.Properties.Resources.width;
-            this.Width_PBox.Location = new System.Drawing.Point(8, 10);
-            this.Width_PBox.Name = "Width_PBox";
-            this.Width_PBox.Size = new System.Drawing.Size(28, 28);
-            this.Width_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.Width_PBox.TabIndex = 33;
-            this.Width_PBox.TabStop = false;
+            this.Notes_pl.BackColor = System.Drawing.SystemColors.Window;
+            this.Notes_pl.Controls.Add(this.Mode_tb);
+            this.Notes_pl.Controls.Add(this.Note_tb);
+            this.Notes_pl.Location = new System.Drawing.Point(353, 57);
+            this.Notes_pl.Name = "Notes_pl";
+            this.Notes_pl.Size = new System.Drawing.Size(272, 92);
+            this.Notes_pl.TabIndex = 62;
+            // 
+            // Notes_lb
+            // 
+            this.Notes_lb.AutoSize = true;
+            this.Notes_lb.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Notes_lb.Location = new System.Drawing.Point(467, 151);
+            this.Notes_lb.Name = "Notes_lb";
+            this.Notes_lb.Size = new System.Drawing.Size(45, 19);
+            this.Notes_lb.TabIndex = 63;
+            this.Notes_lb.Text = "Notes";
+            // 
+            // Icon_PBox
+            // 
+            this.Icon_PBox.Image = global::Paint_Midterm.Properties.Resources.Icon;
+            this.Icon_PBox.Location = new System.Drawing.Point(32, 10);
+            this.Icon_PBox.Name = "Icon_PBox";
+            this.Icon_PBox.Size = new System.Drawing.Size(40, 40);
+            this.Icon_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.Icon_PBox.TabIndex = 50;
+            this.Icon_PBox.TabStop = false;
+            this.Icon_PBox.Click += new System.EventHandler(this.Icon_PBox_Click);
             // 
             // Main_PBox
             // 
@@ -627,14 +613,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.PenWidth)).EndInit();
             this.Fill_pl.ResumeLayout(false);
             this.Modify_pl.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Dash_PBox)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.Width_PBox)).EndInit();
             this.Shapes_pl.ResumeLayout(false);
             this.Tools_pl.ResumeLayout(false);
             this.Tools_pl.PerformLayout();
             this.Notes_pl.ResumeLayout(false);
             this.Notes_pl.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Icon_PBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Dash_PBox)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Width_PBox)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.Main_PBox)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -683,7 +669,6 @@
         private System.Windows.Forms.Button Delete_btn;
         private System.Windows.Forms.Panel Notes_pl;
         private System.Windows.Forms.Label Notes_lb;
-        private System.Windows.Forms.Button button1;
     }
 }
 

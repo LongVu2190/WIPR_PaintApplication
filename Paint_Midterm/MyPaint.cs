@@ -379,7 +379,7 @@ namespace Paint_Midterm
         }
         private void Clear_btn_Click(object sender, EventArgs e)
         {
-            DialogResult dlr = MessageBox.Show("Do you want to clear panel?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult dlr = MessageBox.Show("Do you want to clear the panel?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
                 Shapes.Clear();
@@ -618,7 +618,7 @@ namespace Paint_Midterm
         }
         private void Exit_btn_Click(object sender, EventArgs e)
         {
-            DialogResult dlr = MessageBox.Show("Do you want to save picture before exit?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult dlr = MessageBox.Show("Do you want to save the picture before exit?", "Notification", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             if (dlr == DialogResult.Yes)
             {
                 Save_Picture();
@@ -633,11 +633,6 @@ namespace Paint_Midterm
         private void PenSize_ValueChanged(object sender, EventArgs e)
         {
             MyWidth = (float)PenWidth.Value;
-        }
-        private void button1_Click(object sender, EventArgs e)
-        {
-            Console.WriteLine("Shapes: " + Shapes.Count);
-            Console.WriteLine("MySelectedShapes: " + MySelectedShapes.Count);
         }
         private void Icon_PBox_Click(object sender, EventArgs e)
         {
