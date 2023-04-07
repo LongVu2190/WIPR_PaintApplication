@@ -27,18 +27,18 @@ namespace Paint_Midterm.Custom
             graphics.FillEllipse(MovingBrush, new RectangleF(P1.X - 5, P1.Y - 5, 10, 10));
             graphics.FillEllipse(MovingBrush, new RectangleF(P2.X - 5, P2.Y - 5, 10, 10));
         }
-        public static void DrawPolygonPoints(Graphics graphics, List<PointF> points)
+        public static void DrawPolygonPoints(Graphics graphics, List<PointF> Points)
         {
-            for (int i = 0; i < points.Count; i++)
+            for (int i = 0; i < Points.Count; i++)
             {
-                graphics.FillEllipse(MovingBrush, new RectangleF(points[i].X - 5, points[i].Y - 5, 10, 10));
-                graphics.FillEllipse(MovingShadow, new RectangleF(points[i].X - 4, points[i].Y - 4, 8, 8));
+                graphics.FillEllipse(MovingBrush, new RectangleF(Points[i].X - 5, Points[i].Y - 5, 10, 10));
+                graphics.FillEllipse(MovingShadow, new RectangleF(Points[i].X - 4, Points[i].Y - 4, 8, 8));
             }
         }
-        public static void DrawRectangleFrame(Graphics graphics, RectangleF zone)
+        public static void DrawRectangleFrame(Graphics graphics, RectangleF rec)
         {
-            graphics.DrawRectangle(MovingFrameShadow, zone.X, zone.Y, zone.Width, zone.Height);
-            graphics.DrawRectangle(MovingFrame, zone.X, zone.Y, zone.Width, zone.Height);
+            graphics.DrawRectangle(MovingFrameShadow, rec.X, rec.Y, rec.Width, rec.Height);
+            graphics.DrawRectangle(MovingFrame, rec.X, rec.Y, rec.Width, rec.Height);
         }
     }
 }

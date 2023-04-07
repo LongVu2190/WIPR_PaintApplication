@@ -29,17 +29,12 @@ namespace Paint_Midterm
         A_Shape SelectedShape; // Lưu shape di chuyển
         A_Shape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
 
-        [DllImport("kernel32.dll", SetLastError = true)]
-        [return: MarshalAs(UnmanagedType.Bool)]
-        static extern bool AllocConsole();
-
         public MyPaint()
         {
             InitializeComponent();
         }
         private void MyPaint_Load(object sender, EventArgs e)
         {
-            AllocConsole(); // Debug
             MyColor = Color.Black;
             MyFillColor = Color.Black;
             MyWidth = 5;
