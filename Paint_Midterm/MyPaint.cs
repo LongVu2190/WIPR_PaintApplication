@@ -642,9 +642,12 @@ namespace Paint_Midterm
             if (Main_PBox.Image != null)
             {
                 Main_PBox.Image = null;
+                Main_PBox.Enabled = true;
                 return;
             }
             Main_PBox.Image = Properties.Resources.cat;
+            Shapes.Clear();
+            Main_PBox.Enabled = false;
         }
 
     }
