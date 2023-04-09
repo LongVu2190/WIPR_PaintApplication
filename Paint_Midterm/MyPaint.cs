@@ -347,7 +347,7 @@ namespace Paint_Midterm
                     {
                         ShapeFrame.DrawStartEndPoints(e.Graphics, SelectedShape.P1, SelectedShape.P2);
                     }
-                    else if (shape is C_Polygon polygon)
+                    else if (SelectedShape is C_Polygon polygon)
                     {
                         ShapeFrame.DrawPolygonPoints(e.Graphics, polygon.Points);
                     }

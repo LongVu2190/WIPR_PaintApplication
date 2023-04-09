@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Drawing.Drawing2D;
 using System.Drawing;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
 
 namespace Paint_Midterm.Shapes
 {

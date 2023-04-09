@@ -44,7 +44,6 @@ namespace Paint_Midterm.Shapes
             if (!IsFill)
             {
                Pen myPen = new Pen(ShapeColor, Width + 5);
-
                     return GetPath.IsOutlineVisible(Point, myPen);
             }
             else
