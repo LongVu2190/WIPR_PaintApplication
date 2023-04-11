@@ -1,1 +1,2 @@
-# Paint_Application
+# Midterm project 
+Subject: Windows Programming
