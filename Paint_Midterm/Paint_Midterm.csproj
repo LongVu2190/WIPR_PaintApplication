@@ -164,9 +164,6 @@
     <None Include="Assets\DashStyle\dash4.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\cat.jpg" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Assets\cat.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
