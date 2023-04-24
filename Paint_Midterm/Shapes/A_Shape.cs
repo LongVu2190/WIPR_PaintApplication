@@ -15,15 +15,17 @@ namespace Paint_Midterm.Shapes
             this.Width = Width;
             this.ShapeColor = ShapeColor;
             this.ShapeDashStyle = ShapeDashStyle;
+            IsFill = false;
+            IsChosen = false;
         }
         public PointF PreviousPoint = Point.Empty;
         public string Name { get; set; }
         public PointF P1;
         public PointF P2;
         public float Width { get; set; }
-        public bool IsFill { get; set; } = false;
+        public bool IsFill { get; set; }
         public Color ShapeFillColor { get; set; }
-        public bool IsChosen { get; set; } = false;
+        public bool IsChosen { get; set; }
         public Color ShapeColor { get; set; }
         public DashStyle ShapeDashStyle { get; set; }
         protected abstract GraphicsPath GetPath { get; }
