@@ -150,12 +150,8 @@ namespace Paint_Midterm.Shapes
                 P2_Temp = P2;
             }
             IsChecked = true;
-            //Console.WriteLine("P1 After: " + P1.ToString());
-            //Console.WriteLine("P2 After: " + P2.ToString());
             P1 = P1_Temp;
             P2 = P2_Temp;
-            //Console.WriteLine("P1: " + P1.ToString());
-            //Console.WriteLine("P2: " + P2.ToString());
         }
     }
 }

@@ -74,7 +74,6 @@ namespace Paint_Midterm.Shapes
                 Width -= Width * (float)0.15;
             }
         }
-        // Kiểm tra các hình vẽ từ phải qua trái, dưới lên trên -> trái trên qua phải dưới
         public void CheckPoints()
         {
             PointF P1_Temp = new PointF(), P2_Temp = new PointF();

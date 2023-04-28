@@ -44,7 +44,7 @@ namespace Paint_Midterm
         }
 
         // Vẽ
-        private void Main_Panel_MouseDown(object sender, MouseEventArgs e)
+        private void Main_PBox_MouseDown(object sender, MouseEventArgs e)
         {
             if (Mode == PaintType.Group && isControlKeyPress)
             {
@@ -159,7 +159,7 @@ namespace Paint_Midterm
                 Mode = PaintType.Move;
             }
         }
-        private void Main_Panel_MouseMove(object sender, MouseEventArgs e)
+        private void Main_PBox_MouseMove(object sender, MouseEventArgs e)
         {
             // Thay đổi con trỏ chuột khi di chuyển đến hình
             Main_PBox.Cursor = Cursors.Default;
@@ -215,7 +215,7 @@ namespace Paint_Midterm
                     break;
             }
         }
-        private void Main_Panel_MouseUp(object sender, MouseEventArgs e)
+        private void Main_PBox_MouseUp(object sender, MouseEventArgs e)
         {
             if (Moving && isControlKeyPress == false)
             {
@@ -291,7 +291,7 @@ namespace Paint_Midterm
             if (Mode != PaintType.Polygon) // Riêng vẽ Polygon
                 IsStart = false;
         }
-        private void Main_Panel_Paint(object sender, PaintEventArgs e)
+        private void Main_PBox_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
 

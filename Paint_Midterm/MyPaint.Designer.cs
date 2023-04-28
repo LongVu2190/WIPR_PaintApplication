@@ -579,10 +579,10 @@
             this.Main_PBox.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.Main_PBox.TabIndex = 3;
             this.Main_PBox.TabStop = false;
-            this.Main_PBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_Panel_Paint);
-            this.Main_PBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseDown);
-            this.Main_PBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseMove);
-            this.Main_PBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_Panel_MouseUp);
+            this.Main_PBox.Paint += new System.Windows.Forms.PaintEventHandler(this.Main_PBox_Paint);
+            this.Main_PBox.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Main_PBox_MouseDown);
+            this.Main_PBox.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_PBox_MouseMove);
+            this.Main_PBox.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Main_PBox_MouseUp);
             // 
             // MyPaint
             // 
