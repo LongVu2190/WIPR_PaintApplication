@@ -14,20 +14,20 @@ namespace Paint_Midterm
     {
         Color MyColor, MyFillColor;
         float MyWidth;
-        List<A_Shape> Shapes = new List<A_Shape>(); // Chứa các hình sẽ vẽ
+        List<A_Shape> Shapes = new List<A_Shape>(); // All shapes will be drawn
 
-        PaintType Mode = PaintType.Line; // Chế độ vẽ
+        PaintType Mode = PaintType.Line; // Paint Mode
 
         bool Moving, IsFill = false, IsStart = false, IsCircle = false, PolygonStatus;
 
-        C_Rec rec = new C_Rec(); // Dành cho không vẽ hình (Mode: Group)
-        bool isControlKeyPress; // Dành cho group shapes (Mode: Group)
-        List<A_Shape> MySelectedShapes = new List<A_Shape>(); // Biến tạm thời lưu các hình để group
+        C_Rec rec = new C_Rec(); // Draw a rectangle zone to group (Mode: Group)
+        bool isControlKeyPress; // Use for group Mode, to check the Ctrl Key press (Mode: Group)
+        List<A_Shape> MySelectedShapes = new List<A_Shape>(); // Temporary variable to store the selected shapes
 
-        // Dành cho di chuyển shape (Mode: Move)
+        // Using for Move Mode (Mode: Move)
         PointF PreviousPoint = Point.Empty;
-        A_Shape SelectedShape; // Lưu shape di chuyển
-        A_Shape LastSelectedShape; // Xóa hoặc zoom in zoom out shape vừa di chuyển
+        A_Shape SelectedShape; // The shape that is moving
+        A_Shape LastSelectedShape; // Use to zoom in, zoom out, delete
 
         public MyPaint()
         {
@@ -43,10 +43,10 @@ namespace Paint_Midterm
             Fill_Color_btn.Visible = false;
         }
 
-        // Vẽ
+        // Main functions for drawing
         private void Main_PBox_MouseDown(object sender, MouseEventArgs e)
         {
-            if (Mode == PaintType.Group && isControlKeyPress)
+            if (Mode == PaintType.Group && isControlKeyPress) // Press Ctrl to group
             {
                 for (int i = 0; i < Shapes.Count; i++)
                 {
@@ -57,7 +57,7 @@ namespace Paint_Midterm
 
                         if (Shapes[i].IsChosen == true)
                         {
-                            MySelectedShapes.Add(Shapes[i]);
+                            MySelectedShapes.Add(Shapes[i]); // Add to MySelectedShapes for grouping
                         }
                         else
                         {
@@ -69,11 +69,11 @@ namespace Paint_Midterm
                     }
                 }
             }
-            else if (Mode == PaintType.Move)
+            else if (Mode == PaintType.Move) // Moving Mode
             {
                 for (var i = Shapes.Count - 1; i >= 0; i--)
                 {
-                    if (Shapes[i].IsHit(e.Location))
+                    if (Shapes[i].IsHit(e.Location)) // Change the location
                     {
                         SelectedShape = Shapes[i];
                         Shape_tb.Text = Shapes[i].Name;
@@ -85,8 +85,8 @@ namespace Paint_Midterm
                 }
             }
 
-            switch (Mode)
-            {
+            switch (Mode) // For Painting
+            {   // Create and add a shape
                 case PaintType.Group:
                     IsStart = true;
                     rec = new C_Rec(e.Location, e.Location, 2, Color.Black, System.Drawing.Drawing2D.DashStyle.Dash, false, Color.Black);
@@ -111,7 +111,7 @@ namespace Paint_Midterm
                     Main_PBox.Invalidate();
                     break;
                 case PaintType.Polygon:
-                    if (!PolygonStatus)
+                    if (!PolygonStatus) // Draw the first point
                     {
                         C_Polygon Polygon = new C_Polygon(MyWidth, MyColor, MyDashStyle.GetDashStyle(Convert.ToInt32(DashStyle.Text)), IsFill, MyFillColor);
                         Polygon.Points.Add(e.Location);
@@ -120,7 +120,7 @@ namespace Paint_Midterm
                         Shapes.Add(Polygon);
                         PolygonStatus = true;
                     }
-                    else
+                    else // Draw other points which not the first point
                     {
                         C_Polygon Polygon = Shapes[Shapes.Count - 1] as C_Polygon;
                         Polygon.Points[Polygon.Points.Count - 1] = e.Location;
@@ -148,7 +148,7 @@ namespace Paint_Midterm
                     break;
             }
 
-            // Nhấn chuột phải để kết thúc vẽ polygon
+            // Right click to finish drawing a polygon
             if (e.Button == MouseButtons.Right && Mode == PaintType.Polygon)
             {
                 isControlKeyPress = false;
@@ -161,7 +161,7 @@ namespace Paint_Midterm
         }
         private void Main_PBox_MouseMove(object sender, MouseEventArgs e)
         {
-            // Thay đổi con trỏ chuột khi di chuyển đến hình
+            // Change the cursor when moving to shapes
             Main_PBox.Cursor = Cursors.Default;
             if (Mode == PaintType.Move || isControlKeyPress)
             {
@@ -174,7 +174,7 @@ namespace Paint_Midterm
                 }
             }
 
-            // Di chuyển hình trong biến SelectedShape
+            // Moving the shape in SelectedShape
             if (Moving && Mode == PaintType.Move)
             {
                 if (SelectedShape != null)
@@ -186,14 +186,14 @@ namespace Paint_Midterm
                 }
             }
 
-            if (!IsStart) return;
+            if (!IsStart) return; // No Drawing
 
             switch (Mode)
             {
                 case PaintType.Group:
                     if (!isControlKeyPress)
                     {
-                        rec.P2 = e.Location;
+                        rec.P2 = e.Location; // Delete the rectangle zone
                         Main_PBox.Refresh();
                     }                    
                     break;
@@ -217,21 +217,21 @@ namespace Paint_Midterm
         }
         private void Main_PBox_MouseUp(object sender, MouseEventArgs e)
         {
-            if (Moving && isControlKeyPress == false)
+            if (Moving && isControlKeyPress == false) // Moving the shape
             {
                 LastSelectedShape = SelectedShape;
                 SelectedShape = null;
                 Moving = false;
             }
 
-            if (Mode == PaintType.Freehand)
+            if (Mode == PaintType.Freehand) // Draw a freehand
             {
                 C_Freehand freehand = Shapes[Shapes.Count - 1] as C_Freehand;
                 freehand.P2 = freehand.Points[freehand.Points.Count - 1];
                 Main_PBox.Invalidate();
             }
 
-            if (Mode == PaintType.Group && !isControlKeyPress)
+            if (Mode == PaintType.Group && !isControlKeyPress) // Drawing the rectangle zone to select multiple shapes
             {
                 MySelectedShapes.Clear();
                 for (int i = 0; i < Shapes.Count; i++)
@@ -240,15 +240,15 @@ namespace Paint_Midterm
 
                     if (Shapes[i] is C_Rec rect)
                     {
-                        rect.CheckPoints(); // Đảo lại vị trí P1 và P2
+                        rect.CheckPoints(); // P1 = P2 and P2 = P1
                     }
                     else if (Shapes[i] is C_Ellipse ellipse)
                     {
-                        ellipse.CheckPoints(); // Đảo lại vị trí P1 và P2
+                        ellipse.CheckPoints();
                     }
                     else if (Shapes[i] is C_Arc arc)
                     {
-                        arc.CheckPoints(); // Đảo lại vị trí P1 và P2
+                        arc.CheckPoints();
                     }
                     else if (Shapes[i] is C_Polygon polygon)
                     {
@@ -259,7 +259,7 @@ namespace Paint_Midterm
                         }
                     }
 
-                    // Kiểm tra xem vùng quét có chạm hình nào không
+                    // Check whether the rectangle zone hit any shapes ?
                     if (Shapes[i].P1.X < Math.Max(rec.P2.X, rec.P1.X)
                         && Shapes[i].P1.X > Math.Min(rec.P2.X, rec.P1.X)
                         && Shapes[i].P1.Y < Math.Max(rec.P2.Y, rec.P1.Y)
@@ -278,7 +278,7 @@ namespace Paint_Midterm
                     }
                 }
 
-                // Xóa vùng quét sau khi thả chuột
+                // Delete the rectangle zone after mouse up
                 PointF p = new PointF(0, 0);
                 rec.P1 = p;
                 rec.P2 = p;
@@ -288,23 +288,25 @@ namespace Paint_Midterm
                 ChangeTextBox("MODE: GROUP", "NOTES: Hold CTRL to group");
             }
 
-            if (Mode != PaintType.Polygon) // Riêng vẽ Polygon
+            if (Mode != PaintType.Polygon) // Drawing Polygon
                 IsStart = false;
         }
         private void Main_PBox_Paint(object sender, PaintEventArgs e)
         {
             e.Graphics.SmoothingMode = SmoothingMode.AntiAlias;
-
-            if (rec != null && !isControlKeyPress)
+            
+            if (rec != null && !isControlKeyPress) // Draw the rectangle zone
                 rec.Draw(e.Graphics);
+
             foreach (var shape in Shapes)
             {
-                shape.Draw(e.Graphics);
+                shape.Draw(e.Graphics);  // Draw shapes
+                // Draw shape Frame
                 if (Mode == PaintType.Group)
                 {
-                    if (shape.IsChosen == true) // Vẽ Frame cho những hình được chọn
+                    if (shape.IsChosen == true) // Draw shape frame for selected shapes
                     {
-                        if (!(shape is C_Line || shape is C_Freehand)) // Vẽ khung hình chữ nhật
+                        if (!(shape is C_Line || shape is C_Freehand))
                         {
                             ShapeFrame.DrawRectangleFrame(e.Graphics,
                                 new RectangleF(shape.P1.X,
@@ -316,7 +318,6 @@ namespace Paint_Midterm
                         if (shape is C_Line || shape is C_Rec || shape is C_Ellipse || shape is C_Arc)
                         {
                             ShapeFrame.DrawRectanglePoints(e.Graphics, shape.P1, shape.P2);
-                            //shape.Draw(e.Graphics);
                         }
                         else if (shape is C_Polygon polygon)
                         {
@@ -328,9 +329,8 @@ namespace Paint_Midterm
                         }
                     }
                 }
-                else if (Moving)
+                else if (Moving) // Draw shape frame when moving
                 {
-                    // Vẽ dash cho khung chọn hình ngoại trừ đường thẳng và freehand
                     if (!(SelectedShape is C_Line || SelectedShape is C_Freehand))
                     {
                         ShapeFrame.DrawRectangleFrame(e.Graphics,
@@ -357,7 +357,7 @@ namespace Paint_Midterm
             }
         }
 
-        // Chức năng
+        // Functions for buttons
         private void Color_btn_Click(object sender, EventArgs e)
         {
             ColorDialog dlg = new ColorDialog();
@@ -441,7 +441,6 @@ namespace Paint_Midterm
                 Fill_Color_btn.Visible = false;
                 Fill_btn.Text = "FILL: OFF";
             }
-
         }
         private void ZoomIn_btn_Click(object sender, EventArgs e)
         {
@@ -464,7 +463,7 @@ namespace Paint_Midterm
                 MessageBox.Show("Please select a shape", "Notification");
         }
 
-        // Nhấn ctrl và delete
+        // Press Ctrl and Delete Key
         private void MyPaint_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.ControlKey)
@@ -614,7 +613,7 @@ namespace Paint_Midterm
             Mode = PaintType.Freehand;
         }
 
-        // Lưu và thoát
+        // Save and Exit
         private void Save_btn_Click(object sender, EventArgs e)
         {
             Save_Picture();
@@ -645,7 +644,7 @@ namespace Paint_Midterm
                 Main_PBox.Enabled = true;
                 return;
             }
-            Main_PBox.Image = Properties.Resources.cat;
+            Main_PBox.Image = Properties.Resources.about;
             Shapes.Clear();
             Main_PBox.Enabled = false;
         }

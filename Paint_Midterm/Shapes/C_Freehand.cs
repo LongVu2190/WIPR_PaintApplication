@@ -64,7 +64,7 @@ namespace Paint_Midterm.Shapes
                 Width -= 2;
             }
         }
-        public void LinkPoints()
+        public void SetStartEndPoints()
         {
             float minX = float.MaxValue;
             float minY = float.MaxValue;

@@ -194,25 +194,9 @@ namespace Paint_Midterm.Shapes
             {
                 A_Shape shape = Shapes[i];
 
-                //if (shape is C_Polygon polygon)
-                //{
-                //    minX = Math.Min(minX, polygon.P1.X);
-                //    minY = Math.Min(minX, polygon.P1.Y);
-
-                //    maxX = Math.Max(maxX, polygon.P2.X);
-                //    maxY = Math.Max(maxY, polygon.P2.Y);
-                //}
-                //else
-                //{
-                //    minX = Math.Min(minX, Math.Min(shape.P1.X, shape.P2.X));
-                //    minY = Math.Min(minY, Math.Min(shape.P1.Y, shape.P2.Y));
-
-                //    maxX = Math.Max(maxX, Math.Max(shape.P1.X, shape.P2.X));
-                //    maxY = Math.Max(maxY, Math.Max(shape.P1.Y, shape.P2.Y));
-                //}
                 if (shape is C_Polygon polygon)
                 {
-                    polygon.LinkPoints();
+                    polygon.SetStartEndPoints();
                 }
                 if (shape.P1.X < minX)
                 {

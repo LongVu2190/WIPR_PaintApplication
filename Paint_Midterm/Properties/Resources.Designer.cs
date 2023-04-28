@@ -63,9 +63,9 @@ namespace Paint_Midterm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap arc {
+        internal static System.Drawing.Bitmap about {
             get {
-                object obj = ResourceManager.GetObject("arc", resourceCulture);
+                object obj = ResourceManager.GetObject("about", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -73,9 +73,9 @@ namespace Paint_Midterm.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap cat {
+        internal static System.Drawing.Bitmap arc {
             get {
-                object obj = ResourceManager.GetObject("cat", resourceCulture);
+                object obj = ResourceManager.GetObject("arc", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
